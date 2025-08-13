@@ -25,8 +25,10 @@
         </li>
       </ul>
       <div class="flex items-center gap-4">
-        <button>Add Recipe</button>
-        <p>User Icon logout</p>
+        <button class="bg-[orangered] text-white py-1 px-2 rounded-3xl">
+          Add Recipe +
+        </button>
+        <IconsUser />
       </div>
     </nav>
   </header>
