@@ -1,3 +1,5 @@
 <template>
-  <div class="text-orange-500">Hello World</div>
+  <nuxt-layout>
+    <nuxt-page />
+  </nuxt-layout>
 </template>
