@@ -4,5 +4,5 @@ export default defineEventHandler(async (event) => {
   const query = getQuery(event);
 
   const response = await $fetch(`${config.apiBase}/recipes`);
-  return response;
+  return response.slice(0, 4);
 });
