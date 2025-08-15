@@ -1,3 +1,4 @@
 <template>
-  <div>Home page</div>
+  <div>Home Page</div>
+  <PopularRecipes />
 </template>

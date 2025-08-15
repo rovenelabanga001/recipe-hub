@@ -1,0 +1,179 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "name": "Classic Beef Steak",
+      "image": "https://images.unsplash.com/photo-1600891964092-4316c288032e",
+      "title": "Juicy Grilled Steak",
+      "details": ["Prep time: 20 mins", "Cook time: 15 mins", "Serves: 2"],
+      "ingredients": ["2 Beef steaks", "Salt", "Pepper", "Garlic butter"],
+      "directions": [
+        "Season steak with salt and pepper.",
+        "Preheat grill to medium-high heat.",
+        "Grill steaks for 6–8 minutes per side for medium doneness.",
+        "Top with garlic butter before serving."
+      ],
+      "cuisine": "American",
+      "tags": ["main course", "grilled", "beef"],
+      "userID": 1
+    },
+    {
+      "id": 2,
+      "name": "Red Lentil Soup with Chicken and Turnips",
+      "image": "https://img.spoonacular.com/recipes/715415-312x231.jpg",
+      "title": "Red Lentil Soup with Chicken and Turnips",
+      "details": ["Prep time: 10 mins", "Cook time: 15 mins", "Serves: 2"],
+      "ingredients": ["4 Eggs", "1 cup Spinach", "Salt", "Olive oil"],
+      "directions": [
+        "Preheat oven to 180°C (350°F).",
+        "Lightly oil ramekins and add spinach.",
+        "Crack eggs into each ramekin and season with salt.",
+        "Bake for 12–15 minutes until whites are set."
+      ],
+      "cuisine": "Mediterranean",
+      "tags": ["breakfast", "baked", "vegetarian"],
+      "userID": 2
+    },
+    {
+      "id": 3,
+      "name": "Cookies",
+      "image": "https://img.spoonacular.com/recipes/945221-312x231.jpg",
+      "title": "Homemade Cookies",
+      "details": ["Prep time: 15 mins", "Cook time: 25 mins", "Serves: 4"],
+      "ingredients": [
+        "500g Ground beef",
+        "Breadcrumbs",
+        "Parmesan cheese",
+        "Tomato sauce"
+      ],
+      "directions": [
+        "Mix beef, breadcrumbs, and Parmesan cheese.",
+        "Form small balls and brown in a skillet.",
+        "Simmer in tomato sauce for 20 minutes.",
+        "Serve with pasta or bread."
+      ],
+      "cuisine": "Italian",
+      "tags": ["main course", "fried", "beef"],
+      "userID": 1
+    },
+    {
+      "id": 4,
+      "name": "Sushi Rolls",
+      "image": "https://images.unsplash.com/photo-1553621042-f6e147245754",
+      "title": "Fresh Sushi Rolls",
+      "details": ["Prep time: 30 mins", "Cook time: 0 mins", "Serves: 4"],
+      "ingredients": ["Sushi rice", "Nori sheets", "Cucumber", "Salmon"],
+      "directions": [
+        "Cook sushi rice and season with rice vinegar.",
+        "Lay nori sheet on bamboo mat, spread rice evenly.",
+        "Add cucumber and salmon, then roll tightly.",
+        "Slice and serve with soy sauce."
+      ],
+      "cuisine": "Japanese",
+      "tags": ["main course", "raw", "seafood"],
+      "userID": 3
+    },
+    {
+      "id": 5,
+      "name": "Rice and Beans",
+      "image": "https://img.spoonacular.com/recipes/716627-312x231.jpg",
+      "title": "Easy Homemade Rice and Beans",
+      "details": ["Prep time: 15 mins", "Cook time: 40 mins", "Serves: 4"],
+      "ingredients": ["Chicken thighs", "Curry paste", "Coconut milk", "Onion"],
+      "directions": [
+        "Sauté onion and curry paste until fragrant.",
+        "Add chicken and brown on all sides.",
+        "Pour in coconut milk and simmer until chicken is cooked.",
+        "Serve with rice."
+      ],
+      "cuisine": "Indian",
+      "tags": ["main course", "spicy", "chicken"],
+      "userID": 2
+    },
+    {
+      "id": 6,
+      "name": "Asparagus and Pea Soup",
+      "image": "https://img.spoonacular.com/recipes/716406-312x231.jpg",
+      "title": "Asparagus and Pea Soup: Real Convenience Food",
+      "details": ["Prep time: 25 mins", "Cook time: 20 mins", "Serves: 4"],
+      "ingredients": ["Pork", "Pineapple", "Tortillas", "Onion", "Cilantro"],
+      "directions": [
+        "Marinate pork with spices and pineapple juice.",
+        "Grill pork until charred and slice thinly.",
+        "Serve in tortillas with onion, cilantro, and pineapple."
+      ],
+      "cuisine": "Mexican",
+      "tags": ["main course", "street food", "pork"],
+      "userID": 1
+    },
+    {
+      "id": 7,
+      "name": "Garlicky Kale",
+      "image": "https://img.spoonacular.com/recipes/644387-312x231.jpg",
+      "title": "Fresh Garlicky Kale",
+      "details": ["Prep time: 10 mins", "Cook time: 0 mins", "Serves: 2"],
+      "ingredients": [
+        "Tomatoes",
+        "Cucumber",
+        "Feta cheese",
+        "Olives",
+        "Olive oil"
+      ],
+      "directions": [
+        "Chop tomatoes and cucumber.",
+        "Mix with feta cheese and olives.",
+        "Drizzle with olive oil before serving."
+      ],
+      "cuisine": "Greek",
+      "tags": ["salad", "vegetarian", "fresh"],
+      "userID": 3
+    },
+    {
+      "id": 8,
+      "name": "French Crepes",
+      "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587",
+      "title": "Delicious Crepes",
+      "details": ["Prep time: 10 mins", "Cook time: 15 mins", "Serves: 4"],
+      "ingredients": ["Flour", "Milk", "Eggs", "Sugar", "Butter"],
+      "directions": [
+        "Mix flour, milk, eggs, and sugar into a smooth batter.",
+        "Heat butter in a pan and pour in batter thinly.",
+        "Cook each side until golden brown.",
+        "Serve with jam, chocolate, or fruit."
+      ],
+      "cuisine": "French",
+      "tags": ["dessert", "sweet", "breakfast"],
+      "userID": 2
+    }
+  ],
+  "comments": [
+    { "id": 1, "userID": 2, "body": "Tried the steak — perfection!" },
+    { "id": 2, "userID": 1, "body": "Baked eggs are now my go-to breakfast." },
+    { "id": 3, "userID": 3, "body": "Meatballs tasted authentic." },
+    { "id": 4, "userID": 1, "body": "Loved the Greek salad's freshness." },
+    { "id": 5, "userID": 2, "body": "Crepes turned out fluffy and light." }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "john@example.com",
+      "password": "password123",
+      "username": "john_doe",
+      "favoriteRecipeIds": [1, 3, 6]
+    },
+    {
+      "id": 2,
+      "email": "sara@example.com",
+      "password": "password123",
+      "username": "sara_smith",
+      "favoriteRecipeIds": [2, 5, 8]
+    },
+    {
+      "id": 3,
+      "email": "mike@example.com",
+      "password": "password123",
+      "username": "mike_brown",
+      "favoriteRecipeIds": [4, 7]
+    }
+  ]
+}

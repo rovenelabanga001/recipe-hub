@@ -1,9 +1,15 @@
 <template>
   <header>
     <nav class="container flex justify-between items-center mx-auto py-6">
-      <h5 class="text-[orangered] font-bold text-lg">
-        <NuxtLink to="/">Seepy</NuxtLink>
-      </h5>
+      <div class="flex items-center gap-2">
+        <img src="@/assets/images/logo.png" alt="logo" />
+        <h5
+          class="text-[orangered] font-bold-200 text-lg"
+          style="font-family: 'Spicy Rice', cursive"
+        >
+          <NuxtLink to="/">Seepy</NuxtLink>
+        </h5>
+      </div>
       <ul class="flex items-center gap-4">
         <li>
           <NuxtLink to="/" exact-active-class="exact-active">Home</NuxtLink>
