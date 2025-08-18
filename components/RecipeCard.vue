@@ -1,17 +1,5 @@
 <script setup>
-const { getPopularRecipes } = useSpoonacular();
 
-const { data: recipes, error } = await useAsyncData("popularRecipes", () =>
-  getPopularRecipes(4)
-);
-watchEffect(() => {
-  if (error.value) {
-    console.error("Error fetching recipes:", error.value);
-  }
-  if (recipes.value) {
-    console.log("Recipes loaded:", recipes.value);
-  }
-});
 </script>
 <template>
   <div
