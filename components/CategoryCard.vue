@@ -6,7 +6,7 @@ import { categories } from "~/categories";
   <div
     v-for="category in categories"
     :key="category.name"
-    class="flex flex-col cursor-pointer group"
+    class="flex items-center gap-2 cursor-pointer group"
   >
     <div
       class="w-16 h-16 rounded-xl overflow-hidden mb-3 group-hover:scale-105 transition-transform duration-200"
@@ -16,7 +16,7 @@ import { categories } from "~/categories";
         :alt="category.name"
         class="w-full h-full object-cover"
       />
-      <span class="text-sm font-medium text-center">{{ category.name }}</span>
     </div>
+    <span class="text-sm font-medium text-center">{{ category.name }}</span>
   </div>
 </template>
