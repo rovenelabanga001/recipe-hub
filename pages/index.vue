@@ -1,8 +1,15 @@
 <script setup>
-const { recipes } = useRecipes();
+const config = useRuntimeConfig();
+
+const { data, pending } = useSafeFetch(
+  `${config.public.baseUrl}/recipes`,
+  {},
+  "Server is down, Please Try Again Later"
+);
 </script>
 <template>
-  <div>
+  <LoadingComponent v-if="pending" />
+  <div v-else>
     <PopularRecipes />
     <PopularCategories />
   </div>

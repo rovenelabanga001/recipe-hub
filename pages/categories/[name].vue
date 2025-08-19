@@ -5,6 +5,7 @@ definePageMeta({
 
 const route = useRoute();
 const config = useRuntimeConfig();
+const { handleError } = useErrorHandler();
 
 const category = route.params.name;
 console.log(category);
@@ -15,11 +16,7 @@ const {
   pending,
 } = await useFetch(`${config.public.baseUrl}/recipes?category=${category}`);
 
-if (error.value) {
-  showError({
-    statusMessage: "Something went wrong, try again later",
-  });
-}
+handleError(error.value, "Failed to load categories, Try again later");
 </script>
 <template>
   <div>

@@ -2,7 +2,7 @@ export const useErrorHandler = () => {
   const handleError = (error, customMessage) => {
     if (error) {
       showError({
-        statusMessage: "Something went wrong, try again later",
+        statusMessage: customMessage || "Something went wrong, try again later",
       });
     }
   };

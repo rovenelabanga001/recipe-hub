@@ -1,7 +1,7 @@
 <script setup>
 const config = useRuntimeConfig();
 
-const {handleError} = useErrorHandler()
+const { handleError } = useErrorHandler();
 
 const { data: popularRecipes, error } = useFetch(
   `${config.public.baseUrl}/recipes`,
@@ -10,11 +10,7 @@ const { data: popularRecipes, error } = useFetch(
   }
 );
 
-if (error.value) {
-  showError({
-    statusMessage: "Something went wrong, Please Try Again Later",
-  });
-}
+handleError(error.value, "Failed to load recipes, try again later");
 </script>
 <template>
   <div
