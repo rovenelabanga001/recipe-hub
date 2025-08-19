@@ -1,5 +1,11 @@
 <script setup>
-const props = defineProps(["recipes"]);
+const props = defineProps({
+  recipes: Array,
+  showTags: {
+    type: Boolean,
+    default: true,
+  },
+});
 </script>
 <template>
   <div
@@ -32,7 +38,7 @@ const props = defineProps(["recipes"]);
         {{ recipe.title }}
       </h3>
       <!--Tags-->
-      <div class="flex flex-wrap gap-2">
+      <div v-if="showTags" class="flex flex-wrap gap-2">
         <span
           v-for="tag in recipe.tags"
           :key="tag"

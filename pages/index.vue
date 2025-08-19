@@ -9,8 +9,9 @@ const { pending } = await useSafeFetch(
 </script>
 <template>
   <LoadingComponent v-if="pending" />
-  <div v-else>
+  <div v-else class="flex flex-col gap-6">
     <PopularRecipes />
     <PopularCategories />
+    <QuickRecipes />
   </div>
 </template>

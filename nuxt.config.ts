@@ -6,12 +6,11 @@ export default defineNuxtConfig({
   runtimeConfig: {
     apiBase: process.env.API_BASE || "http://localhost:5000",
     public: {
-      baseUrl: process.env.API_BASE
-     
+      baseUrl: process.env.API_BASE,
     },
   },
   vite: {
     plugins: [tailwindcss()],
   },
-  css: ["@/assets/css/main.css"],
+  css: ["@/assets/css/main.css", "swiper/swiper-bundle.css"],
 });

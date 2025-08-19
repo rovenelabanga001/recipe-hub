@@ -5,6 +5,7 @@ definePageMeta({
   layout: "no-navbar-layout",
 });
 
+const showTags = ref(false);
 const route = useRoute();
 const config = useRuntimeConfig();
 
@@ -32,7 +33,7 @@ const filteredRecipes = computed(() => {
       <p class="text-gray-500 text-lg">No recipes found for {{ category }}</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <RecipeCard :recipes="filteredRecipes" />
+      <RecipeCard :recipes="filteredRecipes" :showTags="showTags" />
     </div>
   </div>
 </template>
