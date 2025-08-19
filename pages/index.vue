@@ -4,7 +4,7 @@ const config = useRuntimeConfig();
 const { pending } = await useSafeFetch(
   `${config.public.baseUrl}/recipes`,
   {},
-  "Server is down, Please Try Again Later"
+  "Something went wrong, Please Try Again Later"
 );
 </script>
 <template>

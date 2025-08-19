@@ -27,7 +27,7 @@ const filteredRecipes = computed(() => {
 <template>
   <LoadingComponent v-if="pending" />
   <div v-else>
-    <h1 class="text-2xl text-[orangered]-500">{{ category }}</h1>
+    <h1 class="text-xl text-[orangered] mb-4">{{ category }}</h1>
     <div v-if="filteredRecipes.length === 0">
       <p class="text-gray-500 text-lg">No recipes found for {{ category }}</p>
     </div>

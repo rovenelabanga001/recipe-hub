@@ -33,7 +33,7 @@ const isOpen = ref(false);
           >
         </li>
       </ul>
-      <div class="hidden :flex items-center gap-4">
+      <div class="hidden md:flex items-center gap-4">
         <button class="bg-[orangered] text-white py-1 px-2 rounded-3xl">
           Add Recipe +
         </button>
