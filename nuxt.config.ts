@@ -6,7 +6,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     apiBase: process.env.API_BASE || "http://localhost:5000",
     public: {
-      spoonacularBaseUrl: "https://api.spoonacular.com",
+      baseUrl: process.env.API_BASE
+     
     },
   },
   vite: {

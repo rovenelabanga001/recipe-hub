@@ -1,9 +1,22 @@
 <script setup>
+const config = useRuntimeConfig();
 
+const { data: popularRecipes, error } = useFetch(
+  `${config.public.baseUrl}/recipes`,
+  {
+    transform: (popularRecipes) => popularRecipes.slice(-4),
+  }
+);
+
+if (error.value) {
+  showError({
+    statusMessage: "Something went wrong, Please Try Again Later",
+  });
+}
 </script>
 <template>
   <div
-    v-for="recipe in recipes"
+    v-for="recipe in popularRecipes"
     :key="recipe.id"
     class="h-48 sm:h-64 md:h-80 lg:h-96 relative group cursor-pointer rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
   >

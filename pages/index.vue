@@ -1,4 +1,9 @@
+<script setup>
+const { recipes } = useRecipes();
+</script>
 <template>
-  <PopularRecipes />
-  <PopularCategories />
+  <div>
+    <PopularRecipes />
+    <PopularCategories />
+  </div>
 </template>
