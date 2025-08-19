@@ -1,6 +1,8 @@
 <script setup>
 const config = useRuntimeConfig();
 
+const {handleError} = useErrorHandler()
+
 const { data: popularRecipes, error } = useFetch(
   `${config.public.baseUrl}/recipes`,
   {
