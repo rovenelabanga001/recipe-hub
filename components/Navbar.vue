@@ -1,3 +1,6 @@
+<script setup>
+const isOpen = ref(false);
+</script>
 <template>
   <header>
     <nav class="container flex justify-between items-center mx-auto py-6">
@@ -10,7 +13,7 @@
           <NuxtLink to="/">Seepy</NuxtLink>
         </h5>
       </div>
-      <ul class="flex items-center gap-4">
+      <ul class="hidden md:flex items-center gap-4">
         <li>
           <NuxtLink to="/" exact-active-class="exact-active">Home</NuxtLink>
         </li>
@@ -30,13 +33,52 @@
           >
         </li>
       </ul>
-      <div class="flex items-center gap-4">
+      <div class="hidden :flex items-center gap-4">
         <button class="bg-[orangered] text-white py-1 px-2 rounded-3xl">
           Add Recipe +
         </button>
         <IconsUser />
       </div>
+      <button class="md:hidden z-1001" @click="isOpen = !isOpen">
+        <IconsClose v-if="isOpen" />
+        <IconsMenu v-else />
+      </button>
     </nav>
+    <Transition name="fade">
+      <div
+        v-if="isOpen"
+        class="md:hidden flex flex-col items-start fixed top-0 right-0 bg-white shadow-lg px-4 py-20 h-[100%] w-[70%] z-1000"
+      >
+        <ul class="flex flex-col gap-4">
+          <li>
+            <NuxtLink to="/" exact-active-class="exact-active">Home</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/recipes" exact-active-class="exact-active"
+              >Recipes</NuxtLink
+            >
+          </li>
+          <li>
+            <NuxtLink to="/categories" exact-active-class="exact-active"
+              >Categories</NuxtLink
+            >
+          </li>
+          <li>
+            <NuxtLink to="/favorites" exact-active-class="exact-active"
+              >Favorites</NuxtLink
+            >
+          </li>
+        </ul>
+        <div class="flex flex-col items-start gap-4 pt-4">
+          <IconsUser />
+          <button
+            class="bg-[orangered] text-white py-1 px-3 rounded-3xl w-[100%]"
+          >
+            Add Recipe +
+          </button>
+        </div>
+      </div>
+    </Transition>
   </header>
 </template>
 <style scoped>

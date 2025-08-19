@@ -1,7 +1,7 @@
 <script setup>
 const config = useRuntimeConfig();
 
-const { data, pending } = useSafeFetch(
+const { pending } = await useSafeFetch(
   `${config.public.baseUrl}/recipes`,
   {},
   "Server is down, Please Try Again Later"

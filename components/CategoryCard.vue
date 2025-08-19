@@ -10,7 +10,7 @@ const goToCategory = (categoryName) => {
   <div
     v-for="category in categories"
     :key="category.name"
-    class="flex items-center gap-2 cursor-pointer group"
+    class="flex items-center gap-5 cursor-pointer group"
     @click="goToCategory(category.name.toLowerCase())"
   >
     <div

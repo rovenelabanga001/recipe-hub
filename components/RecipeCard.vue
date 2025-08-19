@@ -1,20 +1,9 @@
 <script setup>
-const config = useRuntimeConfig();
-
-const { handleError } = useErrorHandler();
-
-const { data: popularRecipes, error } = useFetch(
-  `${config.public.baseUrl}/recipes`,
-  {
-    transform: (popularRecipes) => popularRecipes.slice(-4),
-  }
-);
-
-handleError(error.value, "Failed to load recipes, try again later");
+const props = defineProps(["recipes"]);
 </script>
 <template>
   <div
-    v-for="recipe in popularRecipes"
+    v-for="recipe in recipes"
     :key="recipe.id"
     class="h-48 sm:h-64 md:h-80 lg:h-96 relative group cursor-pointer rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
   >
