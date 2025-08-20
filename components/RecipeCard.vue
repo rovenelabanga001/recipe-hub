@@ -43,7 +43,12 @@ const props = defineProps({
     </div>
     <!--Recipe Content-->
     <div class="absolute bottom-0 left-0 right-0 p-4">
-      <h3 :class="['text-white font-semibold text-lg mb-2', textAttributes]">
+      <h3
+        :class="[
+          'text-white font-semibold text-xs mb-2 md:text-lg lg:text-2xl',
+          textAttributes,
+        ]"
+      >
         {{ recipe.name }}
       </h3>
       <!--Tags-->

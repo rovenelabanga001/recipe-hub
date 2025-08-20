@@ -1,3 +1,9 @@
+<script setup>
+const props = defineProps({
+  recipes: Array,
+});
+</script>
+
 <template>
   <SearchBar />
   <div
