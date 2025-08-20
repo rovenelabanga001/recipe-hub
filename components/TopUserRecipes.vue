@@ -13,7 +13,7 @@ const { data: userRecipes } = await useSafeFetch(
 </script>
 <template>
   <div class="flex gap-5 items-center">
-    <h6>{{ user.recipeCount }} recipes</h6>
+    <h6 class="font-bold">{{ user.recipeCount }} recipes</h6>
     <ViewAllBtn />
   </div>
   <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
