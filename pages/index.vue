@@ -13,5 +13,6 @@ const { pending } = await useSafeFetch(
     <PopularRecipes />
     <PopularCategories />
     <QuickRecipes />
+    <TopUsers />
   </div>
 </template>

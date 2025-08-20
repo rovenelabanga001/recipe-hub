@@ -5,13 +5,22 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  cardClass: {
+    type: String,
+  },
+  textAttributes: {
+    type: String,
+  },
 });
 </script>
 <template>
   <div
     v-for="recipe in recipes"
     :key="recipe.id"
-    class="h-48 sm:h-64 md:h-80 lg:h-96 relative group cursor-pointer rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+    :class="[
+      'h-48 sm:h-64 md:h-80 lg:h-96 relative group cursor-pointer rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300',
+      cardClass,
+    ]"
   >
     <img
       :src="recipe.image"
@@ -34,7 +43,7 @@ const props = defineProps({
     </div>
     <!--Recipe Content-->
     <div class="absolute bottom-0 left-0 right-0 p-4">
-      <h3 class="text-white font-semibold text-lg mb-2">
+      <h3 :class="['text-white font-semibold text-lg mb-2', textAttributes]">
         {{ recipe.title }}
       </h3>
       <!--Tags-->
