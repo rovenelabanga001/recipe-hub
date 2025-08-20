@@ -28,6 +28,6 @@ export const categories = [
   },
   {
     img: snacks,
-    name: "Snack",
+    name: "Snacks",
   },
 ];

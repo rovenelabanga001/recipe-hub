@@ -44,7 +44,7 @@ const props = defineProps({
     <!--Recipe Content-->
     <div class="absolute bottom-0 left-0 right-0 p-4">
       <h3 :class="['text-white font-semibold text-lg mb-2', textAttributes]">
-        {{ recipe.title }}
+        {{ recipe.name }}
       </h3>
       <!--Tags-->
       <div v-if="showTags" class="flex flex-wrap gap-2">

@@ -168,6 +168,34 @@
       "tags": ["dessert", "sweet", "breakfast"],
       "category": ["Breakfast", "Dessert", "Brunch"],
       "userID": 2
+    },
+    {
+      "id": "9",
+      "name": "Pasta with Garlic",
+      "image": "https://img.spoonacular.com/recipes/716429-556x370.jpg",
+      "title": "Simple Garlic Pasta",
+      "prepTime": 10,
+      "cookTime": 15,
+      "servings": 2,
+      "ingredients": [
+        "200g spaghetti",
+        "3 cloves garlic (sliced)",
+        "2 tbsp olive oil",
+        "Salt",
+        "Pepper",
+        "Fresh parsley"
+      ],
+      "directions": [
+        "Cook pasta according to package instructions.",
+        "Heat olive oil in a pan over medium heat.",
+        "Add sliced garlic and sauté until fragrant (do not burn).",
+        "Toss in cooked pasta and season with salt and pepper.",
+        "Garnish with fresh parsley and serve warm."
+      ],
+      "cuisine": "Italian",
+      "tags": ["main course", "vegetarian", "pasta"],
+      "category": ["Lunch", "Dinner"],
+      "userID": 1
     }
   ],
 
