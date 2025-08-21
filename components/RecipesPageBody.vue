@@ -9,11 +9,11 @@ const showTags = ref(false);
   <h6 class="md:text-2xl text-lg font-bold text-gray-900 self-start">
     Recipes
   </h6>
-  <div class="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
+  <div class="grid grid-cols-2 gap-3 md:grid-cols-4">
     <RecipeCard
       :recipes="recipes"
       :show-tags="showTags"
-      text-attributes="lg:text-xs md:text-xs text-xs"
+      text-attributes="lg:text-xs md:text-xs text-xs "
       card-class="max-h-[200px]"
     />
   </div>
