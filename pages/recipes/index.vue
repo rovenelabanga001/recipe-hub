@@ -12,21 +12,35 @@ const currentPage = ref(1);
 const pageSize = 8;
 
 const searchTerm = ref("");
+const selectedCategory = ref("All");
 
 const totalPages = computed(() => {
-  return allRecipes.value ? Math.ceil(allRecipes.value.length / pageSize) : 0;
+  return filteredRecipes.value
+    ? Math.ceil(filteredRecipes.value.length / pageSize)
+    : 0;
 });
 
 const filteredRecipes = computed(() => {
   if (!allRecipes.value) return [];
-  if (!searchTerm.value.trim()) return allRecipes.value;
 
-  return allRecipes.value.filter(
-    (recipe) =>
-      recipe.title.toLowerCase().includes(searchTerm.value.toLowerCase()) ||
-      recipe.name.toLowerCase().includes(searchTerm.value.toLowerCase())
-  );
+  const q = (searchTerm.value || "").trim().toLowerCase();
+  const cat = selectedCategory.value;
+
+  return allRecipes.value.filter((recipe) => {
+    const matchesSearch =
+      !q ||
+      recipe.title?.toLowerCase().includes(q) ||
+      recipe.name?.toLowerCase().includes(q);
+
+    const matchesCategory =
+      !cat ||
+      cat === "All" ||
+      recipe.category?.some((c) => c?.toLowerCase() === cat.toLowerCase());
+
+    return matchesSearch && matchesCategory;
+  });
 });
+
 const paginatedRecipes = computed(() => {
   if (!allRecipes.value) return [];
   const start = (currentPage.value - 1) * pageSize;
@@ -39,7 +53,12 @@ const goToPage = (page) => {
   }
 };
 
+watch([searchTerm, selectedCategory], () => {
+  currentPage.value = 1;
+});
+
 provide("searchTerm", searchTerm);
+provide("selectedCategory", selectedCategory);
 </script>
 <template>
   <LoadingComponent v-if="pending" />
@@ -47,8 +66,13 @@ provide("searchTerm", searchTerm);
     <div class="flex flex-col items-center justify-center mt-4 gap-10 w-full">
       <RecipesPageHeader :recipes="allRecipes" />
       <NotFoundComponent
-        v-if="!filteredRecipes.length && searchTerm"
+        v-if="
+          !filteredRecipes.length &&
+          (searchTerm || (selectedCategory && selectedCategory !== 'All'))
+        "
         :searchTerm="searchTerm"
+        :selectedCategory="selectedCategory"
+        :has-results="filteredRecipes.length > 0"
       />
       <div class="flex flex-col items-center" v-else>
         <RecipesPageBody :recipes="paginatedRecipes" />
