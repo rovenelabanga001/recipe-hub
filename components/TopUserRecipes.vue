@@ -21,7 +21,7 @@ const { data: userRecipes } = await useSafeFetch(
       :recipes="userRecipes"
       :show-tags="showTags"
       card-class="max-h-[200px] h-[8rem]"
-      text-attributes="text-xs"
+      text-attributes="lg:text-xs md:text-xs text-xs"
     />
   </div>
 </template>
