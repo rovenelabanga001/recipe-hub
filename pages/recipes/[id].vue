@@ -26,12 +26,15 @@ provide("recipeId", recipeId);
 </script>
 <template>
   <LoadingComponent v-if="pending" />
-  <div v-else class="flex flex-col items-start gap-4 w-[100%] md:w-[40%]">
+  <div
+    v-else
+    class="flex flex-col items-start gap-4 w-[100%] md:w-[80%] lg:w-[50%]"
+  >
     <SingleRecipeHeader :recipe="recipe" />
     <img
       :src="recipe.image"
       class="h-[auto] rounded-xl object-cover w-[70%] md:w-[100%]"
     />
-    <SingleRecipeBody :recipe="recipe"  />
+    <SingleRecipeBody :recipe="recipe" />
   </div>
 </template>

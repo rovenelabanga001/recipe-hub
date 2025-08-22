@@ -54,15 +54,15 @@ const timeAgo = (timestamp) => {
       <div class="flex-1 min-w-0">
         <!-- Header -->
         <div class="flex items-center space-x-2 mb-2">
-          <h3 class="text-sm font-semibold text-gray-900">
+          <h3 class="font-semibold text-gray-900">
             {{ comment.username }}
           </h3>
-          <span class="text-sm text-gray-500">•</span>
-          <span class="text-sm text-gray-500">{{ timeAgo(comment.time) }}</span>
+          <span class="text-gray-500">•</span>
+          <span class="text-gray-500">{{ timeAgo(comment.time) }}</span>
         </div>
 
         <!-- Post content -->
-        <p class="text-sm text-gray-800 leading-relaxed">
+        <p class="text-gray-800 leading-relaxed">
           {{ comment.body }}
         </p>
       </div>

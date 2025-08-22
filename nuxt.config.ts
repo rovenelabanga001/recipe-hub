@@ -13,4 +13,14 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
   css: ["@/assets/css/main.css", "swiper/swiper-bundle.css"],
+  modules: ["@nuxtjs/google-fonts"],
+  googleFonts: {
+    families: {
+      "Space Grotesk": [300, 400, 500, 600, 700], // font weights you need
+    },
+    display: "swap", // ensures text shows immediately
+    preconnect: true, // preconnects to fonts.googleapis.com & fonts.gstatic.com
+    download: true, // downloads and serves fonts locally (faster load)
+    inject: true, // automatically injects into your <head>
+  },
 });
