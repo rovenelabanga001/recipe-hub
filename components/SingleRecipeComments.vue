@@ -9,14 +9,10 @@ const { data: comments } = await useSafeFetch(
 );
 </script>
 <template>
-  <div>
-    <h5 class="font-bold text-lg">Comments</h5>
-    <div v-for="comment in comments" class="flex gap-4 items-start">
-      <IconsUser class="max-w-14 max-h-14" />
-      <div class="flex flex-col items-start">
-        <p class="text-gray-400 text-xs">{{ comment.username }}</p>
-        <p>{{ comment.body }}</p>
-      </div>
+  <div class="w-[100%] md:w-[100%]">
+    <h5 class="font-bold text-lg mb-4">Comments</h5>
+    <div class="flex flex-col gap-4 items-start w-[100%]">
+      <CommentCard :comments="comments" />
     </div>
   </div>
 </template>

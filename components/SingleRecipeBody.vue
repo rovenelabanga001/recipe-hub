@@ -4,7 +4,7 @@ const props = defineProps({
 });
 </script>
 <template>
-  <div>
+  <div class="w-[70%] md:w-[100%]">
     <h3 class="font-bold text-lg">Details</h3>
     <ol class="list-disc list-inside">
       <li>prep time:{{ recipe.prepTime }}</li>
@@ -12,7 +12,7 @@ const props = defineProps({
       <li>servings: {{ recipe.servings }}</li>
     </ol>
   </div>
-  <div>
+  <div class="w-[70%] md:w-[100%]">
     <h3 class="font-bold text-lg">Ingredients</h3>
     <ol class="list-disc list-inside">
       <li v-for="ingredient in recipe.ingredients">
@@ -20,7 +20,7 @@ const props = defineProps({
       </li>
     </ol>
   </div>
-  <div>
+  <div class="w-[70%] md:w-[100%]">
     <h3 class="font-bold text-lg">Directions</h3>
     <ol class="list-decimal list-inside">
       <li v-for="direction in recipe.directions">
