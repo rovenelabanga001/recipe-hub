@@ -1,7 +1,7 @@
 export const useSafeFetch = async (
   url,
   options = {},
-  errorMessage = "Something Went Wrong, Try Again Later"
+  fallbackMessage = "Something Went Wrong, Try Again Later"
 ) => {
   const { handleError } = useErrorHandler();
 
@@ -11,7 +11,9 @@ export const useSafeFetch = async (
   });
 
   if (error.value) {
-    handleError(error.value, errorMessage);
+    const message =
+      error.value?.message || error.value?.statusMessage || fallbackMessage;
+    handleError(error.value, fallbackMessage);
   }
 
   return { data, pending, error };
