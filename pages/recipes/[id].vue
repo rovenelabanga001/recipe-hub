@@ -22,6 +22,7 @@ watch(recipe, async (newRecipe) => {
     user.value = data.value;
   }
 });
+provide("recipeId", recipeId);
 </script>
 <template>
   <LoadingComponent v-if="pending" />
@@ -31,13 +32,6 @@ watch(recipe, async (newRecipe) => {
       :src="recipe.image"
       class="h-[auto] rounded-xl object-cover w-[70%] md:w-[100%]"
     />
-    <div>
-      <h3 class="font-bold text-lg">Details</h3>
-      <ol>
-        <li>prep time:{{ recipe.prepTime }}</li>
-        <li>cook time: {{ recipe.cookTime }}</li>
-        <li>servings: {{ recipe.servings }}</li>
-      </ol>
-    </div>
+    <SingleRecipeBody :recipe="recipe"  />
   </div>
 </template>
