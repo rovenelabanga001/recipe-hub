@@ -3,7 +3,7 @@ import { categories } from "~/categories";
 const recipeCategoryStore = useRecipeCategoryStore();
 
 const goToCategory = (categoryName) => {
-  recipeCategoryStore.selectedCategory = categoryName;
+  recipeCategoryStore.setCategory(categoryName);
   navigateTo(`/recipes`);
 };
 
