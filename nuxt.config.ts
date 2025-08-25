@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
   css: ["@/assets/css/main.css", "swiper/swiper-bundle.css"],
-  modules: ["@nuxtjs/google-fonts"],
+  modules: ["@nuxtjs/google-fonts", "@pinia/nuxt"],
   googleFonts: {
     families: {
       "Space Grotesk": [300, 400, 500, 600, 700], // font weights you need

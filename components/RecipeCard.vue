@@ -12,9 +12,9 @@ const props = defineProps({
     type: String,
   },
 });
-
-const goToSingleRecipe = inject("goToSingleRecipe");
-console.log(goToSingleRecipe);
+const goToSingleRecipe = (recipeId) => {
+  navigateTo(`/recipes/${recipeId}`);
+};
 </script>
 <template>
   <div

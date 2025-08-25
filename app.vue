@@ -1,13 +1,9 @@
-<script setup>
-const goToSingleRecipe = (recipeId) => {
-  navigateTo(`/recipes/${recipeId}`);
-};
-
-provide("goToSingleRecipe", goToSingleRecipe);
-</script>
+<script setup></script>
 
 <template>
-  <nuxt-layout>
-    <nuxt-page />
-  </nuxt-layout>
+  <div class="bg-[#FDFAF5]">
+    <nuxt-layout>
+      <nuxt-page />
+    </nuxt-layout>
+  </div>
 </template>
