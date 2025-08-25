@@ -1,7 +1,8 @@
 <script setup>
+import { useRecipeCategoryStore } from "#imports";
 import { categoriesFilter } from "~/categoriesFilter";
-
-const selectedCategory = inject("selectedCategory");
+const recipeCategoryStore = useRecipeCategoryStore();
+const { selectedCategory } = storeToRefs(recipeCategoryStore);
 </script>
 
 <template>

@@ -1,6 +1,7 @@
 <script setup>
 const route = useRoute();
 const config = useRuntimeConfig();
+const router = useRouter();
 
 const recipeId = route.params.id;
 const { data: recipe, pending } = await useSafeFetch(
@@ -18,11 +19,14 @@ const { data: user, pending: userPending } = await useAsyncData(
   }
 );
 
-console.log(user.value);
+const goBack = () => {
+  router.back();
+};
 
 provide("recipeId", recipeId);
 </script>
 <template>
+  <IconsBack class="text-lg mb-4 bg-[orangered]" fill="white" @click="goBack" />
   <LoadingComponent v-if="pending" />
   <div
     v-else

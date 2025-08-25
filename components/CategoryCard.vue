@@ -1,8 +1,10 @@
 <script setup>
 import { categories } from "~/categories";
+const recipeCategoryStore = useRecipeCategoryStore();
 
 const goToCategory = (categoryName) => {
-  navigateTo(`/categories/${categoryName}`);
+  recipeCategoryStore.selectedCategory = categoryName;
+  navigateTo(`/recipes`);
 };
 
 const props = defineProps({

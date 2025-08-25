@@ -1,6 +1,8 @@
 <script setup>
 const config = useRuntimeConfig();
 
+const recipeCategoryStore = useRecipeCategoryStore();
+
 const { data: allRecipes, pending } = await useSafeFetch(
   `${config.public.baseUrl}/recipes`,
   {},
@@ -12,7 +14,8 @@ const currentPage = ref(1);
 const pageSize = 8;
 
 const searchTerm = ref("");
-const selectedCategory = ref("All");
+
+const { selectedCategory } = storeToRefs(recipeCategoryStore);
 
 const totalPages = computed(() => {
   return filteredRecipes.value
@@ -53,12 +56,11 @@ const goToPage = (page) => {
   }
 };
 
-watch([searchTerm, selectedCategory], () => {
+watch([searchTerm, () => recipeCategoryStore.selectedCategory], () => {
   currentPage.value = 1;
 });
 
 provide("searchTerm", searchTerm);
-provide("selectedCategory", selectedCategory);
 </script>
 <template>
   <LoadingComponent v-if="pending" />
