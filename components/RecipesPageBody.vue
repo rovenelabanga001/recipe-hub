@@ -4,6 +4,7 @@ const props = defineProps({
 });
 
 const showTags = ref(false);
+
 </script>
 <template>
   <h6 class="md:text-2xl text-lg font-bold text-gray-900 self-start">

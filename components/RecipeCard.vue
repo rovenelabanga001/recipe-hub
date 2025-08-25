@@ -12,6 +12,9 @@ const props = defineProps({
     type: String,
   },
 });
+
+const goToSingleRecipe = inject("goToSingleRecipe");
+console.log(goToSingleRecipe);
 </script>
 <template>
   <div
@@ -21,6 +24,7 @@ const props = defineProps({
       'h-48 sm:h-64 md:h-80 lg:h-96 relative group cursor-pointer rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300',
       cardClass,
     ]"
+    @click="goToSingleRecipe(recipe.id)"
   >
     <img
       :src="recipe.image"
