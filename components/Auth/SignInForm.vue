@@ -1,6 +1,6 @@
 <template>
   <form
-    class="flex flex-col shadow-2xl rounded-2xl p-7 bg-white/30 gap-5 text-sm"
+    class="flex flex-col shadow-2xl rounded-2xl p-7 bg-white/30 gap-5 text-sm md:min-w-[70%] lg:min-w-[40%]"
   >
     <h3 class="text-2xl">Log In</h3>
     <div class="flex flex-col">
