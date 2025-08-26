@@ -1,8 +1,10 @@
 <script setup>
-import { reactive } from "vue";
 import useVuelidate from "@vuelidate/core";
 import { required, email, sameAs, helpers } from "@vuelidate/validators";
 
+const config = useRuntimeConfig();
+
+const router = useRouter();
 // ----------------------
 // Form state
 // ----------------------
@@ -47,11 +49,62 @@ const rules = {
 // Init Vuelidate
 // ----------------------
 const v$ = useVuelidate(rules, form);
+
+const onSignUpSubmit = async () => {
+  await v$.value.$validate();
+
+  if (!v$.value.$error) {
+    try {
+      // Fetch existing users from API
+      const users = await $fetch("/api/users"); // assumes API returns all users
+
+      // Check if username or email already exists
+      const usernameExists = users.some((u) => u.username === form.username);
+      const emailExists = users.some((u) => u.email === form.email);
+
+      if (usernameExists) {
+        useToastify("Username already exists", { type: "error" });
+        return;
+      }
+
+      if (emailExists) {
+        useToastify("Email already exists", { type: "error" });
+        return;
+      }
+
+      // If all good, submit the form
+      console.log("Submitting payload:", {
+        username: form.username,
+        email: form.email,
+        password: form.password,
+        favoriteRecipeIds: [],
+      });
+
+      const data = await $fetch("/api/user", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: {
+          username: form.username,
+          email: form.email,
+          password: form.password,
+        },
+      });
+
+      useToastify(data.message || "Account created successfully!", {
+        type: "success",
+      });
+      router.push("/auth/signin");
+    } catch (err) {
+      useToastify("Server error, please try again", { type: "error" });
+      console.log("Server error:", err);
+    }
+  }
+};
 </script>
 
 <template>
   <form
-    @submit.prevent="submitForm"
+    @submit.prevent="onSignUpSubmit"
     class="flex flex-col shadow-2xl rounded-2xl p-7 bg-white/30 gap-5 text-sm md:min-w-[70%] lg:min-w-[40%]"
   >
     <div>

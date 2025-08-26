@@ -1,14 +1,19 @@
 {
   "recipes": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Classic Beef Steak",
       "image": "https://images.unsplash.com/photo-1600891964092-4316c288032e",
       "title": "Juicy Grilled Steak",
       "prepTime": 20,
       "cookTime": 15,
       "servings": 2,
-      "ingredients": ["2 Beef steaks", "Salt", "Pepper", "Garlic butter"],
+      "ingredients": [
+        "2 Beef steaks",
+        "Salt",
+        "Pepper",
+        "Garlic butter"
+      ],
       "directions": [
         "Season steak with salt and pepper.",
         "Preheat grill to medium-high heat.",
@@ -16,19 +21,31 @@
         "Top with garlic butter before serving."
       ],
       "cuisine": "American",
-      "tags": ["main course", "grilled", "beef"],
-      "category": ["Lunch", "Dinner"],
+      "tags": [
+        "main course",
+        "grilled",
+        "beef"
+      ],
+      "category": [
+        "Lunch",
+        "Dinner"
+      ],
       "userID": 1
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Red Lentil Soup with Chicken and Turnips",
       "image": "https://img.spoonacular.com/recipes/715415-312x231.jpg",
       "title": "Red Lentil Soup with Chicken and Turnips",
       "prepTime": 10,
       "cookTime": 15,
       "servings": 2,
-      "ingredients": ["4 Eggs", "1 cup Spinach", "Salt", "Olive oil"],
+      "ingredients": [
+        "4 Eggs",
+        "1 cup Spinach",
+        "Salt",
+        "Olive oil"
+      ],
       "directions": [
         "Preheat oven to 180°C (350°F).",
         "Lightly oil ramekins and add spinach.",
@@ -36,12 +53,19 @@
         "Bake for 12–15 minutes until whites are set."
       ],
       "cuisine": "Mediterranean",
-      "tags": ["breakfast", "baked", "vegetarian"],
-      "category": ["Breakfast", "Brunch"],
+      "tags": [
+        "breakfast",
+        "baked",
+        "vegetarian"
+      ],
+      "category": [
+        "Breakfast",
+        "Brunch"
+      ],
       "userID": 2
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Cookies",
       "image": "https://img.spoonacular.com/recipes/945221-312x231.jpg",
       "title": "Homemade Cookies",
@@ -61,19 +85,31 @@
         "Serve with pasta or bread."
       ],
       "cuisine": "Italian",
-      "tags": ["main course", "fried", "beef"],
-      "category": ["Lunch", "Dinner"],
+      "tags": [
+        "main course",
+        "fried",
+        "beef"
+      ],
+      "category": [
+        "Lunch",
+        "Dinner"
+      ],
       "userID": 1
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Sushi Rolls",
       "image": "https://images.unsplash.com/photo-1553621042-f6e147245754",
       "title": "Fresh Sushi Rolls",
       "prepTime": 30,
       "cookTime": 50,
       "servings": 4,
-      "ingredients": ["Sushi rice", "Nori sheets", "Cucumber", "Salmon"],
+      "ingredients": [
+        "Sushi rice",
+        "Nori sheets",
+        "Cucumber",
+        "Salmon"
+      ],
       "directions": [
         "Cook sushi rice and season with rice vinegar.",
         "Lay nori sheet on bamboo mat, spread rice evenly.",
@@ -81,19 +117,31 @@
         "Slice and serve with soy sauce."
       ],
       "cuisine": "Japanese",
-      "tags": ["main course", "raw", "seafood"],
-      "category": ["Lunch", "Dinner"],
+      "tags": [
+        "main course",
+        "raw",
+        "seafood"
+      ],
+      "category": [
+        "Lunch",
+        "Dinner"
+      ],
       "userID": 3
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Rice and Beans",
       "image": "https://img.spoonacular.com/recipes/716627-312x231.jpg",
       "title": "Easy Homemade Rice and Beans",
       "prepTime": 15,
       "cookTime": 40,
       "servings": 4,
-      "ingredients": ["Chicken thighs", "Curry paste", "Coconut milk", "Onion"],
+      "ingredients": [
+        "Chicken thighs",
+        "Curry paste",
+        "Coconut milk",
+        "Onion"
+      ],
       "directions": [
         "Sauté onion and curry paste until fragrant.",
         "Add chicken and brown on all sides.",
@@ -101,31 +149,51 @@
         "Serve with rice."
       ],
       "cuisine": "Indian",
-      "tags": ["main course", "spicy", "chicken"],
-      "category": ["Lunch", "Dinner"],
+      "tags": [
+        "main course",
+        "spicy",
+        "chicken"
+      ],
+      "category": [
+        "Lunch",
+        "Dinner"
+      ],
       "userID": 2
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Asparagus and Pea Soup",
       "image": "https://img.spoonacular.com/recipes/716406-312x231.jpg",
       "title": "Asparagus and Pea Soup: Real Convenience Food",
       "prepTime": 25,
       "cookTime": 20,
       "servings": 4,
-      "ingredients": ["Pork", "Pineapple", "Tortillas", "Onion", "Cilantro"],
+      "ingredients": [
+        "Pork",
+        "Pineapple",
+        "Tortillas",
+        "Onion",
+        "Cilantro"
+      ],
       "directions": [
         "Marinate pork with spices and pineapple juice.",
         "Grill pork until charred and slice thinly.",
         "Serve in tortillas with onion, cilantro, and pineapple."
       ],
       "cuisine": "Mexican",
-      "tags": ["main course", "street food", "pork"],
-      "category": ["Lunch", "Dinner"],
+      "tags": [
+        "main course",
+        "street food",
+        "pork"
+      ],
+      "category": [
+        "Lunch",
+        "Dinner"
+      ],
       "userID": 1
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Garlicky Kale",
       "image": "https://img.spoonacular.com/recipes/644387-312x231.jpg",
       "title": "Fresh Garlicky Kale",
@@ -145,19 +213,32 @@
         "Drizzle with olive oil before serving."
       ],
       "cuisine": "Greek",
-      "tags": ["salad", "vegetarian", "fresh"],
-      "category": ["Snack", "Brunch"],
+      "tags": [
+        "salad",
+        "vegetarian",
+        "fresh"
+      ],
+      "category": [
+        "Snack",
+        "Brunch"
+      ],
       "userID": 3
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "French Crepes",
       "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587",
       "title": "Delicious Crepes",
       "prepTime": 10,
       "cookTime": 15,
       "servings": 4,
-      "ingredients": ["Flour", "Milk", "Eggs", "Sugar", "Butter"],
+      "ingredients": [
+        "Flour",
+        "Milk",
+        "Eggs",
+        "Sugar",
+        "Butter"
+      ],
       "directions": [
         "Mix flour, milk, eggs, and sugar into a smooth batter.",
         "Heat butter in a pan and pour in batter thinly.",
@@ -165,8 +246,16 @@
         "Serve with jam, chocolate, or fruit."
       ],
       "cuisine": "French",
-      "tags": ["dessert", "sweet", "breakfast"],
-      "category": ["Breakfast", "Dessert", "Brunch"],
+      "tags": [
+        "dessert",
+        "sweet",
+        "breakfast"
+      ],
+      "category": [
+        "Breakfast",
+        "Dessert",
+        "Brunch"
+      ],
       "userID": 2
     },
     {
@@ -193,177 +282,228 @@
         "Garnish with fresh parsley and serve warm."
       ],
       "cuisine": "Italian",
-      "tags": ["main course", "vegetarian", "pasta"],
-      "category": ["Lunch", "Dinner"],
+      "tags": [
+        "main course",
+        "vegetarian",
+        "pasta"
+      ],
+      "category": [
+        "Lunch",
+        "Dinner"
+      ],
       "userID": 1
     }
   ],
-
- "comments": [
-  {
-    "id": 1,
-    "username": "john_doe",
-    "recipeId": 3,
-    "body": "This recipe turned out amazing! Will definitely make it again.",
-    "time": "2025-08-22T07:15:00Z"
-  },
-  {
-    "id": 2,
-    "username": "sara_smith",
-    "recipeId": 5,
-    "body": "Loved the flavors, but I added a bit more spice to suit my taste.",
-    "time": "2025-08-22T07:45:00Z"
-  },
-  {
-    "id": 3,
-    "username": "mike_brown",
-    "recipeId": 7,
-    "body": "Simple and easy to follow, perfect for a quick dinner.",
-    "time": "2025-08-22T08:05:00Z"
-  },
-  {
-    "id": 4,
-    "username": "john_doe",
-    "recipeId": 1,
-    "body": "Good recipe overall, but I think it needs more seasoning.",
-    "time": "2025-08-22T08:30:00Z"
-  },
-  {
-    "id": 5,
-    "username": "sara_smith",
-    "recipeId": 8,
-    "body": "Turned out better than expected! My family loved it.",
-    "time": "2025-08-22T09:00:00Z"
-  },
-  {
-    "id": 6,
-    "username": "mike_brown",
-    "recipeId": 4,
-    "body": "Very tasty! I’ll be making this again soon.",
-    "time": "2025-08-22T09:30:00Z"
-  },
-  {
-    "id": 7,
-    "username": "john_doe",
-    "recipeId": 6,
-    "body": "Followed this exactly and it came out perfect. Thanks!",
-    "time": "2025-08-22T10:00:00Z"
-  },
-  {
-    "id": 8,
-    "username": "sara_smith",
-    "recipeId": 2,
-    "body": "Quick and easy to prepare. Perfect for weekdays.",
-    "time": "2025-08-22T10:15:00Z"
-  },
-  {
-    "id": 9,
-    "username": "mike_brown",
-    "recipeId": 9,
-    "body": "Great balance of flavors. Will cook this again soon.",
-    "time": "2025-08-22T10:45:00Z"
-  },
-  {
-    "id": 10,
-    "username": "john_doe",
-    "recipeId": 5,
-    "body": "Added a little garlic and it was even better!",
-    "time": "2025-08-22T11:05:00Z"
-  },
-  {
-    "id": 11,
-    "username": "sara_smith",
-    "recipeId": 7,
-    "body": "Loved it! Easy instructions and delicious result.",
-    "time": "2025-08-22T11:25:00Z"
-  },
-  {
-    "id": 12,
-    "username": "mike_brown",
-    "recipeId": 3,
-    "body": "Not bad, but I think it could use more herbs.",
-    "time": "2025-08-22T11:45:00Z"
-  },
-  {
-    "id": 13,
-    "username": "john_doe",
-    "recipeId": 8,
-    "body": "One of the best recipes I've tried from this site!",
-    "time": "2025-08-22T12:10:00Z"
-  },
-  {
-    "id": 14,
-    "username": "sara_smith",
-    "recipeId": 1,
-    "body": "Turned out great with a side of salad.",
-    "time": "2025-08-22T12:30:00Z"
-  },
-  {
-    "id": 15,
-    "username": "mike_brown",
-    "recipeId": 6,
-    "body": "Family favorite now! Thanks for sharing.",
-    "time": "2025-08-22T12:50:00Z"
-  },
-  {
-    "id": 16,
-    "username": "john_doe",
-    "recipeId": 2,
-    "body": "Made this for a party, everyone loved it.",
-    "time": "2025-08-22T13:10:00Z"
-  },
-  {
-    "id": 17,
-    "username": "sara_smith",
-    "recipeId": 9,
-    "body": "Good but I reduced the sugar slightly.",
-    "time": "2025-08-22T13:35:00Z"
-  },
-  {
-    "id": 18,
-    "username": "mike_brown",
-    "recipeId": 5,
-    "body": "Came out perfectly golden brown. Great recipe!",
-    "time": "2025-08-22T14:00:00Z"
-  },
-  {
-    "id": 19,
-    "username": "john_doe",
-    "recipeId": 4,
-    "body": "Simple, fast, and delicious. What more do you need?",
-    "time": "2025-08-22T14:20:00Z"
-  },
-  {
-    "id": 20,
-    "username": "sara_smith",
-    "recipeId": 3,
-    "body": "Absolutely fantastic! Saving this one.",
-    "time": "2025-08-22T14:45:00Z"
-  }
-]
-,
-
+  "comments": [
+    {
+      "id": "1",
+      "username": "john_doe",
+      "recipeId": 3,
+      "body": "This recipe turned out amazing! Will definitely make it again.",
+      "time": "2025-08-22T07:15:00Z"
+    },
+    {
+      "id": "2",
+      "username": "sara_smith",
+      "recipeId": 5,
+      "body": "Loved the flavors, but I added a bit more spice to suit my taste.",
+      "time": "2025-08-22T07:45:00Z"
+    },
+    {
+      "id": "3",
+      "username": "mike_brown",
+      "recipeId": 7,
+      "body": "Simple and easy to follow, perfect for a quick dinner.",
+      "time": "2025-08-22T08:05:00Z"
+    },
+    {
+      "id": "4",
+      "username": "john_doe",
+      "recipeId": 1,
+      "body": "Good recipe overall, but I think it needs more seasoning.",
+      "time": "2025-08-22T08:30:00Z"
+    },
+    {
+      "id": "5",
+      "username": "sara_smith",
+      "recipeId": 8,
+      "body": "Turned out better than expected! My family loved it.",
+      "time": "2025-08-22T09:00:00Z"
+    },
+    {
+      "id": "6",
+      "username": "mike_brown",
+      "recipeId": 4,
+      "body": "Very tasty! I’ll be making this again soon.",
+      "time": "2025-08-22T09:30:00Z"
+    },
+    {
+      "id": "7",
+      "username": "john_doe",
+      "recipeId": 6,
+      "body": "Followed this exactly and it came out perfect. Thanks!",
+      "time": "2025-08-22T10:00:00Z"
+    },
+    {
+      "id": "8",
+      "username": "sara_smith",
+      "recipeId": 2,
+      "body": "Quick and easy to prepare. Perfect for weekdays.",
+      "time": "2025-08-22T10:15:00Z"
+    },
+    {
+      "id": "9",
+      "username": "mike_brown",
+      "recipeId": 9,
+      "body": "Great balance of flavors. Will cook this again soon.",
+      "time": "2025-08-22T10:45:00Z"
+    },
+    {
+      "id": "10",
+      "username": "john_doe",
+      "recipeId": 5,
+      "body": "Added a little garlic and it was even better!",
+      "time": "2025-08-22T11:05:00Z"
+    },
+    {
+      "id": "11",
+      "username": "sara_smith",
+      "recipeId": 7,
+      "body": "Loved it! Easy instructions and delicious result.",
+      "time": "2025-08-22T11:25:00Z"
+    },
+    {
+      "id": "12",
+      "username": "mike_brown",
+      "recipeId": 3,
+      "body": "Not bad, but I think it could use more herbs.",
+      "time": "2025-08-22T11:45:00Z"
+    },
+    {
+      "id": "13",
+      "username": "john_doe",
+      "recipeId": 8,
+      "body": "One of the best recipes I've tried from this site!",
+      "time": "2025-08-22T12:10:00Z"
+    },
+    {
+      "id": "14",
+      "username": "sara_smith",
+      "recipeId": 1,
+      "body": "Turned out great with a side of salad.",
+      "time": "2025-08-22T12:30:00Z"
+    },
+    {
+      "id": "15",
+      "username": "mike_brown",
+      "recipeId": 6,
+      "body": "Family favorite now! Thanks for sharing.",
+      "time": "2025-08-22T12:50:00Z"
+    },
+    {
+      "id": "16",
+      "username": "john_doe",
+      "recipeId": 2,
+      "body": "Made this for a party, everyone loved it.",
+      "time": "2025-08-22T13:10:00Z"
+    },
+    {
+      "id": "17",
+      "username": "sara_smith",
+      "recipeId": 9,
+      "body": "Good but I reduced the sugar slightly.",
+      "time": "2025-08-22T13:35:00Z"
+    },
+    {
+      "id": "18",
+      "username": "mike_brown",
+      "recipeId": 5,
+      "body": "Came out perfectly golden brown. Great recipe!",
+      "time": "2025-08-22T14:00:00Z"
+    },
+    {
+      "id": "19",
+      "username": "john_doe",
+      "recipeId": 4,
+      "body": "Simple, fast, and delicious. What more do you need?",
+      "time": "2025-08-22T14:20:00Z"
+    },
+    {
+      "id": "20",
+      "username": "sara_smith",
+      "recipeId": 3,
+      "body": "Absolutely fantastic! Saving this one.",
+      "time": "2025-08-22T14:45:00Z"
+    }
+  ],
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "email": "john@example.com",
       "password": "password123",
       "username": "john_doe",
-      "favoriteRecipeIds": [1, 3, 6]
+      "favoriteRecipeIds": [
+        1,
+        3,
+        6
+      ]
     },
     {
-      "id": 2,
+      "id": "2",
       "email": "sara@example.com",
       "password": "password123",
       "username": "sara_smith",
-      "favoriteRecipeIds": [2, 5, 8]
+      "favoriteRecipeIds": [
+        2,
+        5,
+        8
+      ]
     },
     {
-      "id": 3,
+      "id": "3",
       "email": "mike@example.com",
       "password": "password123",
       "username": "mike_brown",
-      "favoriteRecipeIds": [4, 7]
+      "favoriteRecipeIds": [
+        4,
+        7
+      ]
+    },
+    {
+      "id": "25f4",
+      "username": "jane_doe3000",
+      "email": "janedoe3000@gmail.com",
+      "password": "3MeekAbang@"
+    },
+    {
+      "id": "b41b",
+      "username": "janedoe3000",
+      "email": "janedoe3000@gmail.com",
+      "password": "MyP@ssw0rd"
+    },
+    {
+      "id": "44d7",
+      "username": "janedoe3000",
+      "email": "janedoe3000@gmail.com",
+      "password": "MyP@ssw0rd"
+    },
+    {
+      "id": "cf7f",
+      "username": "rovenel001",
+      "email": "rovenelabanga2001@gmail.com",
+      "password": "MyP@ssw0rd"
+    },
+    {
+      "id": "d9a7",
+      "username": "rovenelabanga",
+      "email": "rovenelabanga2001@gmail.com",
+      "password": "MyP@ssw0rd"
+    },
+    {
+      "id": "dd5b",
+      "username": "rovenelabanga1",
+      "email": "rovenelabanga1@gmail.com",
+      "password": "MyP@ssw0rd"
     }
   ]
 }
