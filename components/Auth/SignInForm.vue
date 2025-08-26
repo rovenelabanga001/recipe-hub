@@ -3,6 +3,7 @@ import { reactive } from "vue";
 import useVuelidate from "@vuelidate/core";
 import { required, email, helpers } from "@vuelidate/validators";
 
+const router = useRouter();
 // ----------------------
 // Form state
 // ----------------------
@@ -33,11 +34,31 @@ const v$ = useVuelidate(rules, credentials);
 // Submit handler
 // ----------------------
 const submitForm = async () => {
-  const isValid = await v$.$validate();
+  const isValid = await v$.value.$validate();
   if (!isValid) return;
 
-  alert("Login Successful!");
-  // Add your login logic here
+  try {
+    const data = await $fetch("/api/auth/login", {
+      method: "POST",
+      body: {
+        email: credentials.email,
+        password: credentials.password,
+      },
+    });
+
+    if (!data.success) {
+      useToastify("Invalid Email or Password", { type: "error" });
+      console.log("Server response", data);
+      return;
+    }
+
+    useToastify("Login Successful", { type: "success" });
+    localStorage.setItem("user", JSON.stringify(data.user));
+    router.push("/");
+  } catch (err) {
+    useToastify("Failed, try again later", { type: "error" });
+    console.log(err);
+  }
 };
 </script>
 
