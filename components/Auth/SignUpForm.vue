@@ -18,15 +18,19 @@ const form = reactive({
 // ----------------------
 const oneWord = helpers.withMessage(
   "Must be one word (underscores allowed)",
-  helpers.regex("oneWord", /^[A-Za-z0-9_]+$/)
+  helpers.regex(/^[A-Za-z0-9_]+$/)
 );
 
 const strongPassword = helpers.withMessage(
   "At least 8 chars, 1 uppercase, 1 lowercase, 1 number, 1 special char",
   helpers.regex(
-    "strongPassword",
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^])[A-Za-z\d@$!%*?&#^]{8,}$/
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*?])[A-Za-z\d!@#$%^&*?]{8,}$/
   )
+);
+
+const sameAsPassword = helpers.withMessage(
+  "Passwords must match",
+  sameAs(computed(() => form.password))
 );
 
 // ----------------------
@@ -36,24 +40,13 @@ const rules = {
   username: { required, oneWord },
   email: { required, email },
   password: { required, strongPassword },
-  confirmPassword: { required, sameAsPassword: sameAs(() => form.password) },
+  confirmPassword: { required, sameAsPassword },
 };
 
 // ----------------------
 // Init Vuelidate
 // ----------------------
 const v$ = useVuelidate(rules, form);
-
-// ----------------------
-// Form submit
-// ----------------------
-const submitForm = async () => {
-  const isValid = await v$.$validate();
-  if (!isValid) return;
-
-  alert("Form is valid! Submitting...");
-  // Submit logic here
-};
 </script>
 
 <template>
@@ -78,9 +71,9 @@ const submitForm = async () => {
         :class="
           v$.username.$dirty
             ? v$.username.$error
-              ? 'border border-red-500'
-              : 'border border-green-500'
-            : 'border border-gray-300'
+              ? 'border-2 border-red-500'
+              : 'border-2 border-green-500'
+            : 'border-2 border-gray-300'
         "
       />
       <p
@@ -114,9 +107,9 @@ const submitForm = async () => {
         :class="
           v$.email.$dirty
             ? v$.email.$error
-              ? 'border border-red-500'
-              : 'border border-green-500'
-            : 'border border-gray-300'
+              ? 'border-2 border-red-500'
+              : 'border-2 border-green-500'
+            : 'border-2 border-gray-300'
         "
       />
       <p v-if="v$.email.$error && v$.email.$dirty" class="text-red-500 text-xs">
@@ -139,15 +132,17 @@ const submitForm = async () => {
         type="password"
         placeholder="eg MyP@ssw0rd"
         @blur="v$.password.$touch()"
+        @input="v$.password.$touch()"
         class="h-10 px-2 w-full rounded bg-white"
         :class="
           v$.password.$dirty
             ? v$.password.$error
-              ? 'border border-red-500'
-              : 'border border-green-500'
-            : 'border border-gray-300'
+              ? 'border-2 border-red-500'
+              : 'border-2 border-green-500'
+            : 'border-2 border-gray-300'
         "
       />
+
       <p
         v-if="v$.password.$error && v$.password.$dirty"
         class="text-red-500 text-xs"
@@ -175,13 +170,14 @@ const submitForm = async () => {
         type="password"
         placeholder="eg MyP@ssw0rd"
         @blur="v$.confirmPassword.$touch()"
+        @touch="v$.confirmPassword.$touch()"
         class="h-10 px-2 w-full rounded bg-white"
         :class="
           v$.confirmPassword.$dirty
             ? v$.confirmPassword.$error
-              ? 'border border-red-500'
-              : 'border border-green-500'
-            : 'border border-gray-300'
+              ? 'border-2 border-red-500'
+              : 'border-2 border-green-500'
+            : 'border-2 border-gray-300'
         "
       />
       <p
@@ -206,7 +202,6 @@ const submitForm = async () => {
         </span>
       </p>
     </div>
-
     <button
       type="submit"
       class="bg-[orangered] w-full text-white rounded h-10 cursor-pointer"
@@ -216,8 +211,8 @@ const submitForm = async () => {
 
     <p class="text-center">
       Already have an Account?
-      <span class="text-[#AE4700] cursor-pointer"
-        ><NuxtLink>Log in</NuxtLink></span
+      <span class="text-[orangered] cursor-pointer"
+        ><NuxtLink to="/auth/signin">Log in</NuxtLink></span
       >
     </p>
   </form>
