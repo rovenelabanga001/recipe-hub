@@ -1,4 +1,6 @@
 <script setup>
+const authStore = useAuthStore();
+
 const isOpen = ref(false);
 </script>
 <template>
@@ -36,6 +38,12 @@ const isOpen = ref(false);
       <div class="hidden md:flex items-center gap-4">
         <button class="bg-[orangered] text-white py-1 px-2 rounded-3xl">
           Add Recipe +
+        </button>
+        <button
+          @click="authStore.logout"
+          class="bg-[orangered] text-white px-3 py-1 rounded-2xl"
+        >
+          Logout
         </button>
         <IconsUser />
       </div>

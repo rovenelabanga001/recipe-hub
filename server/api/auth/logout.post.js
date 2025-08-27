@@ -1,5 +1,7 @@
-import { getCookie } from "h3";
+import { getCookie, setCookie } from "h3";
 export default defineEventHandler((event) => {
+  if (!globalThis.sessions) globalThis.sessions = {};
+
   const token = getCookie(event, "session");
 
   //delete session from memory
