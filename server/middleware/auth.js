@@ -1,3 +1,4 @@
+//Restores session on SSR
 import { getCookie } from "h3";
 
 export default defineEventHandler((event) => {

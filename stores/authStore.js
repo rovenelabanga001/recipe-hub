@@ -1,29 +1,30 @@
 import { defineStore } from "pinia";
 import { useRouter } from "vue-router";
+import { useFetch } from "#app";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
-    user: JSON.parse(localStorage.getItem("user")) || null,
+    user: null,
   }),
   getters: {
     isLoggedin: (state) => !!state.user,
   },
   actions: {
-    setUser(userData) {
-      this.user = userData;
-      localStorage.setItem("user", JSON.stringify(userData));
-    },
+    async logout() {
+      try {
+        await useFetch("/api/auth/logout", { method: "POST" });
+      } catch (err) {
+        console.error("Logout failed", err);
+      }
 
-    logout() {
-      const router = useRouter();
       this.user = null;
-      localStorage.removeItem("user");
+      const router = useRouter();
       router.push("/auth/signin");
     },
 
-    restoreSession() {
-      const savedUser = JSON.parse(localStorage.getItem("user"));
-      if (savedUser) this.user = savedUser;
+    async restoreSession() {
+      const data = await useFetch("/api/auth/me");
+      this.user = data.value.user || null;
     },
   },
 });
