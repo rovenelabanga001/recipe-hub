@@ -1,7 +1,6 @@
 <script setup>
 import useVuelidate from "@vuelidate/core";
 import { required, email, helpers } from "@vuelidate/validators";
-import { useAuth } from "~/composables/useAuth";
 
 const router = useRouter();
 const { login } = useAuth();
@@ -47,8 +46,11 @@ const submitForm = async () => {
       return;
     }
 
+    const auth = useAuthStore();
+    auth.user = data.user;
+
     useToastify("Login Successful", { type: "success" });
-    router.push("/");
+    await navigateTo("/");
   } catch (err) {
     useToastify("Failed, try again later", { type: "error" });
     console.log(err);
@@ -63,7 +65,7 @@ const submitForm = async () => {
   >
     <h3 class="text-2xl">Log In</h3>
     <!-- Email -->
-    <div class="flex flex-col" v-if="v$">
+    <div class="flex flex-col">
       <label>Email</label>
       <input
         v-model="credentials.email"
@@ -88,7 +90,7 @@ const submitForm = async () => {
     </div>
 
     <!-- Password -->
-    <div class="flex flex-col" v-if="v$">
+    <div class="flex flex-col">
       <label>Password</label>
       <input
         v-model="credentials.password"

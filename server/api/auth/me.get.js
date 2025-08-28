@@ -1,7 +1,10 @@
+import { getCookie } from "h3";
 export default defineEventHandler((event) => {
-  if (!event.context.user) {
-    throw createError({ statusCode: 401, statusMessage: "Not authenticated" });
+  const token = getCookie(event, "session");
+  
+  if (!token || globalThis.sessions?.[token]) {
+    return { user: null };
   }
 
-  return { user: event.context.user };
+  return { user: globalThis.sessions[token] };
 });

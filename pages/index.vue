@@ -1,6 +1,7 @@
 <script setup>
 definePageMeta({
   layout: "default",
+  middleware: "auth",
 });
 const config = useRuntimeConfig();
 
@@ -13,9 +14,9 @@ const { pending } = await useSafeFetch(
 <template>
   <LoadingComponent v-if="pending" />
   <div v-else class="flex flex-col gap-6">
-    <PopularRecipes />
-    <PopularCategories />
-    <QuickRecipes />
-    <TopUsers />
+      <PopularRecipes />
+      <PopularCategories />
+      <QuickRecipes />
+      <TopUsers />
   </div>
 </template>
