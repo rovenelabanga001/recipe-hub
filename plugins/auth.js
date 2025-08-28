@@ -1,6 +1,7 @@
-// plugins/auth.ts
 export default defineNuxtPlugin(async (nuxtApp) => {
   const auth = useAuthStore();
+
+  if (auth.user) return;
 
   try {
     const { user } = await $fetch("/api/auth/me", {

@@ -1,6 +1,6 @@
 <script setup></script>
 <template>
-  <div class="flex items-center justify-center min-h-screen gap-5 bg-[#FDFAF5]">
+  <div class="flex items-center justify-center min-h-screen gap-5">
     <div
       class="flex flex-col-reverse items-center justify-around gap-10 bg-gradient-to-r from-[#FFFFFFCC] via-[#F5A380E6] to-[#EC4700] min-h-screen md:min-w-[100%] px-5 py-15 lg:flex-row"
     >
