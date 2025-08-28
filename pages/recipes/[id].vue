@@ -1,4 +1,7 @@
 <script setup>
+definePageMeta({
+  layout: "default",
+});
 const route = useRoute();
 const config = useRuntimeConfig();
 const router = useRouter();

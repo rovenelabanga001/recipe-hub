@@ -1,3 +1,8 @@
+<script setup>
+definePageMeta({
+  layout: "default",
+});
+</script>
 <template>
-    <div>Favorites</div>
+  <div>Favorites</div>
 </template>

@@ -13,7 +13,12 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
   css: ["@/assets/css/main.css", "swiper/swiper-bundle.css"],
-  modules: ["@nuxtjs/google-fonts", "@pinia/nuxt", "nuxt-toastify"],
+  modules: [
+    "@nuxtjs/google-fonts",
+    "@pinia/nuxt",
+    "nuxt-toastify",
+    "@nuxt/image-edge",
+  ],
   toastify: {
     autoClose: 2000,
     position: "top-right",

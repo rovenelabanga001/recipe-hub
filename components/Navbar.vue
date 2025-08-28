@@ -24,11 +24,6 @@ const isOpen = ref(false);
             >Recipes</NuxtLink
           >
         </li>
-        <!-- <li>
-          <NuxtLink to="/categories" exact-active-class="exact-active"
-            >Categories</NuxtLink
-          >
-        </li> -->
         <li>
           <NuxtLink to="/favorites" exact-active-class="exact-active"
             >Favorites</NuxtLink

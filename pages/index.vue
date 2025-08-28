@@ -1,4 +1,7 @@
 <script setup>
+definePageMeta({
+  layout: "default",
+});
 const config = useRuntimeConfig();
 
 const { pending } = await useSafeFetch(

@@ -47,10 +47,6 @@ const submitForm = async () => {
       return;
     }
 
-    if (process.client && typeof window !== "undefined") {
-      localStorage.setItem("user", JSON.stringify(data.user));
-    }
-
     useToastify("Login Successful", { type: "success" });
     router.push("/");
   } catch (err) {
