@@ -50,6 +50,7 @@ const authStore = useAuthStore();
       <div
         v-if="isOpen"
         class="md:hidden flex flex-col items-start fixed top-0 right-0 bg-white shadow-lg px-4 py-20 h-[100%] w-[70%] z-1000 bg-[#FDFAF5]"
+        style="background-color: #fdfaf5"
       >
         <ul class="flex flex-col gap-4">
           <li>

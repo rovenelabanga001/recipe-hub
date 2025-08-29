@@ -6,6 +6,8 @@ definePageMeta({
 const route = useRoute();
 const config = useRuntimeConfig();
 const router = useRouter();
+const auth = useAuthStore();
+
 
 const recipeId = route.params.id;
 const { data: recipe, pending } = await useSafeFetch(
