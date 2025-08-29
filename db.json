@@ -510,6 +510,12 @@
       "username": "jumaman",
       "email": "juma@gmail.com",
       "password": "MyP@ssw0rd"
+    },
+    {
+      "id": "2939",
+      "username": "janedoe1",
+      "email": "janedoe01@gmail.com",
+      "password": "MyP@ssw0rd"
     }
   ]
 }

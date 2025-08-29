@@ -13,6 +13,7 @@ export const useAuthStore = defineStore("auth", {
         await $fetch("/api/auth/logout", { method: "POST" });
 
         this.user = null;
+        localStorage.removeItem("authStore");
         navigateTo("/auth/signin");
       } catch (err) {
         console.error("Logout failed", err);
@@ -20,8 +21,14 @@ export const useAuthStore = defineStore("auth", {
     },
 
     async restoreSession() {
-      const data = await $fetch("/api/auth/me");
-      this.user = data.value.user || null;
+      try {
+        const data = await $fetch("/api/auth/me", {
+          credentials: "include",
+        });
+        this.user = data.user || null;
+      } catch {
+        this.user = null;
+      }
     },
   },
 });

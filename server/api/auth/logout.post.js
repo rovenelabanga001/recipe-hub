@@ -1,22 +1,9 @@
-import { getCookie, setCookie } from "h3";
+// server/api/auth/logout.post.js
+import { setCookie } from "h3";
+
 export default defineEventHandler((event) => {
-  if (!globalThis.sessions) globalThis.sessions = {};
-
-  const token = getCookie(event, "session");
-
-  //delete session from memory
-  if (token && globalThis.sessions && globalThis.sessions[token]) {
-    delete globalThis.sessions[token];
-  }
-
-  //clear the cookie on the client
   setCookie(event, "session", "", {
-    httpOnly: true,
-    sameSite: "strict",
-    secure: process.env.NODE_ENV === "production",
-    maxAge: 0, // Expire immediately
-    path: "/",
+    maxAge: -1,
   });
-
-  return { success: true, message: "Logged out successfully" };
+  return { success: true, message: "Logged out" };
 });

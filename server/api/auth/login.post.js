@@ -1,5 +1,6 @@
 import { setCookie } from "h3";
 import crypto from "crypto";
+import jwt from "jsonwebtoken";
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
 
@@ -19,25 +20,24 @@ export default defineEventHandler(async (event) => {
       };
     }
 
-    //generate a session token
-    const token = crypto.randomBytes(16).toString("hex");
-
-    //store user session in memory
-    globalThis.sessions = globalThis.sessions || {};
-    globalThis.sessions[token] = {
-      id: user.id,
-      email: user.id,
-      username: user.username,
-    };
-
+    //issue jwt
+    const token = jwt.sign(
+      {
+        id: user.id,
+        email: user.email,
+        username: user.username,
+      },
+      config.jwtSecret || "dev_secret",
+      { expiresIn: "1d" }
+    );
     setCookie(event, "session", token, {
       httpOnly: true,
       sameSite: "strict",
       secure: process.env.NODE_ENV === "production",
+      path: "/",
       maxAge: 60 * 60 * 24, //1 day
     });
 
-    
     return {
       success: true,
       message: "Login Successful",

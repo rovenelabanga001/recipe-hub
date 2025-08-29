@@ -1,5 +1,6 @@
 <script setup>
 const isOpen = ref(false);
+const authStore = useAuthStore();
 </script>
 <template>
   <header>
@@ -32,6 +33,12 @@ const isOpen = ref(false);
         <button class="bg-[orangered] text-white py-1 px-2 rounded-3xl">
           Add Recipe +
         </button>
+        <button
+          @click="authStore.logout"
+          class="bg-[orangered] text-white px-3 py-1 rounded-3xl"
+        >
+          Logout
+        </button>
         <IconsUser />
       </div>
       <button class="md:hidden z-1001" @click="isOpen = !isOpen">
@@ -42,7 +49,7 @@ const isOpen = ref(false);
     <Transition name="fade">
       <div
         v-if="isOpen"
-        class="md:hidden flex flex-col items-start fixed top-0 right-0 bg-white shadow-lg px-4 py-20 h-[100%] w-[70%] z-1000"
+        class="md:hidden flex flex-col items-start fixed top-0 right-0 bg-white shadow-lg px-4 py-20 h-[100%] w-[70%] z-1000 bg-[#FDFAF5]"
       >
         <ul class="flex flex-col gap-4">
           <li>
@@ -51,11 +58,6 @@ const isOpen = ref(false);
           <li>
             <NuxtLink to="/recipes" exact-active-class="exact-active"
               >Recipes</NuxtLink
-            >
-          </li>
-          <li>
-            <NuxtLink to="/categories" exact-active-class="exact-active"
-              >Categories</NuxtLink
             >
           </li>
           <li>
