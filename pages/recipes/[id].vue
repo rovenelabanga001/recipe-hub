@@ -8,7 +8,6 @@ const config = useRuntimeConfig();
 const router = useRouter();
 const auth = useAuthStore();
 
-
 const recipeId = route.params.id;
 const { data: recipe, pending } = await useSafeFetch(
   `${config.public.baseUrl}/recipes/${recipeId}`,
@@ -41,7 +40,7 @@ provide("recipeId", recipeId);
     <SingleRecipeHeader :recipe="recipe" />
     <img
       :src="recipe.image"
-      class="h-[auto] rounded-xl object-cover w-[70%] md:w-[100%]"
+      class="h-[400px] rounded-xl object-cover w-[100%] md:min-h-[500px]"
     />
     <div class="flex items-center gap-4">
       <IconsUser />

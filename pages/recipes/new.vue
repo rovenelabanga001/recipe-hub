@@ -87,7 +87,7 @@ const onSubmitRecipe = async () => {
       ingredients: recipeDraft.selectedIngredients,
       directions: recipeDraft.selectedSteps,
       tags: recipeDraft.selectedCategories,
-      categories: recipeDraft.selectedCategories,
+      category: recipeDraft.selectedCategories,
       userID: auth.user?.id,
     },
   });
