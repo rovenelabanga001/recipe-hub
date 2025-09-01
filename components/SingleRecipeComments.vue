@@ -1,6 +1,8 @@
 <script setup>
 const recipeId = inject("recipeId");
 const config = useRuntimeConfig();
+const auth = useAuthStore();
+
 const { data: comments } = await useSafeFetch(
   `${config.public.baseUrl}/comments?recipeId=${recipeId}`,
   {
@@ -14,15 +16,38 @@ const newComment = reactive({
 
 const onPostCommentClick = async () => {
   try {
-  } catch (error) {}
+    const res = await fetch(`${config.public.baseUrl}/comments`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: auth.user.username,
+        recipeId: recipeId,
+        body: newComment.body,
+        time: new Date().toISOString(),
+      }),
+    });
+
+    if (!res.ok) throw new Error("Failed to post comment");
+    const savedComment = await res.json();
+    comments.value = [savedComment, ...comments.value.slice()];
+
+    newComment.body = "";
+
+    await refreshNuxtData(`comment-recipe:${recipeId}`);
+  } catch (error) {
+    console.error(error);
+  }
 };
-console.log(new Date());
+
+const handleDelete = (commentId) => {
+  comments.value = comments.value.filter((c) => c.id !== commentId);
+};
 </script>
 <template>
   <div class="w-[100%] md:w-[100%]">
     <h5 class="font-bold text-lg mb-4">Comments</h5>
     <div class="flex flex-col gap-4 items-start w-[100%]">
-      <CommentCard :comments="comments" />
+      <CommentCard :comments="comments" @delete="handleDelete" />
     </div>
     <div class="mt-3 flex flex-col items-start gap-2">
       <h5 class="font-bold text-lg mb-4">Add Comment</h5>
@@ -32,10 +57,10 @@ console.log(new Date());
       ></textarea>
       <button
         class="bg-[orangered] text-white px-3 py-1 rounded-2xl self-end cursor-pointer"
+        @click="onPostCommentClick"
       >
         Post
       </button>
-      {{ newComment.body }}
     </div>
   </div>
 </template>

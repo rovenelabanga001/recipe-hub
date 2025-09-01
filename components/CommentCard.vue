@@ -3,6 +3,11 @@ const props = defineProps({
   comments: Array,
 });
 
+const auth = useAuthStore();
+const config = useRuntimeConfig();
+
+const emit = defineEmits(["delete"]);
+
 const timeAgo = (timestamp) => {
   const now = new Date();
   const kenyaOffset = 3 * 60; // Kenya is UTC+3 in minutes
@@ -38,6 +43,20 @@ const timeAgo = (timestamp) => {
     return `${diffYears} ${diffYears === 1 ? "year" : "years"} ago`;
   }
 };
+
+const onDeleteClick = async (commentId) => {
+  try {
+    const res = await fetch(`${config.public.baseUrl}/comments/${commentId}`, {
+      method: "DELETE",
+    });
+
+    if (!res.ok) throw new Error("Failed to delete comment");
+
+    emit("delete", commentId);
+  } catch (error) {
+    console.error(error);
+  }
+};
 </script>
 <template>
   <div
@@ -53,12 +72,21 @@ const timeAgo = (timestamp) => {
       <!-- Content -->
       <div class="flex-1 min-w-0">
         <!-- Header -->
-        <div class="flex items-center space-x-2 mb-2">
+        <div class="flex items-center space-x-2 mb-2 w-full">
           <h3 class="font-semibold text-gray-900">
             {{ comment.username }}
           </h3>
           <span class="text-gray-500">•</span>
-          <span class="text-gray-500">{{ timeAgo(comment.time) }}</span>
+          <client-only>
+            <span class="text-gray-500">{{ timeAgo(comment.time) }}</span>
+          </client-only>
+          <button
+            class="ml-auto self-center"
+            v-if="comment.username === auth.user.username"
+            @click="onDeleteClick(comment.id)"
+          >
+            <IconsDelete class="text-[red] cursor:pointer text-lg" />
+          </button>
         </div>
 
         <!-- Post content -->
