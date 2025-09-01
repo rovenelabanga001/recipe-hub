@@ -7,8 +7,8 @@ const props = defineProps({
   <div class="w-[70%] md:w-[100%]">
     <h3 class="font-bold text-lg">Details</h3>
     <ol class="list-disc list-inside">
-      <li>⏲️ prep time:{{ recipe.prepTime }}</li>
-      <li>🍳 cook time: {{ recipe.cookTime }}</li>
+      <li>⏲️ prep time: {{ recipe.prepTime }} mins</li>
+      <li>🍳 cook time: {{ recipe.cookTime }} mins</li>
       <li>🍽️ servings: {{ recipe.servings }}</li>
     </ol>
   </div>

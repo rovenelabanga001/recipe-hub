@@ -1,6 +1,9 @@
 <script setup>
 const isOpen = ref(false);
 const authStore = useAuthStore();
+const onAddClick = () => {
+  navigateTo("/recipes/new");
+};
 </script>
 <template>
   <header>
@@ -30,7 +33,10 @@ const authStore = useAuthStore();
         </li>
       </ul>
       <div class="hidden md:flex items-center gap-4">
-        <button class="bg-[orangered] text-white py-1 px-2 rounded-3xl">
+        <button
+          @click="onAddClick"
+          class="bg-[orangered] text-white py-1 px-2 rounded-3xl"
+        >
           Add Recipe +
         </button>
         <button
@@ -70,9 +76,16 @@ const authStore = useAuthStore();
         <div class="flex flex-col items-start gap-4 pt-4">
           <IconsUser />
           <button
-            class="bg-[orangered] text-white py-1 px-3 rounded-3xl w-[100%]"
+            @click="onAddClick"
+            class="bg-[orangered] text-white py-1 px-2 rounded-3xl"
           >
             Add Recipe +
+          </button>
+          <button
+            @click="authStore.logout"
+            class="flex self-start bg-[orangered] text-white px-3 py-1 rounded-3xl w-[100%]"
+          >
+            Logout
           </button>
         </div>
       </div>

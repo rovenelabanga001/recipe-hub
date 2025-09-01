@@ -82,7 +82,7 @@ const onDeleteClick = async (commentId) => {
           </client-only>
           <button
             class="ml-auto self-center"
-            v-if="comment.username === auth.user.username"
+            v-if="comment.username === auth.user?.username"
             @click="onDeleteClick(comment.id)"
           >
             <IconsDelete class="text-[red] cursor:pointer text-lg" />
