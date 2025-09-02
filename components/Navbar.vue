@@ -17,7 +17,7 @@ const onAddClick = () => {
           <NuxtLink to="/">Seepy</NuxtLink>
         </h5>
       </div>
-      <ul class="hidden md:flex items-center gap-4">
+      <ul class="hidden lg:flex items-center gap-4">
         <li>
           <NuxtLink to="/" exact-active-class="exact-active">Home</NuxtLink>
         </li>
@@ -32,7 +32,7 @@ const onAddClick = () => {
           >
         </li>
       </ul>
-      <div class="hidden md:flex items-center gap-4">
+      <div class="hidden lg:flex items-center gap-4">
         <button
           @click="onAddClick"
           class="bg-[orangered] text-white py-1 px-2 rounded-3xl"
@@ -45,9 +45,11 @@ const onAddClick = () => {
         >
           Logout
         </button>
-        <IconsUser />
+        <button @click="navigateTo('/profile')">
+          <IconsUser class="text-[orangered]" />
+        </button>
       </div>
-      <button class="md:hidden z-1001" @click="isOpen = !isOpen">
+      <button class="lg:hidden z-1001" @click="isOpen = !isOpen">
         <IconsClose v-if="isOpen" />
         <IconsMenu v-else />
       </button>
@@ -55,7 +57,7 @@ const onAddClick = () => {
     <Transition name="fade">
       <div
         v-if="isOpen"
-        class="md:hidden flex flex-col items-start fixed top-0 right-0 bg-white shadow-lg px-4 py-20 h-[100%] w-[70%] z-1000 bg-[#FDFAF5]"
+        class="lg:hidden flex flex-col items-start fixed top-0 right-0 bg-white shadow-lg px-4 py-20 h-[100%] w-[70%] z-1000 bg-[#FDFAF5]"
         style="background-color: #fdfaf5"
       >
         <ul class="flex flex-col gap-4">
@@ -74,7 +76,9 @@ const onAddClick = () => {
           </li>
         </ul>
         <div class="flex flex-col items-start gap-4 pt-4">
-          <IconsUser />
+          <button @click="navigateTo('/profile')">
+            <IconsUser class="text-[orangered]" />
+          </button>
           <button
             @click="onAddClick"
             class="bg-[orangered] text-white py-1 px-2 rounded-3xl"
