@@ -8,7 +8,12 @@
       "prepTime": 20,
       "cookTime": 15,
       "servings": 2,
-      "ingredients": ["2 Beef steaks", "Salt", "Pepper", "Garlic butter"],
+      "ingredients": [
+        "2 Beef steaks",
+        "Salt",
+        "Pepper",
+        "Garlic butter"
+      ],
       "directions": [
         "Season steak with salt and pepper.",
         "Preheat grill to medium-high heat.",
@@ -16,8 +21,15 @@
         "Top with garlic butter before serving."
       ],
       "cuisine": "American",
-      "tags": ["main course", "grilled", "beef"],
-      "category": ["Lunch", "Dinner"],
+      "tags": [
+        "main course",
+        "grilled",
+        "beef"
+      ],
+      "category": [
+        "Lunch",
+        "Dinner"
+      ],
       "userID": 1
     },
     {
@@ -28,7 +40,12 @@
       "prepTime": 10,
       "cookTime": 15,
       "servings": 2,
-      "ingredients": ["4 Eggs", "1 cup Spinach", "Salt", "Olive oil"],
+      "ingredients": [
+        "4 Eggs",
+        "1 cup Spinach",
+        "Salt",
+        "Olive oil"
+      ],
       "directions": [
         "Preheat oven to 180°C (350°F).",
         "Lightly oil ramekins and add spinach.",
@@ -36,8 +53,15 @@
         "Bake for 12–15 minutes until whites are set."
       ],
       "cuisine": "Mediterranean",
-      "tags": ["breakfast", "baked", "vegetarian"],
-      "category": ["Breakfast", "Brunch"],
+      "tags": [
+        "breakfast",
+        "baked",
+        "vegetarian"
+      ],
+      "category": [
+        "Breakfast",
+        "Brunch"
+      ],
       "userID": 2
     },
     {
@@ -61,8 +85,15 @@
         "Serve with pasta or bread."
       ],
       "cuisine": "Italian",
-      "tags": ["main course", "fried", "beef"],
-      "category": ["Lunch", "Dinner"],
+      "tags": [
+        "main course",
+        "fried",
+        "beef"
+      ],
+      "category": [
+        "Lunch",
+        "Dinner"
+      ],
       "userID": 1
     },
     {
@@ -73,7 +104,12 @@
       "prepTime": 30,
       "cookTime": 50,
       "servings": 4,
-      "ingredients": ["Sushi rice", "Nori sheets", "Cucumber", "Salmon"],
+      "ingredients": [
+        "Sushi rice",
+        "Nori sheets",
+        "Cucumber",
+        "Salmon"
+      ],
       "directions": [
         "Cook sushi rice and season with rice vinegar.",
         "Lay nori sheet on bamboo mat, spread rice evenly.",
@@ -81,8 +117,15 @@
         "Slice and serve with soy sauce."
       ],
       "cuisine": "Japanese",
-      "tags": ["main course", "raw", "seafood"],
-      "category": ["Lunch", "Dinner"],
+      "tags": [
+        "main course",
+        "raw",
+        "seafood"
+      ],
+      "category": [
+        "Lunch",
+        "Dinner"
+      ],
       "userID": 3
     },
     {
@@ -93,7 +136,12 @@
       "prepTime": 15,
       "cookTime": 40,
       "servings": 4,
-      "ingredients": ["Chicken thighs", "Curry paste", "Coconut milk", "Onion"],
+      "ingredients": [
+        "Chicken thighs",
+        "Curry paste",
+        "Coconut milk",
+        "Onion"
+      ],
       "directions": [
         "Sauté onion and curry paste until fragrant.",
         "Add chicken and brown on all sides.",
@@ -101,8 +149,15 @@
         "Serve with rice."
       ],
       "cuisine": "Indian",
-      "tags": ["main course", "spicy", "chicken"],
-      "category": ["Lunch", "Dinner"],
+      "tags": [
+        "main course",
+        "spicy",
+        "chicken"
+      ],
+      "category": [
+        "Lunch",
+        "Dinner"
+      ],
       "userID": 2
     },
     {
@@ -113,15 +168,28 @@
       "prepTime": 25,
       "cookTime": 20,
       "servings": 4,
-      "ingredients": ["Pork", "Pineapple", "Tortillas", "Onion", "Cilantro"],
+      "ingredients": [
+        "Pork",
+        "Pineapple",
+        "Tortillas",
+        "Onion",
+        "Cilantro"
+      ],
       "directions": [
         "Marinate pork with spices and pineapple juice.",
         "Grill pork until charred and slice thinly.",
         "Serve in tortillas with onion, cilantro, and pineapple."
       ],
       "cuisine": "Mexican",
-      "tags": ["main course", "street food", "pork"],
-      "category": ["Lunch", "Dinner"],
+      "tags": [
+        "main course",
+        "street food",
+        "pork"
+      ],
+      "category": [
+        "Lunch",
+        "Dinner"
+      ],
       "userID": 1
     },
     {
@@ -145,8 +213,15 @@
         "Drizzle with olive oil before serving."
       ],
       "cuisine": "Greek",
-      "tags": ["salad", "vegetarian", "fresh"],
-      "category": ["Snack", "Brunch"],
+      "tags": [
+        "salad",
+        "vegetarian",
+        "fresh"
+      ],
+      "category": [
+        "Snack",
+        "Brunch"
+      ],
       "userID": 3
     },
     {
@@ -157,7 +232,13 @@
       "prepTime": 10,
       "cookTime": 15,
       "servings": 4,
-      "ingredients": ["Flour", "Milk", "Eggs", "Sugar", "Butter"],
+      "ingredients": [
+        "Flour",
+        "Milk",
+        "Eggs",
+        "Sugar",
+        "Butter"
+      ],
       "directions": [
         "Mix flour, milk, eggs, and sugar into a smooth batter.",
         "Heat butter in a pan and pour in batter thinly.",
@@ -165,8 +246,16 @@
         "Serve with jam, chocolate, or fruit."
       ],
       "cuisine": "French",
-      "tags": ["dessert", "sweet", "breakfast"],
-      "category": ["Breakfast", "Dessert", "Brunch"],
+      "tags": [
+        "dessert",
+        "sweet",
+        "breakfast"
+      ],
+      "category": [
+        "Breakfast",
+        "Dessert",
+        "Brunch"
+      ],
       "userID": 2
     },
     {
@@ -193,11 +282,17 @@
         "Garnish with fresh parsley and serve warm."
       ],
       "cuisine": "Italian",
-      "tags": ["main course", "vegetarian", "pasta"],
-      "category": ["Lunch", "Dinner"],
+      "tags": [
+        "main course",
+        "vegetarian",
+        "pasta"
+      ],
+      "category": [
+        "Lunch",
+        "Dinner"
+      ],
       "userID": 1
     },
-
     {
       "id": "feb7",
       "name": "Egg Noodles",
@@ -206,10 +301,56 @@
       "prepTime": 10,
       "cookTime": 20,
       "servings": 1,
-      "ingredients": ["2 eggs", "Noodles"],
-      "directions": ["Boil eggs", "Fry Noodles", "Mix"],
-      "tags": ["Brunch", "Lunch", "Dinner"],
-      "category": ["Brunch", "Lunch", "Dinner"],
+      "ingredients": [
+        "2 eggs",
+        "Noodles"
+      ],
+      "directions": [
+        "Boil eggs",
+        "Fry Noodles",
+        "Mix"
+      ],
+      "tags": [
+        "Brunch",
+        "Lunch",
+        "Dinner"
+      ],
+      "category": [
+        "Brunch",
+        "Lunch",
+        "Dinner"
+      ],
+      "userID": "cf7f"
+    },
+    {
+      "id": "698d",
+      "name": "Chapo & Beans",
+      "title": "Chapo & Beans",
+      "image": "https://plus.unsplash.com/premium_photo-1663855531852-36f2b217faa8?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "prepTime": 30,
+      "cookTime": 90,
+      "servings": 4,
+      "ingredients": [
+        "Chapo",
+        "Beans",
+        "Onions",
+        "Tomatoes"
+      ],
+      "directions": [
+        "Serve",
+        "Eat",
+        "Wash dishes"
+      ],
+      "tags": [
+        "Lunch",
+        "Brunch",
+        "Dinner"
+      ],
+      "category": [
+        "Lunch",
+        "Brunch",
+        "Dinner"
+      ],
       "userID": "cf7f"
     }
   ],
@@ -374,6 +515,13 @@
       "recipeId": "feb7",
       "body": "1 comment\n",
       "time": "2025-09-01T12:59:12.980Z"
+    },
+    {
+      "id": "7778",
+      "username": "new_user1",
+      "recipeId": "3",
+      "body": "I love this, absolutely trying it",
+      "time": "2025-09-02T08:27:04.880Z"
     }
   ],
   "users": [
@@ -382,21 +530,32 @@
       "email": "john@example.com",
       "password": "password123",
       "username": "john_doe",
-      "favoriteRecipeIds": [1, 3, 6]
+      "favoriteRecipeIds": [
+        1,
+        3,
+        6
+      ]
     },
     {
       "id": "2",
       "email": "sara@example.com",
       "password": "password123",
       "username": "sara_smith",
-      "favoriteRecipeIds": [2, 5, 8]
+      "favoriteRecipeIds": [
+        2,
+        5,
+        8
+      ]
     },
     {
       "id": "3",
       "email": "mike@example.com",
       "password": "password123",
       "username": "mike_brown",
-      "favoriteRecipeIds": [4, 7]
+      "favoriteRecipeIds": [
+        4,
+        7
+      ]
     },
     {
       "id": "25f4",
@@ -451,6 +610,17 @@
       "username": "dankibue",
       "email": "dankib@gmail.com",
       "password": "Danson@12345"
+    },
+    {
+      "id": "511c",
+      "username": "new_user1",
+      "email": "newuser@example.com",
+      "password": "newuserP@ssw0rd",
+      "favoriteRecipeIds": [
+        "9",
+        "feb7",
+        "3"
+      ]
     }
   ]
 }

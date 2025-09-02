@@ -47,7 +47,12 @@ const handleDelete = (commentId) => {
   <div class="w-[100%] md:w-[100%]">
     <h5 class="font-bold text-lg mb-4">Comments</h5>
     <div class="flex flex-col gap-4 items-start w-[100%]">
-      <CommentCard :comments="comments" @delete="handleDelete" />
+      <CommentCard
+        :comments="comments"
+        @delete="handleDelete"
+        v-if="comments.length >= 1"
+      />
+      <p v-else class="text-gray-500 text-sm">No comments yet</p>
     </div>
     <div class="mt-3 flex flex-col items-start gap-2">
       <h5 class="font-bold text-lg mb-4">Add Comment</h5>

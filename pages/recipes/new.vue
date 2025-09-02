@@ -93,6 +93,8 @@ const onSubmitRecipe = async () => {
   });
 
   recipeDraft.clearDraft();
+
+  useToastify("Recipe added successfully", { type: "success" });
   v$.value.$reset(); // reset validation after submit
 };
 </script>
@@ -135,6 +137,11 @@ const onSubmitRecipe = async () => {
       <span v-if="v$.selectedCategories.$error" class="text-red-500 text-sm">
         {{ v$.selectedCategories.$errors[0].$message }}
       </span>
+      <ul>
+        <li v-for="cat in recipeDraft.selectedCategories" class="text-sm">
+          {{ cat }}
+        </li>
+      </ul>
     </div>
 
     <!-- Image -->

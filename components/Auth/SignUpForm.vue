@@ -87,6 +87,7 @@ const onSignUpSubmit = async () => {
           username: form.username,
           email: form.email,
           password: form.password,
+          favoriteRecipeIds: [],
         },
       });
 
