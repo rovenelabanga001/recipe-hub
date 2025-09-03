@@ -32,7 +32,7 @@ const overviewItems = computed(() => {
       v-for="tab in tabs"
       @click="activeTab = tab"
       :class="[
-        'px-3 py-1 rounded-2xl border',
+        'px-3 py-1 rounded-2xl border cursor-pointer',
         activeTab === tab
           ? 'bg-[orangered] text-white border-[orangered]'
           : 'text-[orangered] border-[orangered]',
@@ -41,76 +41,82 @@ const overviewItems = computed(() => {
       {{ tab }}
     </button>
   </div>
-  <!-- Content -->
-  <div
-    v-if="activeTab === 'Overview'"
-    class="space-y-4 bg-gray-200 py-6 px-10 rounded-lg min-h-[500px]"
-  >
-    <h5>Showing recent contributions</h5>
-    <div
-      v-for="(item, i) in overviewItems"
-      :key="i"
-      class="bg-white shadow rounded-xl p-4"
-    >
-      <h3 class="font-bold">
-        <span v-if="item.type === 'post'">📝 {{ item.title }}</span>
-        <span v-else>💬 Comment: {{ item.body }}</span>
-      </h3>
-      <p class="text-gray-600 text-sm">
-        {{ item.body || item.description }}
-      </p>
-      <button
-        @click="
-          item.type === 'post'
-            ? navigateTo(`/recipes/${item.id}`)
-            : navigateTo(`/recipes/${item.recipeId}?commentId=${item.id}`)
-        "
-        class="mt-2 text-white w-[auto] text-start px-3 py-1 rounded-lg bg-[orangered] cursor-pointer"
-      >
-        {{ item.type === "post" ? "See Post" : "See Comment" }}
-      </button>
-    </div>
-  </div>
+  <!-- <div class="space-y-4 bg-gray-100 py-6 px-10 rounded-lg min-h-[500px]">
+    <profile-page-body-overview
+      v-if="activeTab === 'Overview' && overviewItems.length >= 1"
+      :overview-items="overviewItems"
+    />
+    <empty-placeholder
+      v-else
+      message="No recent activities"
+      instructions="Your activity will show up here once you engage with the app."
+    />
+    <profile-page-body-posts
+      v-if="activeTab === 'Posts' && posts.length >= 1"
+      :posts="posts"
+    />
+    <empty-placeholder
+      v-else
+      message="No posts yet"
+      instructions="Start by creating your first recipe"
+    />
+    <profile-page-body-comments
+      v-if="activeTab === 'Comments' && comments.length >= 1"
+      :comments="comments"
+    />
+    <empty-placeholder
+      v-else
+      message="Looks quiet in here 👀."
+      instructions="Go ahead and comment on a post"
+    />
+    <profile-page-body-favorites v-if="activeTab === 'Favorites'" />
+  </div> -->
+  <div class="space-y-4 bg-gray-100 py-6 px-10 rounded-lg min-h-[500px]">
+    <!-- Overview -->
+    <template v-if="activeTab === 'Overview'">
+      <profile-page-body-overview
+        v-if="overviewItems.length >= 1"
+        :overview-items="overviewItems"
+      />
+      <empty-placeholder
+        v-else
+        message="No recent activities"
+        instructions="Your activity will show up here once you engage with the app."
+        btn-txt="Engage"
+        route="/"
+      />
+    </template>
 
-  <div
-    v-if="activeTab === 'Posts'"
-    class="space-y-4 bg-gray-200 py-6 px-10 rounded-lg min-h-[500px]"
-  >
-    <h5>Showing recent posts</h5>
-    <div
-      v-for="post in posts"
-      :key="post.id"
-      class="bg-white shadow rounded-xl p-4 space-y-3"
-    >
-      <h3 class="font-bold">📝 {{ post.title }}</h3>
-      <p class="text-gray-600">{{ post.body }}</p>
-      <button
-        @click="navigateTo(`recipes/${post.id}`)"
-        class="bg-[orangered] px-2 py-1 text-white rounded-lg cursor-pointer"
-      >
-        See Post
-      </button>
-    </div>
-  </div>
+    <!-- Posts -->
+    <template v-else-if="activeTab === 'Posts'">
+      <profile-page-body-posts v-if="posts.length >= 1" :posts="posts" />
+      <empty-placeholder
+        v-else
+        message="No posts yet"
+        instructions="Start by creating your first recipe"
+        btn-txt="Add recipe"
+        route="/recipes/new"
+      />
+    </template>
 
-  <div
-    v-if="activeTab === 'Comments'"
-    class="space-y-4 bg-gray-200 py-6 px-10 rounded-lg min-h-[500px]"
-  >
-    <h5>Showing recent comments</h5>
-    <div
-      v-for="comment in comments"
-      :key="comment.id"
-      class="bg-white shadow rounded-xl p-4"
-    >
-      <h3 class="font-bold">💬 Comment</h3>
-      <p class="text-gray-600">{{ comment.body }}</p>
-      <button
-        @click="navigateTo(`/recipes/${item.recipeId}?commentId=${item.id}`)"
-        class="bg-[orangered] px-2 py-1 text-white rounded-lg cursor-pointer"
-      >
-        See Comment
-      </button>
-    </div>
+    <!-- Comments -->
+    <template v-else-if="activeTab === 'Comments'">
+      <profile-page-body-comments
+        v-if="comments.length >= 1"
+        :comments="comments"
+      />
+      <empty-placeholder
+        v-else
+        message="Looks quiet in here 👀"
+        instructions="Go ahead and comment on a post"
+        btn-txt="Explore recipes"
+        route="/recipes"
+      />
+    </template>
+
+    <!-- Favorites -->
+    <template v-else-if="activeTab === 'Favorites'">
+      <profile-page-body-favorites />
+    </template>
   </div>
 </template>

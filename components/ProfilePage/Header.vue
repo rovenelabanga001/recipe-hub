@@ -1,5 +1,13 @@
 <script setup>
 const auth = useAuthStore();
+const config = useRuntimeConfig();
+
+const { data } = await useSafeFetch(
+  `${config.public.baseUrl}/recipes?userID=${auth.user.id}`,
+  { key: "totalRecipes" }
+);
+
+const totalPosts = data.value?.length;
 </script>
 <template>
   <div class="flex w-[40%] min-h-[200px] flex gap-4">
@@ -13,6 +21,9 @@ const auth = useAuthStore();
         {{ auth.user?.username }}
       </h5>
       <p class="font-bold">{{ auth.user?.email }}</p>
+      <p class="text-gray-400">
+        Recipes: <span>{{ totalPosts }}</span>
+      </p>
     </div>
   </div>
 </template>

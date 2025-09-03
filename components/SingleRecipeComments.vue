@@ -36,7 +36,7 @@ onMounted(() => {
               "transition-colors",
               "duration-700"
             );
-            setTimeout(() => el.classList.remove("bg-yellow-100"), 3000);
+            // setTimeout(() => el.classList.remove("bg-yellow-100"), 3000);
 
             stop(); // ✅ stop watching once done
           }
