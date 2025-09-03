@@ -6,7 +6,7 @@ const props = defineProps(["overviewItems"]);
   <div
     v-for="(item, i) in overviewItems"
     :key="i"
-    class="bg-white shadow rounded-xl p-4"
+    class="flex flex-col items-start bg-white shadow rounded-xl p-4"
   >
     <profile-page-tab-card v-if="item.type === 'post'" :recipe="item" />
     <profile-page-tab-comment-card

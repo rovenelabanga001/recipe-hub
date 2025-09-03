@@ -10,13 +10,15 @@ const { data } = await useSafeFetch(
 const totalPosts = data.value?.length;
 </script>
 <template>
-  <div class="flex w-[40%] min-h-[200px] flex gap-4">
+  <div
+    class="flex flex-col w-[100%] min-h-[200px] flex gap-4 lg:w-[40%] lg:flex-row"
+  >
     <div
-      class="flex justify-center items-center w-[80%] border border-[orangered] rounded-xl"
+      class="flex items-start justify-start w-[100%] rounded-xl lg:items-center lg:w-full lg:justify-center lg:border lg:border-[orangered]"
     >
-      <IconsUser class="text-7xl" />
+      <IconsUser class="text-5xl lg:text-7xl" />
     </div>
-    <div class="self-end">
+    <div class="lg:self-end">
       <h5 class="text-[orangered] text-3xl font-bold">
         {{ auth.user?.username }}
       </h5>

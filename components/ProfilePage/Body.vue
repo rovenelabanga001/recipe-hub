@@ -3,7 +3,7 @@ const auth = useAuthStore();
 const config = useRuntimeConfig();
 const tabs = ref(["Overview", "Posts", "Comments", "Favorites"]);
 
-const activeTab = ref("Overview");
+const activeTab = useProfileActiveTabStore();
 
 const { data: posts } = await useAsyncData("posts", () =>
   $fetch(`${config.public.baseUrl}/recipes?userID=${auth.user?.id}`)
@@ -27,13 +27,13 @@ const overviewItems = computed(() => {
 });
 </script>
 <template>
-  <div class="grid grid-cols-2 gap-3 w-[50%] md:grid-cols-4">
+  <div class="grid grid-cols-3 gap-3 md:grid-cols-4 w-[100%] lg:w-[50%]">
     <button
       v-for="tab in tabs"
-      @click="activeTab = tab"
+      @click="activeTab.setAcitveTab(tab)"
       :class="[
-        'px-3 py-1 rounded-2xl border cursor-pointer',
-        activeTab === tab
+        'px-3 py-1 rounded-2xl border cursor-pointer w-[auto]',
+        activeTab.activeTab === tab
           ? 'bg-[orangered] text-white border-[orangered]'
           : 'text-[orangered] border-[orangered]',
       ]"
@@ -41,39 +41,11 @@ const overviewItems = computed(() => {
       {{ tab }}
     </button>
   </div>
-  <!-- <div class="space-y-4 bg-gray-100 py-6 px-10 rounded-lg min-h-[500px]">
-    <profile-page-body-overview
-      v-if="activeTab === 'Overview' && overviewItems.length >= 1"
-      :overview-items="overviewItems"
-    />
-    <empty-placeholder
-      v-else
-      message="No recent activities"
-      instructions="Your activity will show up here once you engage with the app."
-    />
-    <profile-page-body-posts
-      v-if="activeTab === 'Posts' && posts.length >= 1"
-      :posts="posts"
-    />
-    <empty-placeholder
-      v-else
-      message="No posts yet"
-      instructions="Start by creating your first recipe"
-    />
-    <profile-page-body-comments
-      v-if="activeTab === 'Comments' && comments.length >= 1"
-      :comments="comments"
-    />
-    <empty-placeholder
-      v-else
-      message="Looks quiet in here 👀."
-      instructions="Go ahead and comment on a post"
-    />
-    <profile-page-body-favorites v-if="activeTab === 'Favorites'" />
-  </div> -->
-  <div class="space-y-4 bg-gray-100 py-6 px-10 rounded-lg min-h-[500px]">
+  <div
+    class="space-y-4 bg-gray-100 py-6 px-4 rounded-lg min-h-[500px] w-[100%] lg:px-8"
+  >
     <!-- Overview -->
-    <template v-if="activeTab === 'Overview'">
+    <template v-if="activeTab.activeTab === 'Overview'">
       <profile-page-body-overview
         v-if="overviewItems.length >= 1"
         :overview-items="overviewItems"
@@ -88,7 +60,7 @@ const overviewItems = computed(() => {
     </template>
 
     <!-- Posts -->
-    <template v-else-if="activeTab === 'Posts'">
+    <template v-else-if="activeTab.activeTab === 'Posts'">
       <profile-page-body-posts v-if="posts.length >= 1" :posts="posts" />
       <empty-placeholder
         v-else
@@ -100,7 +72,7 @@ const overviewItems = computed(() => {
     </template>
 
     <!-- Comments -->
-    <template v-else-if="activeTab === 'Comments'">
+    <template v-else-if="activeTab.activeTab === 'Comments'">
       <profile-page-body-comments
         v-if="comments.length >= 1"
         :comments="comments"
@@ -115,7 +87,7 @@ const overviewItems = computed(() => {
     </template>
 
     <!-- Favorites -->
-    <template v-else-if="activeTab === 'Favorites'">
+    <template v-else-if="activeTab.activeTab === 'Favorites'">
       <profile-page-body-favorites />
     </template>
   </div>

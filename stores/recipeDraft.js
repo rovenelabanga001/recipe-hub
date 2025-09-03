@@ -30,10 +30,18 @@ export const useRecipeDraftStore = defineStore("recipeDraft", {
         this.selectedIngredients.push(ingredient);
       }
     },
+    removeIngredient(ingredient) {
+      this.selectedIngredients = this.selectedIngredients.filter(
+        (ing) => ing !== ingredient
+      );
+    },
     addStep(step) {
       if (step && !this.selectedSteps.includes(step)) {
         this.selectedSteps.push(step);
       }
+    },
+    removeStep(step) {
+      this.selectedSteps = this.selectedSteps.filter((s) => s !== step);
     },
     clearDraft() {
       this.$reset();
