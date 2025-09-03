@@ -9,6 +9,7 @@ const router = useRouter();
 const auth = useAuthStore();
 
 const recipeId = route.params.id;
+const commentId = route.query.commentId;
 const { data: recipe, pending } = await useSafeFetch(
   `${config.public.baseUrl}/recipes/${recipeId}`,
   { key: `single-recipe:${recipeId}` }
@@ -29,13 +30,14 @@ const goBack = () => {
 };
 
 provide("recipeId", recipeId);
+provide("commentId", commentId);
 </script>
 <template>
   <IconsBack class="text-lg mb-4 bg-[orangered]" fill="white" @click="goBack" />
   <LoadingComponent v-if="pending" />
   <div
     v-else
-    class="flex flex-col items-start gap-4 w-[100%] md:w-[80%] lg:w-[50%]"
+    class="flex flex-col items-start gap-4 w-[100%] md:w-[80%] lg:w-[50%] overflow-y-auto"
   >
     <SingleRecipeHeader :recipe="recipe" />
     <img

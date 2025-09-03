@@ -3,6 +3,8 @@ const props = defineProps({
   comments: Array,
 });
 
+const commentId = inject("commentId");
+
 const auth = useAuthStore();
 const config = useRuntimeConfig();
 
@@ -62,6 +64,7 @@ const onDeleteClick = async (commentId) => {
   <div
     v-for="comment in comments"
     class="rounded-sm shadow-sm border border-gray-200 p-4 min-w-[100%] min-h-[80px] md:w-[100%] md:min-h-[100px]"
+    :id="`comment-${comment.id}`"
   >
     <div class="flex items-start space-x-3">
       <!-- Avatar -->

@@ -2,7 +2,7 @@
 const auth = useAuthStore();
 </script>
 <template>
-  <div class="flex w-[30%] min-h-[200px] flex gap-4">
+  <div class="flex w-[40%] min-h-[200px] flex gap-4">
     <div
       class="flex justify-center items-center w-[80%] border border-[orangered] rounded-xl"
     >

@@ -1,14 +1,51 @@
 <script setup>
 const recipeId = inject("recipeId");
+const commentId = inject("commentId");
 const config = useRuntimeConfig();
 const auth = useAuthStore();
 
 const { data: comments } = await useSafeFetch(
-  `${config.public.baseUrl}/comments?recipeId=${recipeId}`,
+  `${config.public.baseUrl}/comments?recipeId=${encodeURIComponent(recipeId)}`,
   {
     key: `comment-recipe: ${recipeId}`,
   }
 );
+
+onMounted(() => {
+  if (commentId) {
+    const stop = watch(
+      () => comments.value,
+      async (newVal) => {
+        if (newVal?.length) {
+          await nextTick(); // wait until DOM updates
+
+          const elId = `comment-${commentId}`;
+          const el = document.getElementById(elId);
+
+          if (el) {
+            // Scroll the element into view
+            el.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+              inline: "nearest",
+            });
+
+            // Highlight effect
+            el.classList.add(
+              "bg-yellow-100",
+              "transition-colors",
+              "duration-700"
+            );
+            setTimeout(() => el.classList.remove("bg-yellow-100"), 3000);
+
+            stop(); // ✅ stop watching once done
+          }
+        }
+      },
+      { immediate: true }
+    );
+  }
+});
 
 const newComment = reactive({
   body: "",
