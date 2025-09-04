@@ -16,14 +16,22 @@ const { data: comments } = await useAsyncData("comments", () =>
 const overviewItems = computed(() => {
   if (!posts.value || !comments.value) return [];
 
-  const postsWithType = posts.value.map((p) => ({ ...p, type: "post" }));
+  const postsWithType = posts.value.map((p) => ({
+    ...p,
+    type: "post",
+    sortDate: p.createdAt ?? null, // fallback
+  }));
+
   const commentsWithType = comments.value.map((c) => ({
     ...c,
     type: "comment",
+    sortDate: c.time ?? null, // fallback
   }));
 
-  const combined = [...postsWithType, ...commentsWithType];
-  return combined.slice(-4).reverse();
+  return [...postsWithType, ...commentsWithType]
+    .filter((item) => item.sortDate) // remove invalid ones
+    .sort((a, b) => b.sortDate.localeCompare(a.sortDate)) // newest first
+    .slice(0, 4);
 });
 </script>
 <template>
@@ -42,7 +50,7 @@ const overviewItems = computed(() => {
     </button>
   </div>
   <div
-    class="space-y-4 bg-gray-100 py-6 px-4 rounded-lg min-h-[500px] w-[100%] lg:px-8"
+    class="space-y-4 bg-gray-100 py-6 px-4 rounded-lg min-h-[500px] max-h-[550px] overflow-y-scroll w-[100%] lg:px-8"
   >
     <!-- Overview -->
     <template v-if="activeTab.activeTab === 'Overview'">

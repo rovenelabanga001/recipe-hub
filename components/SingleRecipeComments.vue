@@ -95,8 +95,9 @@ const handleDelete = (commentId) => {
       <h5 class="font-bold text-lg mb-4">Add Comment</h5>
       <textarea
         v-model="newComment.body"
-        class="border border-gray-300 w-full rounded-xl min-h-[80px] p-3 focus:outline-none focus:ring-2 focus:ring-[orangered]-500 focus:border-[orangered]-500"
+        class="border border-gray-300 w-full rounded-xl min-h-[80px] p-3 focus:outline-none focus:border-2 focus:border-[orangered] focus:ring-0"
       ></textarea>
+
       <button
         class="bg-[orangered] text-white px-3 py-1 rounded-2xl self-end cursor-pointer"
         @click="onPostCommentClick"

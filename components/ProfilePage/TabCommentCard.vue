@@ -29,7 +29,7 @@ onMounted(async () => {
 </script>
 <template>
   <!-- <h3 class="font-bold">💬 Comment</h3> -->
-  <p v-if="user" class="italic text-sm text-gray-500">
+  <p v-if="user" class="italic text-xs text-gray-500 md:text-sm">
     You commented on
     <span v-if="user.username === auth.user?.username" class="font-semibold">
       your recipe
@@ -39,10 +39,10 @@ onMounted(async () => {
     </span>
   </p>
 
-  <p class="text-gray-600 font-bold">{{ comment.body }}</p>
+  <p class="text-gray-600 text-xs font-bold md:text-sm">{{ comment.body }}</p>
   <button
     @click="navigateTo(`/recipes/${comment.recipeId}?commentId=${comment.id}`)"
-    class="mt-2 text-[orangered] w-[auto] text-start text-sm px-1 py-1 rounded-lg bg-none cursor-pointer"
+    class="mt-2 text-[orangered] w-[auto] text-start text-xs px-1 py-1 rounded-lg bg-none cursor-pointer md:text-sm"
   >
     See Comment
   </button>

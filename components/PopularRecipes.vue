@@ -15,7 +15,7 @@ const { data: popularRecipes } = await useSafeFetch(
     <h2 class="md:text-2xl font-bold text-gray-900 mb-6 text-lg">
       Popular recipes
     </h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
       <RecipeCard :recipes="popularRecipes" />
     </div>
   </div>

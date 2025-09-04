@@ -116,6 +116,7 @@ const onSubmitRecipe = async () => {
         tags: recipeDraft.selectedCategories,
         category: recipeDraft.selectedCategories,
         userID: auth.user?.id,
+        createdAt: new Date().toISOString(),
       },
     });
     useToastify("Recipe added successfully", { type: "success" });
@@ -277,7 +278,7 @@ const onSubmitRecipe = async () => {
               @click="recipeDraft.removeIngredient(ing)"
               class="absolute right-0 top-1/2 -translate-y-1/2 text-red-500 hover:text-red-700"
             >
-              <IconsRemove />
+              <IconsRemove color="orangered" />
             </button>
             <span>{{ ing }}</span>
           </li>
@@ -328,7 +329,7 @@ const onSubmitRecipe = async () => {
             @click="recipeDraft.removeStep(st)"
             class="absolute right-0 top-1/2 -translate-y-1/2 text-red-500 hover:text-red-700"
           >
-            <IconsRemove />
+            <IconsRemove color="orangered" />
           </button>
         </li>
       </ol>
