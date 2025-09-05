@@ -20,10 +20,8 @@ const toggleFavorite = async () => {
   const isCurrentlyFavorite = isFavorite.value;
 
   if (isCurrentlyFavorite) {
-    // ❌ Unfavorite → remove from array
     updatedFavorites = updatedFavorites.filter((id) => id !== props.recipe.id);
   } else {
-    // ✅ Favorite → add to array
     updatedFavorites.push(props.recipe.id);
   }
 
@@ -54,7 +52,7 @@ const toggleFavorite = async () => {
             userId: recipe.userId,
             type: "favorite",
             user: auth.user.username,
-            message: `${auth.user.username} added your recipe "${recipe.title}" to favorites`,
+            message: `${auth.user.username} liked your recipe "${recipe.title}"`,
             recipeId: props.recipe.id,
             createdAt: new Date().toISOString(),
             read: false,

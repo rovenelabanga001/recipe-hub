@@ -17,6 +17,13 @@ const handleClick = async () => {
       `/recipes/${props.comment.postId}?commentId=${props.comment.commentId}`
     );
   } else {
+    await $fetch(
+      `${config.public.baseUrl}/notifications/${props.favorite.id}`,
+      {
+        method: "PATCH",
+        body: { read: true },
+      }
+    );
     navigateTo(`/recipes/${props.favorite.recipeId}`);
   }
 };
@@ -30,10 +37,6 @@ const handleClick = async () => {
         {{ comment ? comment.message : favorite.message }}
       </span>
     </p>
-    <!-- <p class="text-xs font-bold text-gray-500">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga hic mollitia
-      placeat temporibus nulla possimus quas ipsa quidem adipisci. Modi!
-    </p> -->
     <div class="flex justify-between w-full">
       <button
         @click="handleClick"

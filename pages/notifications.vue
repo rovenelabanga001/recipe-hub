@@ -20,12 +20,25 @@ const { data: notifications } = await useAsyncData(
     );
 
     return [...comments, ...favorites].sort((a, b) => {
-  const dateA = new Date(a.createdAt || a.time);
-  const dateB = new Date(b.createdAt || b.time);
-  return dateB - dateA; // latest first
-});
+      const dateA = new Date(a.createdAt || a.time);
+      const dateB = new Date(b.createdAt || b.time);
+      return dateB - dateA; // latest first
+    });
   }
 );
+
+const activeFilter = ref("Unread");
+
+const filteredNotifications = computed(() => {
+  if (activeFilter.value === "Read") {
+    return notifications.value.filter((n) => n.read === true);
+  }
+  if (activeFilter.value === "Unread") {
+    return notifications.value.filter((n) => n.read === false);
+  }
+  return notifications.value; // all
+});
+
 const timeAgo = (timestamp) => {
   const now = new Date();
   const kenyaOffset = 3 * 60; // Kenya is UTC+3 in minutes
@@ -64,15 +77,24 @@ const timeAgo = (timestamp) => {
 </script>
 <template>
   <div
-    class="space-y-4 bg-gray-100 py-6 px-4 rounded-lg min-h-screen max-h-[550px] w-[100%] lg:px-8"
+    class="space-y-4 bg-gray-100 py-6 px-4 rounded-lg min-h-screen  overflow-y-auto overflow-x-hidden w-[100%] lg:px-8 "
   >
-    <h5 class="font-bold" v-if="notifications.length >= 1">
-      Showing All Notifications
-    </h5>
     <div v-if="notifications.length >= 1">
-      <div class="px-2 space-y-2">
+      <div class="px-2 space-y-3">
+        <NotificationsHeader
+          :active-filter="activeFilter"
+          @change-filter="activeFilter = $event"
+        />
         <div class="bg-gray-400 h-0.5 w-full rounded"></div>
-        <div v-for="notification in notifications" key:notification.id>
+        <NotificationsEmptyState
+          v-if="filteredNotifications.length === 0"
+          :activeFilter="activeFilter"
+        />
+        <div
+          v-else
+          v-for="notification in filteredNotifications"
+          key:notification.id
+        >
           <NotificationsNotificationCard
             :comment="notification.type === 'comment' ? notification : null"
             :favorite="notification.type === 'favorite' ? notification : null"
