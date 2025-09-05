@@ -53,22 +53,43 @@ const newComment = reactive({
 
 const onPostCommentClick = async () => {
   try {
-    const res = await fetch(`${config.public.baseUrl}/comments`, {
+    const savedComment = await $fetch("/comments", {
+      baseURL: config.public.baseUrl,
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+      body: {
         username: auth.user.username,
         recipeId: recipeId,
         body: newComment.body,
         time: new Date().toISOString(),
-      }),
+      },
     });
 
-    if (!res.ok) throw new Error("Failed to post comment");
-    const savedComment = await res.json();
     comments.value = [savedComment, ...comments.value.slice()];
 
     newComment.body = "";
+
+    //Fetch recipe to know the owner
+    const recipe = await $fetch(`/recipes/${recipeId}`, {
+      baseURL: config.public.baseUrl,
+    });
+
+    //Create a notification for the recipe owner (skip if commenting on own post)
+    if (recipe.userID !== auth.user.id) {
+      await $fetch("/notifications", {
+        baseURL: config.public.baseUrl,
+        method: "POST",
+        body: {
+          userId: recipe.userID,
+          type: "comment",
+          user: auth.user.username,
+          message: `${auth.user.username} commented on your recipe "${recipe.title}"`,
+          postId: recipeId,
+          createdAt: new Date().toISOString(),
+          read: false,
+          commentId: savedComment.id,
+        },
+      });
+    }
 
     await refreshNuxtData(`comment-recipe:${recipeId}`);
   } catch (error) {

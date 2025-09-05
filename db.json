@@ -597,6 +597,27 @@
       "recipeId": "1",
       "body": "NIce stuff \n",
       "time": "2025-09-04T08:21:18.688Z"
+    },
+    {
+      "id": "a4a9",
+      "username": "rovenel001",
+      "recipeId": "7185",
+      "body": "Nice recipe baby",
+      "time": "2025-09-04T10:08:00.007Z"
+    },
+    {
+      "id": "b0d1",
+      "username": "peter_orony1",
+      "recipeId": "154e",
+      "body": "nice recipe",
+      "time": "2025-09-04T12:48:19.714Z"
+    },
+    {
+      "id": "f471",
+      "username": "peter_orony1",
+      "recipeId": "154e",
+      "body": "Tried it and it turned out amazing\n",
+      "time": "2025-09-05T07:00:41.719Z"
     }
   ],
   "users": [
@@ -656,6 +677,15 @@
       "email": "rovenelabanga2001@gmail.com",
       "password": "MyP@ssw0rd",
       "favoriteRecipeIds": [
+        "2",
+        "4",
+        "7",
+        "8",
+        "5",
+        "6",
+        "3",
+        "6e6a",
+        "154e",
         "7185"
       ]
     },
@@ -712,7 +742,42 @@
       "username": "peter_orony1",
       "email": "peterorony@gmail.com",
       "password": "MyP@ssw0rd",
-      "favoriteRecipeIds": []
+      "favoriteRecipeIds": [
+        "154e"
+      ]
+    }
+  ],
+  "notifications": [
+    {
+      "id": "e7c2",
+      "userId": "cf7f",
+      "type": "comment",
+      "user": "peter_orony1",
+      "message": "peter_orony1 commented on your recipe \"Mashed potatoes\"",
+      "postId": "154e",
+      "createdAt": "2025-09-04T12:48:19.869Z",
+      "read": true,
+      "commentId": "b0d1"
+    },
+    {
+      "id": "e15b",
+      "type": "favorite",
+      "user": "peter_orony1",
+      "message": "peter_orony1 added your recipe \"Mashed potatoes\" to favorites",
+      "recipeId": "154e",
+      "createdAt": "2025-09-04T12:53:42.037Z",
+      "read": false
+    },
+    {
+      "id": "0f05",
+      "userId": "cf7f",
+      "type": "comment",
+      "user": "peter_orony1",
+      "message": "peter_orony1 commented on your recipe \"Mashed potatoes\"",
+      "postId": "154e",
+      "createdAt": "2025-09-05T07:00:41.806Z",
+      "read": false,
+      "commentId": "f471"
     }
   ]
 }

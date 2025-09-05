@@ -27,25 +27,25 @@ const onAddClick = () => {
           >
         </li>
         <li>
-          <NuxtLink to="/favorites" exact-active-class="exact-active"
-            >Favorites</NuxtLink
+          <NuxtLink to="/notifications" exact-active-class="exact-active"
+            >Notifications</NuxtLink
           >
         </li>
       </ul>
       <div class="hidden lg:flex items-center gap-4">
         <button
           @click="onAddClick"
-          class="bg-[orangered] text-white py-1 px-2 rounded-3xl"
+          class="bg-[orangered] text-white py-1 px-2 rounded-3xl cursor-pointer"
         >
           Add Recipe +
         </button>
         <button
           @click="authStore.logout"
-          class="bg-[orangered] text-white px-3 py-1 rounded-3xl"
+          class="bg-[orangered] text-white px-3 py-1 rounded-3xl cursor-pointer"
         >
           Logout
         </button>
-        <button @click="navigateTo('/profile')">
+        <button @click="navigateTo('/profile')" class="cursor-pointer">
           <IconsUser class="text-[orangered]" />
         </button>
       </div>
@@ -70,24 +70,24 @@ const onAddClick = () => {
             >
           </li>
           <li>
-            <NuxtLink to="/favorites" exact-active-class="exact-active"
-              >Favorites</NuxtLink
+            <NuxtLink to="/notifications" exact-active-class="exact-active"
+              >Notifications</NuxtLink
             >
           </li>
         </ul>
         <div class="flex flex-col items-start gap-4 pt-4">
-          <button @click="navigateTo('/profile')">
+          <button @click="navigateTo('/profile')" class="cursor-pointer">
             <IconsUser class="text-[orangered]" />
           </button>
           <button
             @click="onAddClick"
-            class="bg-[orangered] text-white py-1 px-2 rounded-3xl"
+            class="bg-[orangered] text-white py-1 px-2 rounded-3xl cursor-pointer"
           >
             Add Recipe +
           </button>
           <button
             @click="authStore.logout"
-            class="flex self-start bg-[orangered] text-white px-3 py-1 rounded-3xl w-[100%]"
+            class="flex self-start bg-[orangered] text-white px-3 py-1 rounded-3xl w-[100%] cursor-pointer"
           >
             Logout
           </button>

@@ -38,13 +38,7 @@ const goToSingleRecipe = (recipeId) => {
     <!-- Action Buttons visible on hover-->
     <div
       class="absolute top-3 right-5 flex flex-col space-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-    >
-      <!-- <button
-        class="p-2 rounded-full bg-black/20 backdrop-blur-sm hover:bg-black/40 transition-colors"
-      >
-        <IconsFavorite color="orangered" />
-      </button> -->
-    </div>
+    ></div>
     <!--Recipe Content-->
     <div class="absolute bottom-0 left-0 right-0 p-4">
       <h3
@@ -56,7 +50,7 @@ const goToSingleRecipe = (recipeId) => {
         {{ recipe.name }}
       </h3>
       <!--Tags-->
-      <div v-if="showTags" class="flex flex-wrap gap-2">
+      <div v-if="showTags" class="hidden md:flex flex-wrap gap-2">
         <span
           v-for="tag in recipe.tags"
           :key="tag"

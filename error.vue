@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import type { NuxtError } from "#app";
 
+const router = useRouter();
+
 const props = defineProps({
   error: Object as () => NuxtError,
 });
 
 const handleError = () => {
-  clearError({ redirect: "/" });
+  router.back();
 };
 </script>
 <template>
@@ -19,12 +21,14 @@ const handleError = () => {
     <div class="flex flex-col justify-center items-center text-center gap-5">
       <h5 class="text-orange-500 font-bold text-2xl">Oops!</h5>
       <p class="text-gray-400 text-xl">{{ error?.statusMessage }}</p>
-      <!-- <button
-        @click="handleError"
-        class="bg-orange-500 px-4 py-2 text-white rounded-sm cursor-pointer"
-      >
-        Back to Home
-      </button> -->
+      <client-only>
+        <button
+          @click="handleError"
+          class="bg-orange-500 px-4 py-2 text-white rounded-sm cursor-pointer"
+        >
+          Back
+        </button>
+      </client-only>
     </div>
   </div>
 </template>

@@ -17,14 +17,18 @@ const toggleFavorite = async () => {
   if (!auth.user?.id) return;
 
   let updatedFavorites = [...(auth.user.favoriteRecipeIds || [])];
+  const isCurrentlyFavorite = isFavorite.value;
 
-  if (isFavorite.value) {
+  if (isCurrentlyFavorite) {
+    // ❌ Unfavorite → remove from array
     updatedFavorites = updatedFavorites.filter((id) => id !== props.recipe.id);
   } else {
+    // ✅ Favorite → add to array
     updatedFavorites.push(props.recipe.id);
   }
 
   try {
+    // Update user favorites
     const updatedUser = await $fetch(
       `${config.public.baseUrl}/users/${auth.user?.id}`,
       {
@@ -34,6 +38,30 @@ const toggleFavorite = async () => {
     );
 
     auth.user = updatedUser;
+
+    // If favoriting (not unfavoriting), create notification
+    if (!isCurrentlyFavorite) {
+      const recipe = await $fetch(
+        `${config.public.baseUrl}/recipes/${props.recipe.id}`,
+        { baseURL: config.public.baseUrl }
+      );
+
+      if (recipe.userId !== auth.user.id) {
+        await $fetch("/notifications", {
+          baseURL: config.public.baseUrl,
+          method: "POST",
+          body: {
+            userId: recipe.userId,
+            type: "favorite",
+            user: auth.user.username,
+            message: `${auth.user.username} added your recipe "${recipe.title}" to favorites`,
+            recipeId: props.recipe.id,
+            createdAt: new Date().toISOString(),
+            read: false,
+          },
+        });
+      }
+    }
   } catch (error) {
     console.error("Failed to update favorites", error);
   }

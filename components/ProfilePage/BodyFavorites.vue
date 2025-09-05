@@ -15,9 +15,14 @@ const { data: allRecipes } = await useSafeFetch(
   { key: "all-recipes" }
 );
 
-const favoriteRecipes = allRecipes.value.filter((recipe) =>
-  favoriteRecipeIds.includes(recipe.id)
-);
+const favoriteRecipes = computed(() => {
+  if (!allRecipes.value || !favoriteRecipeIds.length) return [];
+
+  return [...favoriteRecipeIds]
+    .reverse()
+    .map((id) => allRecipes.value.find((recipe) => recipe.id === id))
+    .filter(Boolean);
+});
 </script>
 <template>
   <div v-if="favoriteRecipes.length >= 1" class="space-y-4">
