@@ -23,6 +23,7 @@ const favoriteRecipes = computed(() => {
     .map((id) => allRecipes.value.find((recipe) => recipe.id === id))
     .filter(Boolean);
 });
+
 </script>
 <template>
   <div v-if="favoriteRecipes.length >= 1" class="space-y-4">

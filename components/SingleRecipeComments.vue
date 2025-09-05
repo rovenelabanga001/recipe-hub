@@ -83,7 +83,7 @@ const onPostCommentClick = async () => {
           type: "comment",
           user: auth.user.username,
           message: `${auth.user.username} commented on your recipe "${recipe.title}"`,
-          postId: recipeId,
+          recipeId: recipeId,
           createdAt: new Date().toISOString(),
           read: false,
           commentId: savedComment.id,

@@ -6,6 +6,7 @@ const props = defineProps({
 });
 
 const config = useRuntimeConfig();
+const notificationsStore = useNotificationsStore();
 
 const handleClick = async () => {
   if (props.comment) {
@@ -13,8 +14,9 @@ const handleClick = async () => {
       method: "PATCH",
       body: { read: true },
     });
+    notificationsStore.markAsRead(props.comment.id);
     navigateTo(
-      `/recipes/${props.comment.postId}?commentId=${props.comment.commentId}`
+      `/recipes/${props.comment.recipeId}?commentId=${props.comment.commentId}`
     );
   } else {
     await $fetch(
@@ -24,6 +26,8 @@ const handleClick = async () => {
         body: { read: true },
       }
     );
+
+    notificationsStore.markAsRead(props.favorite.id);
     navigateTo(`/recipes/${props.favorite.recipeId}`);
   }
 };

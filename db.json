@@ -8,7 +8,12 @@
       "prepTime": 20,
       "cookTime": 15,
       "servings": 2,
-      "ingredients": ["2 Beef steaks", "Salt", "Pepper", "Garlic butter"],
+      "ingredients": [
+        "2 Beef steaks",
+        "Salt",
+        "Pepper",
+        "Garlic butter"
+      ],
       "directions": [
         "Season steak with salt and pepper.",
         "Preheat grill to medium-high heat.",
@@ -16,8 +21,15 @@
         "Top with garlic butter before serving."
       ],
       "cuisine": "American",
-      "tags": ["main course", "grilled", "beef"],
-      "category": ["Lunch", "Dinner"],
+      "tags": [
+        "main course",
+        "grilled",
+        "beef"
+      ],
+      "category": [
+        "Lunch",
+        "Dinner"
+      ],
       "userID": 1
     },
     {
@@ -28,7 +40,12 @@
       "prepTime": 10,
       "cookTime": 15,
       "servings": 2,
-      "ingredients": ["4 Eggs", "1 cup Spinach", "Salt", "Olive oil"],
+      "ingredients": [
+        "4 Eggs",
+        "1 cup Spinach",
+        "Salt",
+        "Olive oil"
+      ],
       "directions": [
         "Preheat oven to 180°C (350°F).",
         "Lightly oil ramekins and add spinach.",
@@ -36,8 +53,15 @@
         "Bake for 12–15 minutes until whites are set."
       ],
       "cuisine": "Mediterranean",
-      "tags": ["breakfast", "baked", "vegetarian"],
-      "category": ["Breakfast", "Brunch"],
+      "tags": [
+        "breakfast",
+        "baked",
+        "vegetarian"
+      ],
+      "category": [
+        "Breakfast",
+        "Brunch"
+      ],
       "userID": 2
     },
     {
@@ -61,8 +85,15 @@
         "Serve with pasta or bread."
       ],
       "cuisine": "Italian",
-      "tags": ["main course", "fried", "beef"],
-      "category": ["Lunch", "Dinner"],
+      "tags": [
+        "main course",
+        "fried",
+        "beef"
+      ],
+      "category": [
+        "Lunch",
+        "Dinner"
+      ],
       "userID": 1
     },
     {
@@ -73,7 +104,12 @@
       "prepTime": 30,
       "cookTime": 50,
       "servings": 4,
-      "ingredients": ["Sushi rice", "Nori sheets", "Cucumber", "Salmon"],
+      "ingredients": [
+        "Sushi rice",
+        "Nori sheets",
+        "Cucumber",
+        "Salmon"
+      ],
       "directions": [
         "Cook sushi rice and season with rice vinegar.",
         "Lay nori sheet on bamboo mat, spread rice evenly.",
@@ -81,8 +117,15 @@
         "Slice and serve with soy sauce."
       ],
       "cuisine": "Japanese",
-      "tags": ["main course", "raw", "seafood"],
-      "category": ["Lunch", "Dinner"],
+      "tags": [
+        "main course",
+        "raw",
+        "seafood"
+      ],
+      "category": [
+        "Lunch",
+        "Dinner"
+      ],
       "userID": 3
     },
     {
@@ -93,7 +136,12 @@
       "prepTime": 15,
       "cookTime": 40,
       "servings": 4,
-      "ingredients": ["Chicken thighs", "Curry paste", "Coconut milk", "Onion"],
+      "ingredients": [
+        "Chicken thighs",
+        "Curry paste",
+        "Coconut milk",
+        "Onion"
+      ],
       "directions": [
         "Sauté onion and curry paste until fragrant.",
         "Add chicken and brown on all sides.",
@@ -101,8 +149,15 @@
         "Serve with rice."
       ],
       "cuisine": "Indian",
-      "tags": ["main course", "spicy", "chicken"],
-      "category": ["Lunch", "Dinner"],
+      "tags": [
+        "main course",
+        "spicy",
+        "chicken"
+      ],
+      "category": [
+        "Lunch",
+        "Dinner"
+      ],
       "userID": 2
     },
     {
@@ -113,15 +168,28 @@
       "prepTime": 25,
       "cookTime": 20,
       "servings": 4,
-      "ingredients": ["Pork", "Pineapple", "Tortillas", "Onion", "Cilantro"],
+      "ingredients": [
+        "Pork",
+        "Pineapple",
+        "Tortillas",
+        "Onion",
+        "Cilantro"
+      ],
       "directions": [
         "Marinate pork with spices and pineapple juice.",
         "Grill pork until charred and slice thinly.",
         "Serve in tortillas with onion, cilantro, and pineapple."
       ],
       "cuisine": "Mexican",
-      "tags": ["main course", "street food", "pork"],
-      "category": ["Lunch", "Dinner"],
+      "tags": [
+        "main course",
+        "street food",
+        "pork"
+      ],
+      "category": [
+        "Lunch",
+        "Dinner"
+      ],
       "userID": 1
     },
     {
@@ -145,8 +213,15 @@
         "Drizzle with olive oil before serving."
       ],
       "cuisine": "Greek",
-      "tags": ["salad", "vegetarian", "fresh"],
-      "category": ["Snack", "Brunch"],
+      "tags": [
+        "salad",
+        "vegetarian",
+        "fresh"
+      ],
+      "category": [
+        "Snack",
+        "Brunch"
+      ],
       "userID": 3
     },
     {
@@ -157,7 +232,13 @@
       "prepTime": 10,
       "cookTime": 15,
       "servings": 4,
-      "ingredients": ["Flour", "Milk", "Eggs", "Sugar", "Butter"],
+      "ingredients": [
+        "Flour",
+        "Milk",
+        "Eggs",
+        "Sugar",
+        "Butter"
+      ],
       "directions": [
         "Mix flour, milk, eggs, and sugar into a smooth batter.",
         "Heat butter in a pan and pour in batter thinly.",
@@ -165,8 +246,16 @@
         "Serve with jam, chocolate, or fruit."
       ],
       "cuisine": "French",
-      "tags": ["dessert", "sweet", "breakfast"],
-      "category": ["Breakfast", "Dessert", "Brunch"],
+      "tags": [
+        "dessert",
+        "sweet",
+        "breakfast"
+      ],
+      "category": [
+        "Breakfast",
+        "Dessert",
+        "Brunch"
+      ],
       "userID": 2
     },
     {
@@ -193,8 +282,15 @@
         "Garnish with fresh parsley and serve warm."
       ],
       "cuisine": "Italian",
-      "tags": ["main course", "vegetarian", "pasta"],
-      "category": ["Lunch", "Dinner"],
+      "tags": [
+        "main course",
+        "vegetarian",
+        "pasta"
+      ],
+      "category": [
+        "Lunch",
+        "Dinner"
+      ],
       "userID": 1
     },
     {
@@ -221,8 +317,16 @@
         "Blend untill consistent",
         "Serve"
       ],
-      "tags": ["Breakfast", "Drinks", "Brunch"],
-      "category": ["Breakfast", "Drinks", "Brunch"],
+      "tags": [
+        "Breakfast",
+        "Drinks",
+        "Brunch"
+      ],
+      "category": [
+        "Breakfast",
+        "Drinks",
+        "Brunch"
+      ],
       "userID": "511c"
     },
     {
@@ -257,8 +361,16 @@
         "Or maybe two eggs? You're to grown to  be having your decisions made by other people",
         "too* my bad"
       ],
-      "tags": ["Breakfast", "Snacks", "Brunch"],
-      "category": ["Breakfast", "Snacks", "Brunch"],
+      "tags": [
+        "Breakfast",
+        "Snacks",
+        "Brunch"
+      ],
+      "category": [
+        "Breakfast",
+        "Snacks",
+        "Brunch"
+      ],
       "userID": "1300"
     },
     {
@@ -269,7 +381,12 @@
       "prepTime": 19,
       "cookTime": 25,
       "servings": 3,
-      "ingredients": ["wertyuio", "ertyuio", "rtyuiop", "tyuhijkol;'"],
+      "ingredients": [
+        "wertyuio",
+        "ertyuio",
+        "rtyuiop",
+        "tyuhijkol;'"
+      ],
       "directions": [
         "2345r6t7yui",
         "er6t7yuio",
@@ -277,8 +394,16 @@
         "rtyuiop",
         "sdfguhij"
       ],
-      "tags": ["Brunch", "Lunch", "Dinner"],
-      "category": ["Brunch", "Lunch", "Dinner"],
+      "tags": [
+        "Brunch",
+        "Lunch",
+        "Dinner"
+      ],
+      "category": [
+        "Brunch",
+        "Lunch",
+        "Dinner"
+      ],
       "userID": "cf7f",
       "createdAt": "2025-09-04T08:59:27.910Z"
     }
@@ -460,13 +585,6 @@
       "time": "2025-09-03T09:14:21.514Z"
     },
     {
-      "id": "429a",
-      "username": "rovenel001",
-      "recipeId": "7185",
-      "body": "@Darbswiththehuzz nakudai!!!",
-      "time": "2025-09-03T10:10:10.684Z"
-    },
-    {
       "id": "1c48",
       "username": "rovenel001",
       "recipeId": "1",
@@ -474,25 +592,25 @@
       "time": "2025-09-04T08:21:18.688Z"
     },
     {
-      "id": "a4a9",
+      "id": "918c",
+      "username": "peter_orony1",
+      "recipeId": "154e",
+      "body": "Nice recipe, definitely trying it\n",
+      "time": "2025-09-05T11:14:20.097Z"
+    },
+    {
+      "id": "98bd",
+      "username": "rovenel001",
+      "recipeId": "154e",
+      "body": "@peter_orony1 Thanks alot",
+      "time": "2025-09-05T11:16:38.287Z"
+    },
+    {
+      "id": "f7c8",
       "username": "rovenel001",
       "recipeId": "7185",
       "body": "Nice recipe baby",
-      "time": "2025-09-04T10:08:00.007Z"
-    },
-    {
-      "id": "b0d1",
-      "username": "peter_orony1",
-      "recipeId": "154e",
-      "body": "nice recipe",
-      "time": "2025-09-04T12:48:19.714Z"
-    },
-    {
-      "id": "f471",
-      "username": "peter_orony1",
-      "recipeId": "154e",
-      "body": "Tried it and it turned out amazing\n",
-      "time": "2025-09-05T07:00:41.719Z"
+      "time": "2025-09-05T11:17:46.512Z"
     }
   ],
   "users": [
@@ -501,21 +619,32 @@
       "email": "john@example.com",
       "password": "password123",
       "username": "john_doe",
-      "favoriteRecipeIds": [1, 3, 6]
+      "favoriteRecipeIds": [
+        1,
+        3,
+        6
+      ]
     },
     {
       "id": "2",
       "email": "sara@example.com",
       "password": "password123",
       "username": "sara_smith",
-      "favoriteRecipeIds": [2, 5, 8]
+      "favoriteRecipeIds": [
+        2,
+        5,
+        8
+      ]
     },
     {
       "id": "3",
       "email": "mike@example.com",
       "password": "password123",
       "username": "mike_brown",
-      "favoriteRecipeIds": [4, 7]
+      "favoriteRecipeIds": [
+        4,
+        7
+      ]
     },
     {
       "id": "25f4",
@@ -541,15 +670,6 @@
       "email": "rovenelabanga2001@gmail.com",
       "password": "MyP@ssw0rd",
       "favoriteRecipeIds": [
-        "2",
-        "4",
-        "7",
-        "8",
-        "5",
-        "6",
-        "3",
-        "6e6a",
-        "154e",
         "7185"
       ]
     },
@@ -588,7 +708,11 @@
       "username": "new_user1",
       "email": "newuser@example.com",
       "password": "newuserP@ssw0rd",
-      "favoriteRecipeIds": ["9", "feb7", "3"]
+      "favoriteRecipeIds": [
+        "9",
+        "feb7",
+        "3"
+      ]
     },
     {
       "id": "1300",
@@ -602,40 +726,63 @@
       "username": "peter_orony1",
       "email": "peterorony@gmail.com",
       "password": "MyP@ssw0rd",
-      "favoriteRecipeIds": ["154e"]
+      "favoriteRecipeIds": [
+        "154e"
+      ]
     }
   ],
   "notifications": [
     {
-      "id": "e7c2",
+      "id": "39a9",
       "userId": "cf7f",
-      "type": "comment",
-      "user": "peter_orony1",
-      "message": "peter_orony1 commented on your recipe \"Mashed potatoes\"",
-      "postId": "154e",
-      "createdAt": "2025-09-04T12:48:19.869Z",
-      "read": true,
-      "commentId": "b0d1"
-    },
-    {
-      "id": "e15b",
       "type": "favorite",
       "user": "peter_orony1",
       "message": "peter_orony1 liked your recipe \"Mashed potatoes\"",
       "recipeId": "154e",
-      "createdAt": "2025-09-04T12:53:42.037Z",
-      "read": true
+      "createdAt": "2025-09-05T11:13:57.047Z",
+      "read": false
     },
     {
-      "id": "0f05",
+      "id": "f949",
       "userId": "cf7f",
       "type": "comment",
       "user": "peter_orony1",
       "message": "peter_orony1 commented on your recipe \"Mashed potatoes\"",
-      "postId": "154e",
-      "createdAt": "2025-09-05T07:00:41.806Z",
+      "recipeId": "154e",
+      "createdAt": "2025-09-05T11:14:20.158Z",
+      "read": false,
+      "commentId": "918c"
+    },
+    {
+      "id": "14e7",
+      "userId": "cf7f",
+      "type": "favorite",
+      "user": "peter_orony1",
+      "message": "peter_orony1 liked your recipe \"Mashed potatoes\"",
+      "recipeId": "154e",
+      "createdAt": "2025-09-05T11:14:25.557Z",
+      "read": false
+    },
+    {
+      "id": "d6c1",
+      "userId": "1300",
+      "type": "favorite",
+      "user": "rovenel001",
+      "message": "rovenel001 liked your recipe \"Banana Pancakes\"",
+      "recipeId": "7185",
+      "createdAt": "2025-09-05T11:17:25.479Z",
+      "read": true
+    },
+    {
+      "id": "d786",
+      "userId": "1300",
+      "type": "comment",
+      "user": "rovenel001",
+      "message": "rovenel001 commented on your recipe \"Banana Pancakes\"",
+      "recipeId": "7185",
+      "createdAt": "2025-09-05T11:17:46.585Z",
       "read": true,
-      "commentId": "f471"
+      "commentId": "f7c8"
     }
   ]
 }

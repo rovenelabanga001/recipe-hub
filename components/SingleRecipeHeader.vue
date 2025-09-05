@@ -44,12 +44,12 @@ const toggleFavorite = async () => {
         { baseURL: config.public.baseUrl }
       );
 
-      if (recipe.userId !== auth.user.id) {
+      if (recipe.userID !== auth.user.id) {
         await $fetch("/notifications", {
           baseURL: config.public.baseUrl,
           method: "POST",
           body: {
-            userId: recipe.userId,
+            userId: recipe.userID,
             type: "favorite",
             user: auth.user.username,
             message: `${auth.user.username} liked your recipe "${recipe.title}"`,

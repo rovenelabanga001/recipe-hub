@@ -1,6 +1,8 @@
 <script setup>
 const isOpen = ref(false);
+
 const authStore = useAuthStore();
+
 const onAddClick = () => {
   navigateTo("/recipes/new");
 };
@@ -26,10 +28,11 @@ const onAddClick = () => {
             >Recipes</NuxtLink
           >
         </li>
-        <li>
+        <li class="flex items-center">
           <NuxtLink to="/notifications" exact-active-class="exact-active"
             >Notifications</NuxtLink
           >
+          <NotificationsCounter class="self-start" />
         </li>
       </ul>
       <div class="hidden lg:flex items-center gap-4">
@@ -69,10 +72,11 @@ const onAddClick = () => {
               >Recipes</NuxtLink
             >
           </li>
-          <li>
+          <li class="flex items-center">
             <NuxtLink to="/notifications" exact-active-class="exact-active"
               >Notifications</NuxtLink
             >
+            <NotificationsCounter class="self-start" />
           </li>
         </ul>
         <div class="flex flex-col items-start gap-4 pt-4">
