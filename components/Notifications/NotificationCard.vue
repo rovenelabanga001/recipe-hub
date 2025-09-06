@@ -52,6 +52,9 @@ const handleClick = async () => {
         <p class="self-end text-gray-400 text-xs">
           {{ time }}
         </p>
+        <template #fallback>
+          <p class="self-end text-gray-400 text-xs">Loading...</p>
+        </template>
       </ClientOnly>
     </div>
   </div>

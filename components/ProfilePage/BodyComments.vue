@@ -5,7 +5,7 @@ const props = defineProps(["comments"]);
 <template>
   <h5>Showing recent comments</h5>
   <div
-    v-for="comment in comments"
+    v-for="comment in comments.reverse()"
     :key="comment.id"
     class="bg-white shadow rounded-xl p-4"
   >

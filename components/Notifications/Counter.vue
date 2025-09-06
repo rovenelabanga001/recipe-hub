@@ -4,9 +4,7 @@ const auth = useAuthStore();
 const config = useRuntimeConfig();
 const notificationsStore = useNotificationsStore();
 
-onMounted(() => {
-  notificationsStore.fetchUnread(config, auth.user.id);
-});
+await notificationsStore.fetchUnread(config, auth.user.id);
 </script>
 
 <template>

@@ -82,6 +82,9 @@ const onDeleteClick = async (commentId) => {
           <span class="text-gray-500">•</span>
           <client-only>
             <span class="text-gray-500">{{ timeAgo(comment.time) }}</span>
+            <template #fallback>
+              <p class="text-gray-400 text-sm">Loading...</p>
+            </template>
           </client-only>
           <button
             class="ml-auto self-center"
