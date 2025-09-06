@@ -740,7 +740,7 @@
       "message": "peter_orony1 liked your recipe \"Mashed potatoes\"",
       "recipeId": "154e",
       "createdAt": "2025-09-05T11:13:57.047Z",
-      "read": false
+      "read": true
     },
     {
       "id": "f949",

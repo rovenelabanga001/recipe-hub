@@ -1,46 +1,103 @@
 <script setup>
+const props = defineProps({
+  mode: { type: String, default: "self" }, // "self" | "other"
+  username: { type: String, default: "" },
+});
+
 const auth = useAuthStore();
 const config = useRuntimeConfig();
-const tabs = ref(["Overview", "Posts", "Comments", "Favorites"]);
-
 const activeTab = useProfileActiveTabStore();
 
-const { data: posts } = await useAsyncData("posts", () =>
-  $fetch(`${config.public.baseUrl}/recipes?userID=${auth.user?.id}`)
+// function to set default based on mode
+const setDefaultTab = () => {
+  if (props.mode === "other") {
+    activeTab.setAcitveTab("Posts");
+  } else {
+    activeTab.setAcitveTab("Overview");
+  }
+};
+
+// ensure correct default on mount
+onMounted(() => {
+  setDefaultTab();
+});
+
+const tabs =
+  props.mode === "other"
+    ? ["Posts"]
+    : ["Overview", "Posts", "Comments", "Favorites"];
+
+let userId = ref(null);
+
+// Determine userId
+if (props.mode === "other") {
+  const { data: fetchedUser } = await useAsyncData(
+    `user-${props.username}`,
+    () => $fetch(`${config.public.baseUrl}/users?username=${props.username}`)
+  );
+
+  if (!fetchedUser.value?.length) {
+    throw createError({
+      statusCode: 404,
+      statusMessage: `User "${props.username}" not found`,
+      fatal: true,
+    });
+  }
+
+  userId.value = fetchedUser.value[0].id;
+} else {
+  userId.value = auth.user?.id;
+}
+
+// Fetch posts
+const { data: posts } = await useAsyncData(`posts-${userId.value}`, () =>
+  $fetch(`${config.public.baseUrl}/recipes?userID=${userId.value}`)
 );
 
-const { data: comments } = await useAsyncData("comments", () =>
-  $fetch(`${config.public.baseUrl}/comments?username=${auth.user.username}`)
-);
+// Fetch comments only in self mode
+const { data: comments } =
+  props.mode === "self"
+    ? await useAsyncData(`comments-${auth.user.username}`, () =>
+        $fetch(
+          `${config.public.baseUrl}/comments?username=${auth.user.username}`
+        )
+      )
+    : { value: [] };
 
+// Overview items (only for self)
 const overviewItems = computed(() => {
+  if (props.mode !== "self") return [];
+
   if (!posts.value || !comments.value) return [];
 
   const postsWithType = posts.value.map((p) => ({
     ...p,
     type: "post",
-    sortDate: p.createdAt ?? null, // fallback
+    sortDate: p.createdAt ?? null,
   }));
 
   const commentsWithType = comments.value.map((c) => ({
     ...c,
     type: "comment",
-    sortDate: c.time ?? null, // fallback
+    sortDate: c.time ?? null,
   }));
 
   return [...postsWithType, ...commentsWithType]
-    .filter((item) => item.sortDate) // remove invalid ones
-    .sort((a, b) => b.sortDate.localeCompare(a.sortDate)) // newest first
+    .filter((item) => item.sortDate)
+    .sort((a, b) => b.sortDate.localeCompare(a.sortDate))
     .slice(0, 4);
 });
 </script>
+
 <template>
-  <div class="grid grid-cols-3 gap-3 md:grid-cols-4 w-[100%] lg:w-[50%]">
+  <!-- Tabs -->
+  <div class="grid grid-cols-3 gap-3 md:grid-cols-4 w-full lg:w-[50%]">
     <button
       v-for="tab in tabs"
+      :key="tab"
       @click="activeTab.setAcitveTab(tab)"
       :class="[
-        'px-3 py-1 rounded-2xl border cursor-pointer w-[auto]',
+        'px-3 py-1 rounded-2xl border cursor-pointer',
         activeTab.activeTab === tab
           ? 'bg-[orangered] text-white border-[orangered]'
           : 'text-[orangered] border-[orangered]',
@@ -49,11 +106,15 @@ const overviewItems = computed(() => {
       {{ tab }}
     </button>
   </div>
+
+  <!-- Tab Content -->
   <div
-    class="space-y-4 bg-gray-100 py-6 px-4 rounded-lg min-h-[500px] max-h-[550px] overflow-y-scroll w-[100%] lg:px-8"
+    class="space-y-4 bg-gray-100 py-6 px-4 rounded-lg min-h-[500px] max-h-[550px] overflow-y-scroll w-full lg:px-8"
   >
-    <!-- Overview -->
-    <template v-if="activeTab.activeTab === 'Overview'">
+    <!-- Overview (self only) -->
+    <template
+      v-if="activeTab.activeTab === 'Overview' && props.mode === 'self'"
+    >
       <profile-page-body-overview
         v-if="overviewItems.length >= 1"
         :overview-items="overviewItems"
@@ -67,20 +128,29 @@ const overviewItems = computed(() => {
       />
     </template>
 
-    <!-- Posts -->
+    <!-- Posts (always visible) -->
     <template v-else-if="activeTab.activeTab === 'Posts'">
       <profile-page-body-posts v-if="posts.length >= 1" :posts="posts" />
       <empty-placeholder
         v-else
-        message="No posts yet"
-        instructions="Start by creating your first recipe"
-        btn-txt="Add recipe"
-        route="/recipes/new"
+        :message="
+          props.mode === 'self'
+            ? 'No posts yet'
+            : `${username} has no posts yet`
+        "
+        :instructions="
+          props.mode === 'self' ? 'Start by creating your first recipe' : ''
+        "
+        :btn-txt="props.mode === 'self' ? 'Add recipe' : ''"
+        :route="props.mode === 'self' ? '/recipes/new' : ''"
+        :show-btn="props.mode === 'self' ? true : false"
       />
     </template>
 
-    <!-- Comments -->
-    <template v-else-if="activeTab.activeTab === 'Comments'">
+    <!-- Comments (self only) -->
+    <template
+      v-else-if="activeTab.activeTab === 'Comments' && props.mode === 'self'"
+    >
       <profile-page-body-comments
         v-if="comments.length >= 1"
         :comments="comments"
@@ -94,8 +164,10 @@ const overviewItems = computed(() => {
       />
     </template>
 
-    <!-- Favorites -->
-    <template v-else-if="activeTab.activeTab === 'Favorites'">
+    <!-- Favorites (self only) -->
+    <template
+      v-else-if="activeTab.activeTab === 'Favorites' && props.mode === 'self'"
+    >
       <profile-page-body-favorites />
     </template>
   </div>

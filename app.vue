@@ -1,9 +1,27 @@
-<script setup></script>
+<script setup>
+import { ref, onMounted } from "vue";
+import LoadingComponent from "@/components/LoadingComponent.vue";
+
+const hydrated = ref(false);
+
+onMounted(() => {
+  hydrated.value = true;
+});
+</script>
 
 <template>
-  <div class="bg-[#FDFAF5]">
-    <nuxt-layout>
-      <nuxt-page />
-    </nuxt-layout>
+  <div class="bg-[#FDFAF5] relative w-full min-h-screen">
+    <!-- Always render NuxtLayout + NuxtPage -->
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+
+    <!-- Overlay loader while not hydrated -->
+    <div
+      v-if="!hydrated"
+      class="absolute inset-0 bg-[#FDFAF5] flex items-center justify-center z-9999"
+    >
+      <LoadingComponent />
+    </div>
   </div>
 </template>
