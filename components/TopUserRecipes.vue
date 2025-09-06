@@ -10,11 +10,12 @@ const { data: userRecipes } = await useSafeFetch(
     transform: (userRecipes) => userRecipes.slice(-6),
   }
 );
+const viewUserProfile = inject("viewUserProfile");
 </script>
 <template>
   <div class="flex gap-5 items-center">
     <h6 class="font-bold">{{ user.recipeCount }} recipes</h6>
-    <ViewAllBtn />
+    <ViewAllBtn @click="viewUserProfile(props.user.username)" />
   </div>
   <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
     <RecipeCard

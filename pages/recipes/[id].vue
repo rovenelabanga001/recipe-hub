@@ -31,9 +31,10 @@ const goBack = () => {
 
 provide("recipeId", recipeId);
 provide("commentId", commentId);
+const viewUserProfile = inject("viewUserProfile");
 </script>
 <template>
-  <IconsBack class="text-lg mb-4 bg-[orangered]" fill="white" @click="goBack" />
+  <BackBtn />
   <LoadingComponent v-if="pending" />
   <div
     v-else
@@ -46,7 +47,11 @@ provide("commentId", commentId);
     />
     <div class="flex items-center gap-4">
       <IconsUser />
-      <p class="font-bold text-gray-400">{{ user.username }}</p>
+      <p class="font-bold text-gray-400">
+        <span @click="viewUserProfile(user.username)" class="cursor-pointer">{{
+          user.username
+        }}</span>
+      </p>
     </div>
     <SingleRecipeBody :recipe="recipe" />
   </div>

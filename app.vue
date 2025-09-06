@@ -7,6 +7,12 @@ const hydrated = ref(false);
 onMounted(() => {
   hydrated.value = true;
 });
+
+const viewUserProfile = (username) => {
+  navigateTo(`/profile/${username}`);
+};
+
+provide("viewUserProfile", viewUserProfile);
 </script>
 
 <template>

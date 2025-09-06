@@ -26,6 +26,8 @@ onMounted(async () => {
     console.error("Failed to fetch recipe or user:", error);
   }
 });
+
+const viewUserProfile = inject("viewUserProfile");
 </script>
 <template>
   <!-- <h3 class="font-bold">💬 Comment</h3> -->
@@ -35,7 +37,12 @@ onMounted(async () => {
       your recipe
     </span>
     <span v-else>
-      a recipe by <span class="font-semibold">{{ user.username }}</span>
+      a recipe by
+      <span
+        @click="viewUserProfile(user.username)"
+        class="font-thin text-[orangered] cursor-pointer"
+        >{{ user.username }}</span
+      >
     </span>
   </p>
 

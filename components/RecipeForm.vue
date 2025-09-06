@@ -146,6 +146,7 @@ const onSubmitRecipe = async () => {
 };
 </script>
 <template>
+  <!-- <BackBtn v-if="props.mode === 'edit'" /> -->
   <form
     class="max-w-2xl mx-auto p-6 space-y-6 bg-cream rounded-2xl shadow"
     @submit.prevent="onSubmitRecipe"

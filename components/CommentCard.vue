@@ -59,6 +59,8 @@ const onDeleteClick = async (commentId) => {
     console.error(error);
   }
 };
+
+const viewUserProfile = inject("viewUserProfile");
 </script>
 <template>
   <div
@@ -77,7 +79,9 @@ const onDeleteClick = async (commentId) => {
         <!-- Header -->
         <div class="flex items-center space-x-2 mb-2 w-full">
           <h3 class="font-semibold text-gray-900">
-            {{ comment.username }}
+            <span @click="viewUserProfile(comment.username)">{{
+              comment.username
+            }}</span>
           </h3>
           <span class="text-gray-500">•</span>
           <client-only>
