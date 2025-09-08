@@ -867,6 +867,13 @@
       "email": "newuser2@gmail.com",
       "password": "MyP@ssw0rd",
       "favoriteRecipeIds": []
+    },
+    {
+      "id": "ba61",
+      "username": "newuser3",
+      "email": "newuser3@example.com",
+      "password": "MyP@ssw0rd",
+      "favoriteRecipeIds": []
     }
   ],
   "notifications": [

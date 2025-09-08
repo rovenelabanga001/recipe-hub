@@ -1,75 +1,76 @@
-# Nuxt Minimal Starter
+# Recipe Hub
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Recipe Hub is a modern web application designed to bring food lovers together by providing an interactive platform for discovering, sharing, and managing recipes. Users can create accounts to explore a wide variety of dishes, filter recipes to suit their preferences, and engage with the community through comments and notifications. The platform emphasizes personalization, allowing users to build profiles, save their favorite recipes, and manage their own contributions by adding, editing, or deleting recipes.
 
-## Setup
+## Features
 
-Make sure to install dependencies:
+- 🔑 User Authentication & Registration – Secure account creation and login system.
+
+- 🍲 Recipe Filtering – Browse recipes by categories, ingredients, or dietary needs.
+
+- 💬 Commenting – Share feedback, tips, or variations on recipes.
+
+- 🔔 Notifications – Stay updated on recipe activity, comments, and favorites.
+
+- ✍️ Recipe Management – Add new recipes, edit details, or delete existing ones.
+
+- 👤 User Profiles – Personalized profiles showcasing contributions and activity.
+
+- ⭐ Favorites – Save and organize recipes you love for quick access.
+
+## Installation
+
+Install my-project with npm
+
+### Clone the project to your computer
 
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+  git clone git@github.com:rovenelabanga001/recipe-hub.git
+  cd my-project
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+### Navigate to the project directory
 
 ```bash
-# npm
+cd recipe-hub
+```
+
+### Install dependencies
+
+```bash
+npm Install
+```
+
+### Run the server
+
+```bash
+npm run server
+```
+
+### Run the project
+
+```bash
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+## Screenshots
 
-Build the application for production:
+### Home Page
 
-```bash
-# npm
-npm run build
+![Home Page](assets/screenshots/home.png)
 
-# pnpm
-pnpm build
+### Recipes Page
 
-# yarn
-yarn build
+![Recipes Page](assets/screenshots/recipes.png)
 
-# bun
-bun run build
-```
+### Notifications Page
 
-Locally preview production build:
+![Notifications Page](assets/screenshots/notifications.png)
 
-```bash
-# npm
-npm run preview
+### Add Recipes Page
 
-# pnpm
-pnpm preview
+![Add Recipe Page](assets/screenshots/recipeform.png)
 
-# yarn
-yarn preview
+### Profile Page
 
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+![Profile Page](assets/screenshots/profile.png)

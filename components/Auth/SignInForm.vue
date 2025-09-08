@@ -7,8 +7,8 @@ const authStore = useAuthStore();
 const { login } = useAuth();
 
 const credentials = reactive({
-  email: authStore.signUpData.email || "",
-  password: authStore.signUpData.password || "",
+  email: authStore.signUpData?.email || "",
+  password: authStore.signUpData?.password || "",
 });
 
 const rules = {
@@ -37,7 +37,7 @@ const submitForm = async () => {
     }
 
     authStore.user = data.user;
-    authStore.clearSignUpData;
+    authStore.clearSignUpData();
 
     useToastify("Login Successful", { type: "success" });
     await navigateTo("/");

@@ -38,7 +38,7 @@ export const useAuthStore = defineStore("auth", {
       this.signUpData = data;
     },
     clearSignUpData(data) {
-      this.signUpData = null;
+      this.signUpData = { email: "", password: "" };
     },
   },
 });
