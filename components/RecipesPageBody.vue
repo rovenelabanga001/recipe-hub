@@ -3,14 +3,15 @@ const props = defineProps({
   recipes: Array,
 });
 
-const showTags = ref(false);
+const categoryStore = useRecipeCategoryStore();
 
+const showTags = ref(false);
 </script>
 <template>
-  <h6 class="md:text-2xl text-lg font-bold text-gray-900 self-start">
-    Recipes
+  <h6 class="md:text-2xl text-lg font-bold text-gray-900 self-start mb-4">
+    Showing "{{ categoryStore.selectedCategory }}" Recipes
   </h6>
-  <div class="grid grid-cols-2 gap-3 md:grid-cols-4">
+  <div class="grid grid-cols-2 gap-3 md:grid-cols-4 w-full">
     <RecipeCard
       :recipes="recipes"
       :show-tags="showTags"

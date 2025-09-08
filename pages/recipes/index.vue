@@ -80,7 +80,7 @@ provide("searchTerm", searchTerm);
         :selectedCategory="selectedCategory"
         :has-results="filteredRecipes.length > 0"
       />
-      <div class="flex flex-col items-center" v-else>
+      <div class="flex flex-col items-center w-full" v-else>
         <RecipesPageBody :recipes="paginatedRecipes" />
         <RecipesPageFooter
           :current-page="currentPage"

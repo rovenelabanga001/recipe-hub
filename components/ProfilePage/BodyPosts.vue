@@ -1,7 +1,11 @@
 <script setup>
 const props = defineProps(["posts"]);
-const showButtons = ref(true);
+const route = useRoute();
+
+// Only show buttons if we're on /profile
+const showButtons = computed(() => route.path === "/profile");
 </script>
+
 <template>
   <h5>Showing posts</h5>
   <div

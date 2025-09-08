@@ -8,7 +8,7 @@ const recipeCategoryStore = useRecipeCategoryStore();
 <template>
   <div v-for="cat in categoriesFilter" :key="cat.name">
     <button
-      class="flex flex-col items-center justify-center"
+      class="flex flex-col items-center justify-center cursor-pointer"
       @click="recipeCategoryStore.setCategory(cat.name)"
     >
       <component

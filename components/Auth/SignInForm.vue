@@ -3,18 +3,14 @@ import useVuelidate from "@vuelidate/core";
 import { required, email, helpers } from "@vuelidate/validators";
 
 const router = useRouter();
+const authStore = useAuthStore();
 const { login } = useAuth();
-// ----------------------
-// Form state
-// ----------------------
+
 const credentials = reactive({
-  email: "",
-  password: "",
+  email: authStore.signUpData.email || "",
+  password: authStore.signUpData.password || "",
 });
 
-// ----------------------
-// Validation rules
-// ----------------------
 const rules = {
   email: {
     required: helpers.withMessage("Email is required", required),
@@ -25,14 +21,8 @@ const rules = {
   },
 };
 
-// ----------------------
-// Init Vuelidate
-// ----------------------
 const v$ = useVuelidate(rules, credentials);
 
-// ----------------------
-// Submit handler
-// ----------------------
 const submitForm = async () => {
   const isValid = await v$.value.$validate();
   if (!isValid) return;
@@ -46,8 +36,8 @@ const submitForm = async () => {
       return;
     }
 
-    const auth = useAuthStore();
-    auth.user = data.user;
+    authStore.user = data.user;
+    authStore.clearSignUpData;
 
     useToastify("Login Successful", { type: "success" });
     await navigateTo("/");

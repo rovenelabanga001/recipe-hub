@@ -3,6 +3,7 @@ import useVuelidate from "@vuelidate/core";
 import { required, email, sameAs, helpers } from "@vuelidate/validators";
 
 const config = useRuntimeConfig();
+const authStore = useAuthStore();
 
 const router = useRouter();
 // ----------------------
@@ -91,6 +92,10 @@ const onSignUpSubmit = async () => {
         },
       });
 
+      authStore.setSignUpData({
+        email: form.email,
+        password: form.password,
+      });
       useToastify(data.message || "Account created successfully!", {
         type: "success",
       });

@@ -109,7 +109,7 @@ const overviewItems = computed(() => {
 
   <!-- Tab Content -->
   <div
-    class="space-y-4 bg-gray-100 py-6 px-4 rounded-lg min-h-[500px] max-h-[550px] overflow-y-scroll w-full lg:px-8"
+    class="space-y-4 bg-gray-100 py-6 px-4 rounded-lg min-h-[500px] max-h-[550px] overflow-y-auto w-full lg:px-8"
   >
     <!-- Overview (self only) -->
     <template

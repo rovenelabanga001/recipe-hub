@@ -353,13 +353,7 @@
         "Add 1tsp of salt to taste",
         "Add 2 cups of wheat flour and mix",
         "Slowly add milk while whisking until the preferred consistency is achieved",
-        "Add 1 tsp of vanilla essence for flavour",
-        "Use three eggs btw",
-        "Don't forget to beath the eggs my guy",
-        "Yk i mean beat",
-        "Good luck",
-        "Or maybe two eggs? You're to grown to  be having your decisions made by other people",
-        "too* my bad"
+        "Add 1 tsp of vanilla essence for flavour"
       ],
       "tags": [
         "Breakfast",
@@ -406,6 +400,129 @@
       ],
       "userID": "cf7f",
       "createdAt": "2025-09-04T08:59:27.910Z"
+    },
+    {
+      "id": "f86b",
+      "name": "Roasted potatoes",
+      "title": "Roasted potatoes",
+      "image": "https://images.unsplash.com/photo-1641898378503-327316fdde77?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "prepTime": 20,
+      "cookTime": 40,
+      "servings": 3,
+      "ingredients": [
+        "Potatoes",
+        "Oregano",
+        "Corriander",
+        "Black pepper",
+        "Olive oil"
+      ],
+      "directions": [
+        "Peel potatoes",
+        "Boil potatoes till soft(for about 10 mins)",
+        "Mix oregano to about 50ml of olive oil",
+        "Apply the mixture to your potatoes",
+        "Air fry/oven bake the potatoes for 40 minutes at 180 degrees",
+        "Add corriander and salt to taste",
+        "Serve"
+      ],
+      "tags": [
+        "Lunch",
+        "Brunch"
+      ],
+      "category": [
+        "Lunch",
+        "Brunch"
+      ],
+      "userID": "cf7f",
+      "createdAt": "2025-09-06T12:40:34.510Z"
+    },
+    {
+      "id": "df42",
+      "name": "Honey glazed chicken wings",
+      "title": "Honey glazed chicken wings",
+      "image": "https://images.unsplash.com/photo-1734987942068-a1a459d65d3d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "prepTime": 30,
+      "cookTime": 45,
+      "servings": 2,
+      "ingredients": [
+        "About 500g of chicken wings",
+        "Paprika",
+        "Black Pepper",
+        "Chicken masala",
+        "Oregano",
+        "Spring onions",
+        "Soy sauce",
+        "Honey",
+        "Tomato ketchup"
+      ],
+      "directions": [
+        "Mix your spices(Paprika, chicken masala, oregano, black pepper)",
+        "On a bowl, place your wings. Pour in the spices mixture",
+        "Add about 50ml of cooking oil and few drops of soy sauce",
+        "Marinate till you loose patience(At least 2 hours, the longer the better)",
+        "Deep fry your chicken",
+        "While the chicken fries,  on a different pan. Add honey, few drops of soy sauce and tomato ketchup",
+        "Cook under low heat",
+        "Add your deep fried chicken an mix",
+        "Serve"
+      ],
+      "tags": [
+        "Brunch",
+        "Lunch",
+        "Dinner"
+      ],
+      "category": [
+        "Brunch",
+        "Lunch",
+        "Dinner"
+      ],
+      "userID": "cf7f",
+      "createdAt": "2025-09-06T12:48:59.386Z"
+    },
+    {
+      "id": "faaa",
+      "name": "Banana Bread",
+      "title": "Banana Bread",
+      "image": "https://images.unsplash.com/photo-1569762404472-026308ba6b64?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "prepTime": 20,
+      "cookTime": 50,
+      "servings": 3,
+      "ingredients": [
+        "3 ripe bananas",
+        "Greek yorghurt",
+        "Sugar",
+        "1/3 cup melted butter",
+        "1 egg",
+        "1 teaspoon vanilla extract",
+        "1 teaspoon baking powder",
+        "3/4 cup of sugar",
+        "1 1/2 cup all purpose flour"
+      ],
+      "directions": [
+        "Preheat oven to 175°C (350°F). Grease a loaf pan.",
+        "In a mixing bowl, mash the ripe bananas with a fork until smooth.",
+        "Stir the melted butter into the mashed bananas.",
+        "Mix in sugar, beaten egg, and vanilla extract.",
+        "Sprinkle baking soda and salt over the mixture and stir in.",
+        "Add flour last and mix until just combined (don’t overmix).",
+        "Pour batter into the prepared loaf pan.",
+        "Bake for 50–60 minutes,",
+        "Serve"
+      ],
+      "tags": [
+        "Breakfast",
+        "Brunch",
+        "Desserts",
+        "Snacks"
+      ],
+      "category": [
+        "Breakfast",
+        "Brunch",
+        "Desserts",
+        "Snacks"
+      ],
+      "userID": "cf7f",
+      "createdAt": "2025-09-06T12:55:00.848Z"
     }
   ],
   "comments": [
@@ -611,6 +728,20 @@
       "recipeId": "7185",
       "body": "Nice recipe baby",
       "time": "2025-09-05T11:17:46.512Z"
+    },
+    {
+      "id": "edd7",
+      "username": "rovenel001",
+      "recipeId": "7185",
+      "body": "@Darbswiththehuzz nakudai!!",
+      "time": "2025-09-06T14:31:03.423Z"
+    },
+    {
+      "id": "e346",
+      "username": "Darbswiththehuzz",
+      "recipeId": "df42",
+      "body": "niicee\n",
+      "time": "2025-09-07T19:10:14.971Z"
     }
   ],
   "users": [
@@ -669,9 +800,7 @@
       "username": "rovenel001",
       "email": "rovenelabanga2001@gmail.com",
       "password": "MyP@ssw0rd",
-      "favoriteRecipeIds": [
-        "7185"
-      ]
+      "favoriteRecipeIds": []
     },
     {
       "id": "d9a7",
@@ -719,7 +848,9 @@
       "username": "Darbswiththehuzz",
       "email": "darbiekossy@gmail.com",
       "password": "Mym@n2001",
-      "favoriteRecipeIds": []
+      "favoriteRecipeIds": [
+        "f86b"
+      ]
     },
     {
       "id": "3444",
@@ -729,6 +860,13 @@
       "favoriteRecipeIds": [
         "154e"
       ]
+    },
+    {
+      "id": "ccf7",
+      "username": "newuser2",
+      "email": "newuser2@gmail.com",
+      "password": "MyP@ssw0rd",
+      "favoriteRecipeIds": []
     }
   ],
   "notifications": [
@@ -783,6 +921,38 @@
       "createdAt": "2025-09-05T11:17:46.585Z",
       "read": true,
       "commentId": "f7c8"
+    },
+    {
+      "id": "19a3",
+      "userId": "1300",
+      "type": "comment",
+      "user": "rovenel001",
+      "message": "rovenel001 commented on your recipe \"Banana Pancakes\"",
+      "recipeId": "7185",
+      "createdAt": "2025-09-06T14:31:03.473Z",
+      "read": true,
+      "commentId": "edd7"
+    },
+    {
+      "id": "0fb4",
+      "userId": "cf7f",
+      "type": "comment",
+      "user": "Darbswiththehuzz",
+      "message": "Darbswiththehuzz commented on your recipe \"Honey glazed chicken wings\"",
+      "recipeId": "df42",
+      "createdAt": "2025-09-07T19:10:15.010Z",
+      "read": false,
+      "commentId": "e346"
+    },
+    {
+      "id": "75df",
+      "userId": "cf7f",
+      "type": "favorite",
+      "user": "Darbswiththehuzz",
+      "message": "Darbswiththehuzz liked your recipe \"Roasted potatoes\"",
+      "recipeId": "f86b",
+      "createdAt": "2025-09-07T19:11:10.719Z",
+      "read": false
     }
   ]
 }
