@@ -25,7 +25,7 @@ provide("viewUserProfile", viewUserProfile);
     <!-- Overlay loader while not hydrated -->
     <div
       v-if="!hydrated"
-      class="absolute inset-0 bg-[#FDFAF5] flex items-center justify-center z-9999"
+      class="fixed inset-0 bg-[#FDFAF5] flex items-center justify-center z-[9999] overflow-y-hidden"
     >
       <LoadingComponent />
     </div>
