@@ -3,8 +3,9 @@ const props = defineProps({
   recipe: Object,
 });
 
-const emit = defineEmits(["close"]);
+const emit = defineEmits(["close", "deleted"]);
 const config = useRuntimeConfig();
+const { refresh } = usePosts();
 
 const deleteRecipeWithComments = async (recipeId) => {
   try {
@@ -27,8 +28,23 @@ const deleteRecipeWithComments = async (recipeId) => {
       )
     );
 
+    const notifications = await $fetch("/notifications", {
+      baseURL: config.public.baseUrl,
+      query: { recipeId },
+    });
+
+    await Promise.all(
+      notifications.map((n) =>
+        $fetch(`/notifications/${n.id}`, {
+          baseURL: config.public.baseUrl,
+          method: "DELETE",
+        })
+      )
+    );
+
     emit("close");
-    await refreshNuxtData("posts");
+    emit("deleted", recipeId);
+    await refresh();
     await refreshNuxtData("comments");
 
     useToastify(`${props.recipe.name} recipe deleted successfully`, {

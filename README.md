@@ -26,7 +26,6 @@ Install my-project with npm
 
 ```bash
   git clone git@github.com:rovenelabanga001/recipe-hub.git
-  cd my-project
 ```
 
 ### Navigate to the project directory

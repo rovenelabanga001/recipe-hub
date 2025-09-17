@@ -368,75 +368,6 @@
       "userID": "1300"
     },
     {
-      "id": "154e",
-      "name": "Mashed potatoes",
-      "title": "Mashed potatoes",
-      "image": "https://images.unsplash.com/photo-1707616954324-99c89a78a20d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "prepTime": 19,
-      "cookTime": 25,
-      "servings": 3,
-      "ingredients": [
-        "wertyuio",
-        "ertyuio",
-        "rtyuiop",
-        "tyuhijkol;'"
-      ],
-      "directions": [
-        "2345r6t7yui",
-        "er6t7yuio",
-        "rfyguhijokl",
-        "rtyuiop",
-        "sdfguhij"
-      ],
-      "tags": [
-        "Brunch",
-        "Lunch",
-        "Dinner"
-      ],
-      "category": [
-        "Brunch",
-        "Lunch",
-        "Dinner"
-      ],
-      "userID": "cf7f",
-      "createdAt": "2025-09-04T08:59:27.910Z"
-    },
-    {
-      "id": "f86b",
-      "name": "Roasted potatoes",
-      "title": "Roasted potatoes",
-      "image": "https://images.unsplash.com/photo-1641898378503-327316fdde77?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "prepTime": 20,
-      "cookTime": 40,
-      "servings": 3,
-      "ingredients": [
-        "Potatoes",
-        "Oregano",
-        "Corriander",
-        "Black pepper",
-        "Olive oil"
-      ],
-      "directions": [
-        "Peel potatoes",
-        "Boil potatoes till soft(for about 10 mins)",
-        "Mix oregano to about 50ml of olive oil",
-        "Apply the mixture to your potatoes",
-        "Air fry/oven bake the potatoes for 40 minutes at 180 degrees",
-        "Add corriander and salt to taste",
-        "Serve"
-      ],
-      "tags": [
-        "Lunch",
-        "Brunch"
-      ],
-      "category": [
-        "Lunch",
-        "Brunch"
-      ],
-      "userID": "cf7f",
-      "createdAt": "2025-09-06T12:40:34.510Z"
-    },
-    {
       "id": "df42",
       "name": "Honey glazed chicken wings",
       "title": "Honey glazed chicken wings",
@@ -488,7 +419,6 @@
       "cookTime": 50,
       "servings": 3,
       "ingredients": [
-        "3 ripe bananas",
         "Greek yorghurt",
         "Sugar",
         "1/3 cup melted butter",
@@ -496,7 +426,8 @@
         "1 teaspoon vanilla extract",
         "1 teaspoon baking powder",
         "3/4 cup of sugar",
-        "1 1/2 cup all purpose flour"
+        "1 1/2 cup all purpose flour",
+        "3 ripe bananas"
       ],
       "directions": [
         "Preheat oven to 175°C (350°F). Grease a loaf pan.",
@@ -709,20 +640,6 @@
       "time": "2025-09-04T08:21:18.688Z"
     },
     {
-      "id": "918c",
-      "username": "peter_orony1",
-      "recipeId": "154e",
-      "body": "Nice recipe, definitely trying it\n",
-      "time": "2025-09-05T11:14:20.097Z"
-    },
-    {
-      "id": "98bd",
-      "username": "rovenel001",
-      "recipeId": "154e",
-      "body": "@peter_orony1 Thanks alot",
-      "time": "2025-09-05T11:16:38.287Z"
-    },
-    {
       "id": "f7c8",
       "username": "rovenel001",
       "recipeId": "7185",
@@ -742,6 +659,27 @@
       "recipeId": "df42",
       "body": "niicee\n",
       "time": "2025-09-07T19:10:14.971Z"
+    },
+    {
+      "id": "bccc",
+      "username": "rovenel001",
+      "recipeId": "4",
+      "body": "Awesome\n",
+      "time": "2025-09-08T07:34:49.681Z"
+    },
+    {
+      "id": "d91e",
+      "username": "tobin1",
+      "recipeId": "faaa",
+      "body": "awesome recipe",
+      "time": "2025-09-08T08:42:36.737Z"
+    },
+    {
+      "id": "9e9f",
+      "username": "joyMeryl1",
+      "recipeId": "df42",
+      "body": "amazing",
+      "time": "2025-09-09T08:06:53.505Z"
     }
   ],
   "users": [
@@ -858,7 +796,7 @@
       "email": "peterorony@gmail.com",
       "password": "MyP@ssw0rd",
       "favoriteRecipeIds": [
-        "154e"
+        "0639"
       ]
     },
     {
@@ -874,40 +812,25 @@
       "email": "newuser3@example.com",
       "password": "MyP@ssw0rd",
       "favoriteRecipeIds": []
+    },
+    {
+      "id": "dec6",
+      "username": "tobin1",
+      "email": "tobin@example.com",
+      "password": "MyP@ssw0rd",
+      "favoriteRecipeIds": [
+        "faaa"
+      ]
+    },
+    {
+      "id": "0bdf",
+      "username": "joyMeryl1",
+      "email": "joymeryl@gmail.com",
+      "password": "MyP@ssw0rd",
+      "favoriteRecipeIds": []
     }
   ],
   "notifications": [
-    {
-      "id": "39a9",
-      "userId": "cf7f",
-      "type": "favorite",
-      "user": "peter_orony1",
-      "message": "peter_orony1 liked your recipe \"Mashed potatoes\"",
-      "recipeId": "154e",
-      "createdAt": "2025-09-05T11:13:57.047Z",
-      "read": true
-    },
-    {
-      "id": "f949",
-      "userId": "cf7f",
-      "type": "comment",
-      "user": "peter_orony1",
-      "message": "peter_orony1 commented on your recipe \"Mashed potatoes\"",
-      "recipeId": "154e",
-      "createdAt": "2025-09-05T11:14:20.158Z",
-      "read": false,
-      "commentId": "918c"
-    },
-    {
-      "id": "14e7",
-      "userId": "cf7f",
-      "type": "favorite",
-      "user": "peter_orony1",
-      "message": "peter_orony1 liked your recipe \"Mashed potatoes\"",
-      "recipeId": "154e",
-      "createdAt": "2025-09-05T11:14:25.557Z",
-      "read": false
-    },
     {
       "id": "d6c1",
       "userId": "1300",
@@ -948,17 +871,70 @@
       "message": "Darbswiththehuzz commented on your recipe \"Honey glazed chicken wings\"",
       "recipeId": "df42",
       "createdAt": "2025-09-07T19:10:15.010Z",
-      "read": false,
+      "read": true,
       "commentId": "e346"
     },
     {
-      "id": "75df",
+      "id": "f79e",
+      "userId": 3,
+      "type": "comment",
+      "user": "rovenel001",
+      "message": "rovenel001 commented on your recipe \"Fresh Sushi Rolls\"",
+      "recipeId": "4",
+      "createdAt": "2025-09-08T07:34:49.730Z",
+      "read": false,
+      "commentId": "bccc"
+    },
+    {
+      "id": "023e",
+      "userId": "cf7f",
+      "type": "comment",
+      "user": "tobin1",
+      "message": "tobin1 commented on your recipe \"Banana Bread\"",
+      "recipeId": "faaa",
+      "createdAt": "2025-09-08T08:42:36.793Z",
+      "read": true,
+      "commentId": "d91e"
+    },
+    {
+      "id": "030b",
       "userId": "cf7f",
       "type": "favorite",
-      "user": "Darbswiththehuzz",
-      "message": "Darbswiththehuzz liked your recipe \"Roasted potatoes\"",
-      "recipeId": "f86b",
-      "createdAt": "2025-09-07T19:11:10.719Z",
+      "user": "tobin1",
+      "message": "tobin1 liked your recipe \"Banana Bread\"",
+      "recipeId": "faaa",
+      "createdAt": "2025-09-08T08:42:39.393Z",
+      "read": true
+    },
+    {
+      "id": "104b",
+      "userId": 1,
+      "type": "favorite",
+      "user": "rovenel001",
+      "message": "rovenel001 liked your recipe \"Juicy Grilled Steak\"",
+      "recipeId": "1",
+      "createdAt": "2025-09-08T08:45:29.427Z",
+      "read": false
+    },
+    {
+      "id": "d83e",
+      "userId": "cf7f",
+      "type": "comment",
+      "user": "joyMeryl1",
+      "message": "joyMeryl1 commented on your recipe \"Honey glazed chicken wings\"",
+      "recipeId": "df42",
+      "createdAt": "2025-09-09T08:06:53.552Z",
+      "read": true,
+      "commentId": "9e9f"
+    },
+    {
+      "id": "b85d",
+      "userId": 1,
+      "type": "favorite",
+      "user": "rovenel001",
+      "message": "rovenel001 liked your recipe \"Juicy Grilled Steak\"",
+      "recipeId": "1",
+      "createdAt": "2025-09-09T08:08:05.223Z",
       "read": false
     }
   ]

@@ -54,6 +54,20 @@ const onDeleteClick = async (commentId) => {
 
     if (!res.ok) throw new Error("Failed to delete comment");
 
+    const notifications = await $fetch("/notifications", {
+      baseURL: config.public.baseUrl,
+      query: { commentId },
+    });
+
+    await Promise.all(
+      notifications.map((n) =>
+        $fetch(`/notifications/${n.id}`, {
+          baseURL: config.public.baseUrl,
+          method: "DELETE",
+        })
+      )
+    );
+
     emit("delete", commentId);
   } catch (error) {
     console.error(error);

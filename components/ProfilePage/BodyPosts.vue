@@ -3,7 +3,13 @@ const props = defineProps(["posts"]);
 const route = useRoute();
 
 // Only show buttons if we're on /profile
+const posts = ref([...props.posts]);
+
 const showButtons = computed(() => route.path === "/profile");
+
+const handleDeleted = (recipeId) => {
+  posts.value = posts.value.filter((p) => p.id !== recipeId);
+};
 </script>
 
 <template>
@@ -17,6 +23,7 @@ const showButtons = computed(() => route.path === "/profile");
       :recipe="post"
       :show-buttons="showButtons"
       :show-user-info="false"
+      @deleted="handleDeleted"
     />
   </div>
 </template>

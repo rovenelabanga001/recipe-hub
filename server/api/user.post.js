@@ -2,8 +2,7 @@ export default defineEventHandler(async (event) => {
   let body;
 
   try {
-    body = await readBody(event); // H3 will parse JSON automatically
-    console.log("Body Received", body);
+    body = await readBody(event); 
   } catch {
     return { success: false, message: "Invalid JSON body" };
   }
@@ -14,9 +13,9 @@ export default defineEventHandler(async (event) => {
 
   try {
     const config = useRuntimeConfig();
-    const res = await $fetch(`${config.apiBase}/users`, {
+    const res = await $fetch(`${config.apiBase}/signup`, {
       method: "POST",
-      body, // pass object directly
+      body,
     });
 
     return {

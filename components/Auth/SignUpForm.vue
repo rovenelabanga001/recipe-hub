@@ -56,45 +56,19 @@ const onSignUpSubmit = async () => {
 
   if (!v$.value.$error) {
     try {
-      // Fetch existing users from API
-      const users = await $fetch("/api/users"); // assumes API returns all users
-
-      // Check if username or email already exists
-      const usernameExists = users.some((u) => u.username === form.username);
-      const emailExists = users.some((u) => u.email === form.email);
-
-      if (usernameExists) {
-        useToastify("Username already exists", { type: "error" });
-        return;
-      }
-
-      if (emailExists) {
-        useToastify("Email already exists", { type: "error" });
-        return;
-      }
-
-      // If all good, submit the form
-      console.log("Submitting payload:", {
-        username: form.username,
-        email: form.email,
-        password: form.password,
-        favoriteRecipeIds: [],
-      });
-
       const data = await $fetch("/api/user", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: {
           username: form.username,
           email: form.email,
           password: form.password,
-          favoriteRecipeIds: [],
         },
       });
-
+      if(!data.success){
+        useToastify(data.message || "Signup Failed", {type: "error"})
+      }
       authStore.setSignUpData({
         email: form.email,
-        password: form.password,
       });
       useToastify(data.message || "Account created successfully!", {
         type: "success",

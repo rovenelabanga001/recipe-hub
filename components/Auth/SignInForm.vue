@@ -8,7 +8,7 @@ const { login } = useAuth();
 
 const credentials = reactive({
   email: authStore.signUpData?.email || "",
-  password: authStore.signUpData?.password || "",
+  password: "",
 });
 
 const rules = {

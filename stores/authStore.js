@@ -5,7 +5,6 @@ export const useAuthStore = defineStore("auth", {
     user: null,
     signUpData: {
       email: "",
-      password: "",
     },
   }),
   getters: {
@@ -38,7 +37,7 @@ export const useAuthStore = defineStore("auth", {
       this.signUpData = data;
     },
     clearSignUpData(data) {
-      this.signUpData = { email: "", password: "" };
+      this.signUpData = { email: "" };
     },
   },
 });

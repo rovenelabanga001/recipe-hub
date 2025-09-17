@@ -1,6 +1,7 @@
 <script setup>
 import DeleteRecipePrompt from "../DeleteRecipePrompt.vue";
 
+const emit = defineEmits("deleted");
 const props = defineProps({
   showUserInfo: {
     type: Boolean,
@@ -14,12 +15,17 @@ const props = defineProps({
 });
 
 const showPrompt = ref(false);
+
+const handleDeleted = (recipeId) => {
+  emit("deleted", recipeId);
+};
 </script>
 <template>
   <delete-recipe-prompt
     v-if="showPrompt"
     :recipe="recipe"
     @close="showPrompt = false"
+    @deleted="handleDeleted"
   />
   <div class="flex flex-col">
     <p v-if="showUserInfo" class="text-gray-500 mb-3 italic text-xs md:text-sm">

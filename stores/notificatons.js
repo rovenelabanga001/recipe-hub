@@ -15,13 +15,14 @@ export const useNotificationsStore = defineStore("notifications", {
       );
 
       const recipes = await Promise.all(
-        notifications.map((n) =>
-          $fetch(`${config.public.baseUrl}/recipes/${n.recipeId}`)
-        )
+        notifications.map((n) => {
+          if (!n.recipeId) return null; // skip invalid
+          return $fetch(`${config.public.baseUrl}/recipes/${n.recipeId}`);
+        })
       );
 
       this.unread = notifications.filter(
-        (n, i) => recipes[i].userID === userId
+        (n, i) => recipes[i] && recipes[i].userID === userId
       );
     },
 
