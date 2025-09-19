@@ -3,14 +3,11 @@ definePageMeta({
   layout: "default",
   middleware: "auth",
 });
-const config = useRuntimeConfig();
+const { $authApi } = useNuxtApp();
 
-const { pending: recipesPending } = await useSafeFetch(
-  `${config.public.baseUrl}/recipes`,
-  {},
-  "Something went wrong, Please Try Again Later"
+const { pending: recipesPending } = await useAsyncData("recipes", () =>
+  $authApi("/recipes/popular")
 );
-
 </script>
 <template>
   <LoadingComponent v-if="recipesPending" />

@@ -1,21 +1,20 @@
 <script setup>
 import { Swiper, SwiperSlide } from "swiper/vue";
 
-// Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-const config = useRuntimeConfig();
 
 const showTags = ref(false);
 
-const { data: quickRecipes } = await useSafeFetch(
-  `${config.public.baseUrl}/recipes?prepTime_lte=20`,
-  {
-    key: "quick-recipes",
-  }
+const { $authApi } = useNuxtApp();
+
+const { data: quickRecipes } = await useAsyncData("quickRecipes", async () =>{
+ const res = await $authApi("/recipes/quick-meals/20")
+ return res.data
+}
 );
 </script>
 <template>
@@ -51,7 +50,7 @@ const { data: quickRecipes } = await useSafeFetch(
     }"
   >
     <SwiperSlide v-for="recipe in quickRecipes" :key="recipe.id">
-      <RecipeCard :recipes="[recipe]" :show-tags="showTags" />
+      <RecipeCard :recipe="recipe" :show-tags="showTags" />
     </SwiperSlide>
   </Swiper>
 </template>

@@ -3,15 +3,15 @@ definePageMeta({
   layout: "default",
   middleware: "auth",
 });
-const config = useRuntimeConfig();
+
+const { $authApi } = useNuxtApp();
 
 const recipeCategoryStore = useRecipeCategoryStore();
 
-const { data: allRecipes, pending } = await useSafeFetch(
-  `${config.public.baseUrl}/recipes`,
-  {},
-  "Something went wrong, Please Try Again Later"
-);
+const { data: allRecipes , pending} = await useAsyncData("allRecipes", async () => {
+  const res = await $authApi("/recipes");
+  return res.data;
+});
 
 const currentPage = ref(1);
 
@@ -41,7 +41,7 @@ const filteredRecipes = computed(() => {
 
     const matchesCategory =
       !cat ||
-      cat === "All" ||
+      cat === "all" ||
       recipe.category?.some((c) => c?.toLowerCase() === cat.toLowerCase());
 
     return matchesSearch && matchesCategory;

@@ -10,6 +10,8 @@ const goToCategory = (categoryName) => {
 const props = defineProps({
   dynamicStyle: String,
 });
+
+const slugifyCategory = inject("slugifyCategory")
 </script>
 
 <template>
@@ -17,7 +19,7 @@ const props = defineProps({
     v-for="category in categories"
     :key="category.name"
     class="flex flex-col items-center justify-center gap-2 cursor-pointer w-[25%] p-4 group md:items-start hover:shadow-lg transition duration-300"
-    @click="goToCategory(category.name.toLowerCase())"
+    @click="goToCategory((category.name.toLowerCase().trim()))"
   >
     <!-- Image -->
     <div

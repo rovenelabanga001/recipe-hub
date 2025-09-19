@@ -30,17 +30,18 @@ const submitForm = async () => {
   try {
     const data = await login(credentials.email, credentials.password);
 
-    if (!data.success) {
-      useToastify("Invalid Email or Password", { type: "error" });
-      console.log("Server response", data);
+    if (data.error || !data.success) {
+      const errorMessage = data.error || data.message; //"Invalid Email or Password";
+      useToastify(errorMessage, { type: "error" });
       return;
     }
 
     authStore.user = data.user;
+    authStore.token = data.token
     authStore.clearSignUpData();
 
     useToastify("Login Successful", { type: "success" });
-    await navigateTo("/");
+    await navigateTo("/", { replace: true });
   } catch (err) {
     useToastify("Failed, try again later", { type: "error" });
     console.log(err);

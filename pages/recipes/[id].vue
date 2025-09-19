@@ -6,22 +6,24 @@ definePageMeta({
 const route = useRoute();
 const config = useRuntimeConfig();
 const router = useRouter();
-const auth = useAuthStore();
+const { $authApi } = useNuxtApp();
 
 const recipeId = route.params.id;
 const commentId = route.query.commentId;
-const { data: recipe, pending } = await useSafeFetch(
-  `${config.public.baseUrl}/recipes/${recipeId}`,
-  { key: `single-recipe:${recipeId}` }
+const { data: recipe, pending } = await useAsyncData(
+  `recipe-${recipeId}`,
+  async () => {
+    const res = await $authApi(`recipes/${recipeId}`);
+    return res
+  }
 );
 
-const { data: user, pending: userPending } = await useAsyncData(
+
+const { data: user} = await useAsyncData(
   `user-${recipeId}`,
   async () => {
-    const recipeData = await $fetch(
-      `${config.public.baseUrl}/recipes/${recipeId}`
-    );
-    return await $fetch(`${config.public.baseUrl}/users/${recipeData.userID}`);
+    const res = await $authApi(`recipes/${recipeId}/user`);
+    return res
   }
 );
 
@@ -35,14 +37,14 @@ const viewUserProfile = inject("viewUserProfile");
 </script>
 <template>
   <BackBtn />
-  <LoadingComponent v-if="pending" />
+  <LoadingComponent v-if="pending || !recipe" />
   <div
     v-else
     class="flex flex-col items-start gap-4 w-[100%] md:w-[80%] lg:w-[50%] overflow-y-auto"
   >
     <SingleRecipeHeader :recipe="recipe" />
     <img
-      :src="recipe.image"
+      :src="recipe?.image"
       class="h-[400px] rounded-xl object-cover w-[100%] md:min-h-[500px]"
     />
     <div class="flex items-center gap-4">

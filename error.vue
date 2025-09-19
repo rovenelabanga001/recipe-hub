@@ -8,7 +8,7 @@ const props = defineProps({
 });
 
 const handleError = () => {
-  router.back();
+  navigateTo("/");
 };
 </script>
 <template>
@@ -26,7 +26,7 @@ const handleError = () => {
           @click="handleError"
           class="bg-orange-500 px-4 py-2 text-white rounded-sm cursor-pointer"
         >
-          Back
+          Home
         </button>
       </client-only>
     </div>

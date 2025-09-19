@@ -1,6 +1,14 @@
 <script setup>
+const config = useRuntimeConfig();
 const props = defineProps({
-  recipes: Array,
+  recipes: {
+    type:Array,
+    default: null
+  },
+  recipe:{
+    type: Object,
+    default: null
+  },
   showTags: {
     type: Boolean,
     default: true,
@@ -15,10 +23,15 @@ const props = defineProps({
 const goToSingleRecipe = (recipeId) => {
   navigateTo(`/recipes/${recipeId}`);
 };
+const recipesToRender = computed(() => {
+  if (props.recipe) return [props.recipe];
+  if (props.recipes) return props.recipes;
+  return [];
+});
 </script>
 <template>
   <div
-    v-for="recipe in recipes"
+    v-for="recipe in recipesToRender"
     :key="recipe.id"
     :class="[
       'h-48 sm:h-64 md:h-80 lg:h-96 relative group cursor-pointer rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300',
@@ -27,8 +40,8 @@ const goToSingleRecipe = (recipeId) => {
     @click="goToSingleRecipe(recipe.id)"
   >
     <img
-      :src="recipe.image"
-      :alt="recipe.title"
+      :src="recipe?.image"
+      :alt="recipe?.title"
       class="w-full h-full object-cover"
     />
     <!-- Gradient overlay -->

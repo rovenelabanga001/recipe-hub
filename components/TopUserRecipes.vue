@@ -3,12 +3,11 @@ const config = useRuntimeConfig();
 const props = defineProps(["user"]);
 const showTags = ref(false);
 
-const { data: userRecipes } = await useSafeFetch(
-  `${config.public.baseUrl}/recipes?userID=${props.user?.id}`,
-  {
-    key: `user-recipes1-${props.user?.id}`,
-    transform: (userRecipes) => userRecipes.slice(-6),
-  }
+const { $authApi } = useNuxtApp();
+
+const { data: userRecipes } = await useAsyncData(
+  `user-recipes-${props.user?.id}`,
+  () => $authApi(`/users/${props.user?.id}/recipes`).then(r => r.slice(-6))
 );
 const viewUserProfile = inject("viewUserProfile");
 </script>

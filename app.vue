@@ -12,7 +12,12 @@ const viewUserProfile = (username) => {
   navigateTo(`/profile/${username}`);
 };
 
+const slugifyCategory = (name) => {
+  return name.toLowerCase().replace(/\s+/g, "-");
+}
+
 provide("viewUserProfile", viewUserProfile);
+provide("slugifyCategory" ,slugifyCategory)
 </script>
 
 <template>

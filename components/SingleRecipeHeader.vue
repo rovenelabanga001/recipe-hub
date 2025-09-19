@@ -1,7 +1,7 @@
 <script setup>
 const props = defineProps(["recipe"]);
 
-const config = useRuntimeConfig();
+const {$authApi} = useNuxtApp()
 const auth = useAuthStore();
 
 const mounted = ref(false);
@@ -16,58 +16,30 @@ const isFavorite = computed(() =>
 const toggleFavorite = async () => {
   if (!auth.user?.id) return;
 
-  let updatedFavorites = [...(auth.user.favoriteRecipeIds || [])];
-  const isCurrentlyFavorite = isFavorite.value;
-
-  if (isCurrentlyFavorite) {
-    updatedFavorites = updatedFavorites.filter((id) => id !== props.recipe.id);
-  } else {
-    updatedFavorites.push(props.recipe.id);
-  }
-
   try {
-    // Update user favorites
-    const updatedUser = await $fetch(
-      `${config.public.baseUrl}/users/${auth.user?.id}`,
-      {
-        method: "PATCH",
-        body: { favoriteRecipeIds: updatedFavorites },
-      }
-    );
+    const res = await $authApi(`/users/favorites/${props.recipe.id}`, {
+      method: "POST",
+    });
 
-    auth.user = updatedUser;
+    // The backend returns the updated user and favorited status
+    auth.user = res.data;
 
-    // If favoriting (not unfavoriting), create notification
-    if (!isCurrentlyFavorite) {
-      const recipe = await $fetch(
-        `${config.public.baseUrl}/recipes/${props.recipe.id}`,
-        { baseURL: config.public.baseUrl }
-      );
-
-      if (recipe.userID !== auth.user.id) {
-        await $fetch("/notifications", {
-          baseURL: config.public.baseUrl,
-          method: "POST",
-          body: {
-            userId: recipe.userID,
-            type: "favorite",
-            user: auth.user.username,
-            message: `${auth.user.username} liked your recipe "${recipe.title}"`,
-            recipeId: props.recipe.id,
-            createdAt: new Date().toISOString(),
-            read: false,
-          },
-        });
-      }
+    // Optional: update local recipe favorite count if you track it
+    if (props.recipe) {
+      props.recipe.favoriteCount = res.favorited
+        ? (props.recipe.favoriteCount || 0) + 1
+        : Math.max(0, (props.recipe.favoriteCount || 0) - 1);
     }
+
   } catch (error) {
-    console.error("Failed to update favorites", error);
+    console.error("Failed to toggle favorite", error);
   }
 };
+
 </script>
 <template>
-  <div class="flex justify-between items-start w-[100%] md:w[50%]">
-    <h3 class="font-bold text-2xl">{{ recipe.name }}</h3>
+  <div class="flex justify-between items-start w-[100%] md:w[50%]" v-if="recipe">
+    <h3 class="font-bold text-2xl">{{ recipe?.name }}</h3>
     <button class="cursor-pointer" @click="toggleFavorite">
       <template v-if="mounted">
         <IconsFavorite color="orangered" class="size-5" v-if="!isFavorite" />
@@ -77,7 +49,7 @@ const toggleFavorite = async () => {
   </div>
   <ul class="flex gap-3">
     <li
-      v-for="tag in recipe.tags"
+      v-for="tag in recipe?.tags"
       :key="tag"
       class="bg-gray-200 rounded-lg px-2 py-1 text-xs"
     >

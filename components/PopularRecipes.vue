@@ -1,13 +1,10 @@
 <script setup>
-const config = useRuntimeConfig();
+const { $authApi } = useNuxtApp();
 
-const { data: popularRecipes } = await useSafeFetch(
-  `${config.public.baseUrl}/recipes`,
-  {
-    key: "popular-recipes",
-    transform: (popularRecipes) => popularRecipes.slice(-4),
-  },
-  "Server is down, Please Try Again Later"
+const { data: popularRecipes } = await useAsyncData("popularRecipes", async() =>{
+  const res = await $authApi("/recipes/popular")
+  return res.data
+}
 );
 </script>
 <template>

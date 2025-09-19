@@ -39,7 +39,8 @@ export default defineNuxtConfig({
         // applies to all API routes
         cors: true, // enable CORS headers
         headers: {
-          "Access-Control-Allow-Credentials": "true", // allow cookies/auth headers
+          "Access-Control-Allow-Origin": "http://127.0.0.1:5500",
+          "Access-Control-Allow-Credentials": "true", 
         },
       },
     },

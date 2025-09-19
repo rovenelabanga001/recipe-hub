@@ -3,7 +3,8 @@ const props = defineProps({
   comments: Array,
 });
 
-const commentId = inject("commentId");
+const { $authApi } = useNuxtApp();
+
 
 const auth = useAuthStore();
 const config = useRuntimeConfig();
@@ -11,14 +12,12 @@ const config = useRuntimeConfig();
 const emit = defineEmits(["delete"]);
 
 const timeAgo = (timestamp) => {
-  const now = new Date();
-  const kenyaOffset = 3 * 60; // Kenya is UTC+3 in minutes
-  const utcNow = now.getTime() + now.getTimezoneOffset() * 60000;
-  const kenyaNow = new Date(utcNow + kenyaOffset * 60000);
+  // Remove extra microseconds so JS can parse correctly
+  const cleaned = timestamp.replace(/\.(\d{3})\d+/, '.$1'); // keep milliseconds only
+  const date = new Date(cleaned + 'Z'); // explicitly UTC
 
-  const date = new Date(timestamp);
-  const diffMs = kenyaNow - date;
-
+  const now = new Date(); // local time
+  const diffMs = now - date; 
   if (diffMs < 0) return "now";
 
   const diffSeconds = Math.floor(diffMs / 1000);
@@ -29,45 +28,27 @@ const timeAgo = (timestamp) => {
   const diffMonths = Math.floor(diffDays / 30);
   const diffYears = Math.floor(diffDays / 365);
 
-  if (diffSeconds < 60) {
-    return `${diffSeconds} secs ago`;
-  } else if (diffMinutes <= 60) {
-    return `${diffMinutes} mins ago`;
-  } else if (diffHours <= 24) {
-    return `${diffHours} ${diffHours === 1 ? "hour" : "hours"} ago`;
-  } else if (diffDays <= 7) {
-    return `${diffDays} ${diffDays === 1 ? "day" : "days"} ago`;
-  } else if (diffWeeks <= 4) {
-    return `${diffWeeks} ${diffWeeks === 1 ? "week" : "weeks"} ago`;
-  } else if (diffMonths <= 12) {
-    return `${diffMonths} ${diffMonths === 1 ? "month" : "months"} ago`;
-  } else {
-    return `${diffYears} ${diffYears === 1 ? "year" : "years"} ago`;
-  }
+  const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
+
+  if (diffSeconds < 60) return rtf.format(-diffSeconds, "second");
+  if (diffMinutes < 60) return rtf.format(-diffMinutes, "minute");
+  if (diffHours < 24) return rtf.format(-diffHours, "hour");
+  if (diffDays < 7) return rtf.format(-diffDays, "day");
+  if (diffWeeks < 4) return rtf.format(-diffWeeks, "week");
+  if (diffMonths < 12) return rtf.format(-diffMonths, "month");
+  return rtf.format(-diffYears, "year");
 };
+
+
 
 const onDeleteClick = async (commentId) => {
   try {
-    const res = await fetch(`${config.public.baseUrl}/comments/${commentId}`, {
-      method: "DELETE",
-    });
-
-    if (!res.ok) throw new Error("Failed to delete comment");
-
-    const notifications = await $fetch("/notifications", {
-      baseURL: config.public.baseUrl,
-      query: { commentId },
-    });
-
-    await Promise.all(
-      notifications.map((n) =>
-        $fetch(`/notifications/${n.id}`, {
-          baseURL: config.public.baseUrl,
-          method: "DELETE",
-        })
-      )
+    const res = await $authApi(
+      `${config.public.baseUrl}/comments/${commentId}`,
+      {
+        method: "DELETE",
+      }
     );
-
     emit("delete", commentId);
   } catch (error) {
     console.error(error);
@@ -75,10 +56,11 @@ const onDeleteClick = async (commentId) => {
 };
 
 const viewUserProfile = inject("viewUserProfile");
+
 </script>
 <template>
   <div
-    v-for="comment in comments"
+    v-for="comment in props.comments"
     class="rounded-sm shadow-sm border border-gray-200 p-4 min-w-[100%] min-h-[80px] md:w-[100%] md:min-h-[100px]"
     :id="`comment-${comment.id}`"
   >

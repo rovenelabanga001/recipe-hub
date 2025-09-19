@@ -4,16 +4,21 @@ export const useSafeFetch = async (
   fallbackMessage = "Something Went Wrong, Try Again Later"
 ) => {
   const { handleError } = useErrorHandler();
+  const { $authApi } = useNuxtApp(); // use your auth-aware fetch
 
-  const { data, pending, error } = await useFetch(url, {
-    key: options.key || url, //ensures unique key to prevent clashes
-    ...options,
-  });
+  let data = ref(null);
+  let pending = ref(true);
+  let error = ref(null);
 
-  if (error.value) {
-    const message =
-      error.value?.message || error.value?.statusMessage || fallbackMessage;
-    handleError(error.value, fallbackMessage);
+  try {
+    const res = await $authApi(url, options);
+    data.value = res.data ?? res; // in case your API returns { data }
+  } catch (err) {
+    error.value = err;
+    const message = err?.message || err?.statusMessage || fallbackMessage;
+    handleError(err, message);
+  } finally {
+    pending.value = false;
   }
 
   return { data, pending, error };

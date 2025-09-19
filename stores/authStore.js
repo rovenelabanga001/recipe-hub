@@ -1,11 +1,9 @@
-import { defineStore } from "pinia";
-
+// stores/auth.js
 export const useAuthStore = defineStore("auth", {
   state: () => ({
     user: null,
-    signUpData: {
-      email: "",
-    },
+    signUpData: { email: "" },
+    token: null,
   }),
   getters: {
     isLoggedin: (state) => !!state.user,
@@ -13,30 +11,44 @@ export const useAuthStore = defineStore("auth", {
   actions: {
     async logout() {
       try {
-        await $fetch("/api/auth/logout", { method: "POST" });
-
-        this.user = null;
-        localStorage.removeItem("authStore");
-        navigateTo("/auth/signin");
-      } catch (err) {
-        console.error("Logout failed", err);
-      }
-    },
-
-    async restoreSession() {
-      try {
-        const data = await $fetch("/api/auth/me", {
+        await $fetch(`${useRuntimeConfig().public.baseUrl}/signout`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${this.token}`,
+          },
           credentials: "include",
         });
-        this.user = data.user || null;
+
+        await $fetch("/api/auth/logout", { method: "POST" });
+      } catch (err) {
+        console.error("Logout failed", err);
+      } finally {
+        this.user = null;
+        this.token = null;
+        this.signUpData = { email: "" };
+
+        navigateTo("/auth/signin");
+      }
+    },
+    async restoreSession() {
+      try {
+        const data = await $fetch("/api/auth/me");
+        if (data && data.user) {
+          this.user = data.user;
+          this.token = data.token;
+        } else {
+          this.user = null;
+        }
       } catch {
         this.user = null;
       }
     },
+
     setSignUpData(data) {
       this.signUpData = data;
     },
-    clearSignUpData(data) {
+
+    clearSignUpData() {
       this.signUpData = { email: "" };
     },
   },

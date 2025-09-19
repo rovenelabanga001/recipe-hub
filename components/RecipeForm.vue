@@ -2,6 +2,7 @@
 import useVuelidate from "@vuelidate/core";
 import { required, minValue, url, helpers } from "@vuelidate/validators";
 
+const {$authApi} = useNuxtApp()
 const props = defineProps({
   mode: { type: String, default: "create" },
   recipeId: { type: String, default: null },

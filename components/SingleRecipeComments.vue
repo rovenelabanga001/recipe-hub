@@ -4,12 +4,13 @@ const commentId = inject("commentId");
 const config = useRuntimeConfig();
 const auth = useAuthStore();
 
-const { data: comments } = await useSafeFetch(
-  `${config.public.baseUrl}/comments?recipeId=${encodeURIComponent(recipeId)}`,
-  {
-    key: `comment-recipe: ${recipeId}`,
-  }
-);
+const {$authApi} = useNuxtApp()
+
+const { data: comments } = await useAsyncData(
+  `recipe-comments:${recipeId}`,
+  () => $authApi(`/recipes/${recipeId}/comments`)
+)
+
 
 onMounted(() => {
   if (commentId) {
@@ -53,43 +54,18 @@ const newComment = reactive({
 
 const onPostCommentClick = async () => {
   try {
-    const savedComment = await $fetch("/comments", {
+    const savedComment = await $authApi("/comments", {
       baseURL: config.public.baseUrl,
       method: "POST",
       body: {
-        username: auth.user.username,
-        recipeId: recipeId,
+        recipe: recipeId,
         body: newComment.body,
-        time: new Date().toISOString(),
       },
     });
 
     comments.value = [savedComment, ...comments.value.slice()];
 
     newComment.body = "";
-
-    //Fetch recipe to know the owner
-    const recipe = await $fetch(`/recipes/${recipeId}`, {
-      baseURL: config.public.baseUrl,
-    });
-
-    //Create a notification for the recipe owner (skip if commenting on own post)
-    if (recipe.userID !== auth.user.id) {
-      await $fetch("/notifications", {
-        baseURL: config.public.baseUrl,
-        method: "POST",
-        body: {
-          userId: recipe.userID,
-          type: "comment",
-          user: auth.user.username,
-          message: `${auth.user.username} commented on your recipe "${recipe.title}"`,
-          recipeId: recipeId,
-          createdAt: new Date().toISOString(),
-          read: false,
-          commentId: savedComment.id,
-        },
-      });
-    }
 
     await refreshNuxtData(`comment-recipe:${recipeId}`);
   } catch (error) {
@@ -99,6 +75,7 @@ const onPostCommentClick = async () => {
 
 const handleDelete = (commentId) => {
   comments.value = comments.value.filter((c) => c.id !== commentId);
+  refreshNuxtData(`recipe-comments:${recipeId}`)
 };
 </script>
 <template>
