@@ -5,8 +5,8 @@ const props = defineProps({
 });
 
 const auth = useAuthStore();
-const config = useRuntimeConfig();
 const activeTab = useProfileActiveTabStore();
+const { $authApi } = useNuxtApp();
 
 // function to set default based on mode
 const setDefaultTab = () => {
@@ -33,10 +33,13 @@ let userId = ref(null);
 if (props.mode === "other") {
   const { data: fetchedUser } = await useAsyncData(
     `user-${props.username}`,
-    () => $fetch(`${config.public.baseUrl}/users?username=${props.username}`)
+    async () => {
+      const res = await $authApi(`/users/username/${props.username}`);
+      return res.data; 
+    }
   );
 
-  if (!fetchedUser.value?.length) {
+  if (!fetchedUser.value) {
     throw createError({
       statusCode: 404,
       statusMessage: `User "${props.username}" not found`,
@@ -44,24 +47,24 @@ if (props.mode === "other") {
     });
   }
 
-  userId.value = fetchedUser.value[0].id;
+  userId.value = fetchedUser.value.id;
 } else {
   userId.value = auth.user?.id;
 }
 
+
 // Fetch posts
 const { data: posts } = await useAsyncData(`posts-${userId.value}`, () =>
-  $fetch(`${config.public.baseUrl}/recipes?userID=${userId.value}`)
+  $authApi(`/users/${userId.value}/recipes`)
 );
 
 // Fetch comments only in self mode
 const { data: comments } =
   props.mode === "self"
-    ? await useAsyncData(`comments-${auth.user.username}`, () =>
-        $fetch(
-          `${config.public.baseUrl}/comments?username=${auth.user.username}`
-        )
-      )
+    ? await useAsyncData(`comments-${auth.user.username}`, async () => {
+        const res = await $authApi("/my-comments");
+        return res.data; 
+      })
     : { value: [] };
 
 // Overview items (only for self)
@@ -87,10 +90,7 @@ const overviewItems = computed(() => {
     .sort((a, b) => b.sortDate.localeCompare(a.sortDate))
     .slice(0, 4);
 });
-
-
 </script>
-
 <template>
   <!-- Tabs -->
   <div class="grid grid-cols-3 gap-3 md:grid-cols-4 w-full lg:w-[50%]">
@@ -132,7 +132,7 @@ const overviewItems = computed(() => {
 
     <!-- Posts (always visible) -->
     <template v-else-if="activeTab.activeTab === 'Posts'">
-      <profile-page-body-posts v-if="posts.length >= 1" :posts="posts" />
+      <profile-page-body-posts v-if="posts.length >= 1" :posts="posts.reverse()" />
       <empty-placeholder
         v-else
         :message="

@@ -1,51 +1,77 @@
 <script setup>
 const props = defineProps(["recipe"]);
-
-const {$authApi} = useNuxtApp()
-const auth = useAuthStore();
+const { $authApi } = useNuxtApp();
 
 const mounted = ref(false);
+const isFavorite = ref(false);
+const isLiked = ref(false);
+const userFavorites = ref([]);
 
-onMounted(() => {
+onMounted(async () => {
   mounted.value = true;
-});
-const isFavorite = computed(() =>
-  auth.user?.favoriteRecipeIds?.includes(props.recipe.id)
-);
-
-const toggleFavorite = async () => {
-  if (!auth.user?.id) return;
 
   try {
-    const res = await $authApi(`/users/favorites/${props.recipe.id}`, {
+    // Fetch user info including favorites
+    const data = await $authApi("/users/me");
+    userFavorites.value = data.favoriteRecipeIds || [];
+
+    // Set initial states
+    isFavorite.value = userFavorites.value.includes(props.recipe.id);
+    isLiked.value = props.recipe.likedBy?.includes(data.id);
+  } catch (err) {
+    console.error("Failed to load initial states", err);
+  }
+});
+
+const toggleFavorite = async () => {
+  try {
+    const data = await $authApi(`/recipes/${props.recipe.id}/favorite`, {
       method: "POST",
     });
 
-    // The backend returns the updated user and favorited status
-    auth.user = res.data;
-
-    // Optional: update local recipe favorite count if you track it
-    if (props.recipe) {
-      props.recipe.favoriteCount = res.favorited
-        ? (props.recipe.favoriteCount || 0) + 1
-        : Math.max(0, (props.recipe.favoriteCount || 0) - 1);
-    }
-
-  } catch (error) {
-    console.error("Failed to toggle favorite", error);
+    // Update local state based on backend response
+    isFavorite.value = data.favorited;
+    userFavorites.value = data.favorites;
+  } catch (err) {
+    console.error("Failed to toggle favorite", err);
   }
 };
 
+const toggleLike = async () => {
+  try {
+    const data = await $authApi(`/recipes/${props.recipe.id}/like`, {
+      method: "POST",
+    });
+    isLiked.value = data.liked;
+    props.recipe.likesCount = data.likesCount;
+  } catch (error) {
+    console.error("Failed to toggle like", error);
+  }
+};
 </script>
+
 <template>
-  <div class="flex justify-between items-start w-[100%] md:w[50%]" v-if="recipe">
+  <div
+    class="flex justify-between items-center w-[100%] md:w[50%]"
+    v-if="recipe"
+  >
     <h3 class="font-bold text-2xl">{{ recipe?.name }}</h3>
-    <button class="cursor-pointer" @click="toggleFavorite">
-      <template v-if="mounted">
-        <IconsFavorite color="orangered" class="size-5" v-if="!isFavorite" />
-        <IconsLiked color="red" v-else />
-      </template>
-    </button>
+
+    <!-- <p v-if="recipe.likesCount >= 1">{{ recipe?.likesCount }}</p> -->
+    <div class="flex gap-3 items-center">
+      <button class="cursor-pointer" @click="toggleLike">
+        <template v-if="mounted">
+          <IconsLiked v-if="isLiked" color="red" class="text-2xl" />
+          <IconsFavorite v-else color="orangered" class="text-2xl" />
+        </template>
+      </button>
+      <button @click="toggleFavorite">
+        <template v-if="mounted">
+          <IconsBookMarked v-if="isFavorite" color="red" class="text-2xl" />
+          <IconsBookMark v-else color="orangered" class="text-2xl" />
+        </template>
+      </button>
+    </div>
   </div>
   <ul class="flex gap-3">
     <li

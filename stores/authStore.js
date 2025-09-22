@@ -7,8 +7,12 @@ export const useAuthStore = defineStore("auth", {
   }),
   getters: {
     isLoggedin: (state) => !!state.user,
+    favoriteRecipeIds: (state) => state.user?.favoriteRecipeIds || [],
   },
   actions: {
+    setUser(user) {
+      this.user = user;
+    },
     async logout() {
       try {
         await $fetch(`${useRuntimeConfig().public.baseUrl}/signout`, {

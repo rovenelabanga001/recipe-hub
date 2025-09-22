@@ -1,7 +1,7 @@
 <script setup>
 import DeleteRecipePrompt from "../DeleteRecipePrompt.vue";
 
-const emit = defineEmits("deleted");
+const emit = defineEmits(["deleted"]);
 const props = defineProps({
   showUserInfo: {
     type: Boolean,

@@ -1,29 +1,16 @@
 <script setup>
+const { $authApi } = useNuxtApp();
 const auth = useAuthStore();
-const config = useRuntimeConfig();
 
 const hideText = ref(false);
 
-const { data: user } = await useSafeFetch(
-  `${config.public.baseUrl}/users/${auth.user?.id}`
+const { data: favoriteRecipes } = await useAsyncData(
+  `${auth.user?.username}-recipes`,
+  async () => {
+    const res = await $authApi("users/favorites");
+    return res.data;
+  }
 );
-
-const favoriteRecipeIds = user.value?.favoriteRecipeIds || [];
-
-const { data: allRecipes } = await useSafeFetch(
-  `${config.public.baseUrl}/recipes`,
-  { key: "all-recipes" }
-);
-
-const favoriteRecipes = computed(() => {
-  if (!allRecipes.value || !favoriteRecipeIds.length) return [];
-
-  return [...favoriteRecipeIds]
-    .reverse()
-    .map((id) => allRecipes.value.find((recipe) => recipe.id === id))
-    .filter(Boolean);
-});
-
 </script>
 <template>
   <div v-if="favoriteRecipes.length >= 1" class="space-y-4">

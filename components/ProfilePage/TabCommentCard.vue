@@ -3,7 +3,7 @@ const props = defineProps({
   comment: Object,
 });
 
-const config = useRuntimeConfig();
+const {$authApi} = useNuxtApp()
 const auth = useAuthStore();
 
 const recipe = ref(null);
@@ -11,15 +11,15 @@ const user = ref(null);
 
 onMounted(async () => {
   try {
-    // 1️⃣ Fetch the recipe using the comment.recipeId
-    recipe.value = await $fetch(
-      `${config.public.baseUrl}/recipes/${props.comment.recipeId}`
+    //Fetch the recipe using the comment.recipeId
+    recipe.value = await $authApi(
+      `/recipes/${props.comment.recipeId}`
     );
 
-    // 2️⃣ Fetch the user who owns the recipe
+    //Fetch the user who owns the recipe
     if (recipe.value?.userID) {
-      user.value = await $fetch(
-        `${config.public.baseUrl}/users/${recipe.value.userID}`
+      user.value = await $authApi(
+        `users/id/${recipe.value.userID}`
       );
     }
   } catch (error) {

@@ -12,6 +12,7 @@ const props = defineProps({
 
 const auth = useAuthStore();
 const config = useRuntimeConfig();
+const { $authApi } = useNuxtApp();
 
 let userId = ref(null);
 let user = ref(null);
@@ -19,10 +20,13 @@ let user = ref(null);
 if (props.mode === "other") {
   const { data: fetchedUser } = await useAsyncData(
     `user-${props.username}`,
-    () => $fetch(`${config.public.baseUrl}/users?username=${props.username}`)
+    async () => {
+      const res = await $authApi(`/users/username/${props.username}`);
+      return res.data; // return only the user object
+    }
   );
 
-  if (!fetchedUser.value?.length) {
+  if (!fetchedUser.value) {
     throw createError({
       statusCode: 404,
       statusMessage: `User "${props.username}" not found`,
@@ -30,15 +34,15 @@ if (props.mode === "other") {
     });
   }
 
-  userId.value = fetchedUser.value[0].id;
-  user.value = fetchedUser.value[0];
+  userId.value = fetchedUser.value.id;
+  user.value = fetchedUser.value;
 } else {
-  userId.value = auth.user.id;
-  user.value = auth.user;
+  userId.value = auth.user?.id;
+  user.value = auth.user
 }
 
 const { data: recipes } = await useAsyncData(`recipes-${userId.value}`, () =>
-  $fetch(`${config.public.baseUrl}/recipes?userID=${userId.value}`)
+  $authApi(`/users/${userId.value}/recipes`)
 );
 
 const totalPosts = computed(() => recipes.value?.length || 0);

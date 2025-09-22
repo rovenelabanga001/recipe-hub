@@ -2,7 +2,7 @@
 import useVuelidate from "@vuelidate/core";
 import { required, minValue, url, helpers } from "@vuelidate/validators";
 
-const {$authApi} = useNuxtApp()
+const { $authApi } = useNuxtApp();
 const props = defineProps({
   mode: { type: String, default: "create" },
   recipeId: { type: String, default: null },
@@ -11,12 +11,14 @@ const props = defineProps({
 const config = useRuntimeConfig();
 const auth = useAuthStore();
 const recipeDraft = useRecipeDraftStore();
+
 onMounted(async () => {
   if (props.mode === "edit" && props.recipeId) {
-    const recipe = await $fetch(
+    const recipe = await $authApi(
       `${config.public.baseUrl}/recipes/${props.recipeId}`
     );
     recipeDraft.title = recipe.title;
+    recipeDraft.imageFile = null;
     recipeDraft.imageUrl = recipe.image;
     recipeDraft.prepTime = recipe.prepTime;
     recipeDraft.cookTime = recipe.cookTime;
@@ -24,11 +26,7 @@ onMounted(async () => {
     recipeDraft.selectedIngredients = recipe.ingredients;
     recipeDraft.selectedSteps = recipe.directions;
     recipeDraft.selectedCategories = recipe.category;
-  }
-});
-
-onMounted(async () => {
-  if (props.mode === "create") {
+  } else {
     recipeDraft.clearDraft();
   }
 });
@@ -52,24 +50,35 @@ const step = ref("");
 // -------------------
 // VALIDATION RULES
 // -------------------
+
 const rules = {
   title: { required },
-  imageUrl: {
-    required,
-    url: helpers.withMessage("Must be a valid URL", url),
+  imageFile: {
+    required: helpers.withMessage(
+      "Image is required",
+      (val, vm) => !!val || !!vm.imageUrl 
+    ),
+    isImage: helpers.withMessage(
+      "File must be an image",
+      (val) => (val ? val.type?.startsWith("image/") : true) // allow no file if imageUrl exists
+    ),
+    maxSize: helpers.withMessage(
+      "Image must be < 2MB",
+      (val) => (val ? val.size <= 2 * 1024 * 1024 : true)
+    ),
   },
   prepTime: { required, minValue: minValue(1) },
   cookTime: { required, minValue: minValue(1) },
   servings: { required, minValue: minValue(1) },
   selectedIngredients: {
     required: helpers.withMessage(
-      "At least 1 ingredient is required",
+      "At least 1 ingredient",
       (val) => val.length > 0
     ),
   },
   selectedSteps: {
     required: helpers.withMessage(
-      "At least 1 step is required",
+      "At least 1 step",
       (val) => val.length > 0
     ),
   },
@@ -80,6 +89,7 @@ const rules = {
     ),
   },
 };
+
 
 const state = reactive(recipeDraft); // validate store state
 const v$ = useVuelidate(rules, state);
@@ -102,48 +112,52 @@ const onSubmitRecipe = async () => {
   v$.value.$touch();
   if (v$.value.$invalid) return;
 
-  if (props.mode === "create") {
-    await $fetch(`${config.public.baseUrl}/recipes`, {
-      method: "POST",
-      body: {
-        name: recipeDraft.title,
-        title: recipeDraft.title,
-        image: recipeDraft.imageUrl,
-        prepTime: recipeDraft.prepTime,
-        cookTime: recipeDraft.cookTime,
-        servings: recipeDraft.servings,
-        ingredients: recipeDraft.selectedIngredients,
-        directions: recipeDraft.selectedSteps,
-        tags: recipeDraft.selectedCategories,
-        category: recipeDraft.selectedCategories,
-        userID: auth.user?.id,
-        createdAt: new Date().toISOString(),
-      },
-    });
-    useToastify("Recipe added successfully", { type: "success" });
-  } else {
-    await $fetch(`${config.public.baseUrl}/recipes/${props.recipeId}`, {
-      method: "PATCH",
-      body: {
-        name: recipeDraft.title,
-        title: recipeDraft.title,
-        image: recipeDraft.imageUrl,
-        prepTime: recipeDraft.prepTime,
-        cookTime: recipeDraft.cookTime,
-        servings: recipeDraft.servings,
-        ingredients: recipeDraft.selectedIngredients,
-        directions: recipeDraft.selectedSteps,
-        tags: recipeDraft.selectedCategories,
-        category: recipeDraft.selectedCategories,
-        userID: auth.user?.id,
-      },
-    });
-    useToastify("Recipe updated successfully", { type: "success" });
-    navigateTo("/profile");
-  }
+  try {
+    const formData = new FormData();
+    formData.append("name", recipeDraft.title);
 
-  recipeDraft.clearDraft();
-  v$.value.$reset();
+    formData.append("title", recipeDraft.title);
+    formData.append("prepTime", recipeDraft.prepTime);
+    formData.append("cookTime", recipeDraft.cookTime);
+    formData.append("servings", recipeDraft.servings);
+
+    if (recipeDraft.imageFile) {
+      formData.append("image", recipeDraft.imageFile);
+    }
+
+    formData.append(
+      "ingredients",
+      JSON.stringify(recipeDraft.selectedIngredients)
+    );
+    formData.append("directions", JSON.stringify(recipeDraft.selectedSteps));
+    formData.append(
+      "tags",
+      JSON.stringify(recipeDraft.selectedCategories || [])
+    );
+    formData.append("category", JSON.stringify(recipeDraft.selectedCategories));
+
+    const url =
+      props.mode === "create"
+        ? `${config.public.baseUrl}/recipes`
+        : `${config.public.baseUrl}/recipes/${props.recipeId}`;
+    const method = props.mode === "create" ? "POST" : "PUT";
+
+    await $authApi(url, { method, body: formData });
+
+    useToastify(
+      props.mode === "create"
+        ? "Recipe added successfully"
+        : "Recipe updated successfully",
+      { type: "success" }
+    );
+    if (props.mode === "edit") navigateTo("/profile");
+  } catch (err) {
+    console.error("Error submitting recipe:", err);
+    useToastify("Failed to submit recipe", { type: "error" });
+  } finally {
+    recipeDraft.clearDraft();
+    v$.value.$reset();
+  }
 };
 </script>
 <template>
@@ -196,14 +210,23 @@ const onSubmitRecipe = async () => {
     <!-- Image -->
     <div>
       <input
-        v-model="recipeDraft.imageUrl"
-        type="text"
-        placeholder="Image Url"
+        type="file"
+        accept="image/*"
+        @change="(e) => recipeDraft.setImage(e.target.files[0] || null)"
         class="border-3 border-gray-400 rounded px-2 text-sm focus:outline-none focus:border-[orangered] w-full h-10"
       />
-      <span v-if="v$.imageUrl.$error" class="text-red-500 text-sm">
-        {{ v$.imageUrl.$errors[0].$message }}
+      <span v-if="v$.imageFile?.$error" class="text-red-500 text-sm">
+        {{ v$.imageFile.$errors[0].$message }}
       </span>
+
+      <!-- 👇 Show preview (works for new uploads OR backend image) -->
+      <div v-if="recipeDraft.imageUrl" class="mt-2">
+        <img
+          :src="recipeDraft.imageUrl"
+          alt="Recipe preview"
+          class="w-32 h-32 object-cover rounded"
+        />
+      </div>
     </div>
 
     <!-- Details -->

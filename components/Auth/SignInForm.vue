@@ -36,8 +36,8 @@ const submitForm = async () => {
       return;
     }
 
-    authStore.user = data.user;
-    authStore.token = data.token
+    authStore.setUser(data.user);
+    authStore.token = data.token;
     authStore.clearSignUpData();
 
     useToastify("Login Successful", { type: "success" });

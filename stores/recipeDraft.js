@@ -3,7 +3,8 @@ import { defineStore } from "pinia";
 export const useRecipeDraftStore = defineStore("recipeDraft", {
   state: () => ({
     title: "",
-    imageUrl: "", // ✅ added image field
+    imageFile: null,
+    imageUrl: "",
     cookTime: "",
     prepTime: "",
     servings: "",
@@ -45,6 +46,14 @@ export const useRecipeDraftStore = defineStore("recipeDraft", {
     },
     clearDraft() {
       this.$reset();
+    },
+    setImage(file) {
+      this.imageFile = file;
+      if (file) {
+        this.imageUrl = URL.createObjectURL(file);
+      } else {
+        this.imageUrl = null;
+      }
     },
   },
 });

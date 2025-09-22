@@ -33,6 +33,7 @@ export default defineEventHandler(async (event) => {
       user: response.user,
       token:response.token
     };
+
     
   } catch (err) {
     const errorMessage = err?.data?.error || err?.message || "Server Error";

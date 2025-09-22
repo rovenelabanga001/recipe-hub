@@ -3,49 +3,19 @@ const props = defineProps({
   recipe: Object,
 });
 
+const {$authApi} = useNuxtApp()
 const emit = defineEmits(["close", "deleted"]);
 const config = useRuntimeConfig();
-const { refresh } = usePosts();
 
 const deleteRecipeWithComments = async (recipeId) => {
   try {
-    await $fetch(`/recipes/${recipeId}`, {
+    await $authApi(`/recipes/${recipeId}`, {
       baseURL: config.public.baseUrl,
       method: "DELETE",
     });
 
-    const comments = await $fetch("/comments", {
-      baseURL: config.public.baseUrl,
-      query: { recipeId },
-    });
-
-    await Promise.all(
-      comments.map((comment) =>
-        $fetch(`/comments/${comment.id}`, {
-          baseURL: config.public.baseUrl,
-          method: "DELETE",
-        })
-      )
-    );
-
-    const notifications = await $fetch("/notifications", {
-      baseURL: config.public.baseUrl,
-      query: { recipeId },
-    });
-
-    await Promise.all(
-      notifications.map((n) =>
-        $fetch(`/notifications/${n.id}`, {
-          baseURL: config.public.baseUrl,
-          method: "DELETE",
-        })
-      )
-    );
-
     emit("close");
     emit("deleted", recipeId);
-    await refresh();
-    await refreshNuxtData("comments");
 
     useToastify(`${props.recipe.name} recipe deleted successfully`, {
       type: "success",
