@@ -1,10 +1,7 @@
 <script setup>
-const route = useRoute();
-const auth = useAuthStore();
-const config = useRuntimeConfig();
 const notificationsStore = useNotificationsStore();
 
-await notificationsStore.fetchUnread(config, auth.user.id);
+await notificationsStore.fetchUnread();
 </script>
 
 <template>

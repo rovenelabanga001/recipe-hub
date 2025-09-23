@@ -42,7 +42,7 @@ const handleDeleted = (recipeId) => {
       </div>
 
       <!-- recipe info -->
-      <div class="flex flex-col text-center gap-2 items-start flex-1">
+      <div class="flex flex-col gap-2 items-start flex-1">
         <p class="text-xs text-gray-500 font-bold">
           {{ recipe.name }}
         </p>

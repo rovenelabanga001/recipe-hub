@@ -1,6 +1,4 @@
 <script setup>
-import { computed } from "vue";
-import { useRouter } from "vue-router";
 
 const router = useRouter();
 
@@ -8,7 +6,7 @@ const props = defineProps({
   error: Object,
 });
 
-// Dynamic error message based on status code
+// Compute a friendly error message
 const errorMessage = computed(() => {
   if (!props.error) return "Something went wrong.";
 
@@ -24,20 +22,10 @@ const errorMessage = computed(() => {
   }
 });
 
-// Handler for Home button
-const goHome = () => {
-  navigateTo("/");
-};
-
-// Handler for Back button
-const goBack = () => {
-  router.back();
-};
-
-// Optional: Retry button
-const retry = () => {
-  window.location.reload();
-};
+// Handlers for action buttons
+const goHome = () => navigateTo("/");
+const goBack = () => router.back();
+const retry = () => window.location.reload();
 </script>
 
 <template>
@@ -57,7 +45,7 @@ const retry = () => {
 
     <!-- Action Buttons -->
     <div class="flex gap-3 mt-3 flex-wrap justify-center">
-      <button
+      <!-- <button
         @click="goHome"
         class="bg-orange-500 px-4 py-2 text-white rounded-sm hover:bg-orange-600 transition"
       >
@@ -68,7 +56,7 @@ const retry = () => {
         class="bg-gray-200 px-4 py-2 text-gray-700 rounded-sm hover:bg-gray-300 transition"
       >
         Back
-      </button>
+      </button> -->
       <button
         @click="retry"
         class="bg-blue-500 px-4 py-2 text-white rounded-sm hover:bg-blue-600 transition"

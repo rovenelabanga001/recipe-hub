@@ -11,7 +11,6 @@ const props = defineProps({
 });
 
 const auth = useAuthStore();
-const config = useRuntimeConfig();
 const { $authApi } = useNuxtApp();
 
 let userId = ref(null);
@@ -38,7 +37,7 @@ if (props.mode === "other") {
   user.value = fetchedUser.value;
 } else {
   userId.value = auth.user?.id;
-  user.value = auth.user
+  user.value = auth.user;
 }
 
 const { data: recipes } = await useAsyncData(`recipes-${userId.value}`, () =>
@@ -49,12 +48,8 @@ const totalPosts = computed(() => recipes.value?.length || 0);
 </script>
 <template>
   <div class="flex flex-col w-full min-h-[200px] gap-4 lg:w-[40%] lg:flex-row">
-    <div
-      class="flex items-start justify-start w-full rounded-xl lg:items-center lg:w-full lg:justify-center lg:border lg:border-[orangered]"
-    >
-      <IconsUser class="text-5xl lg:text-7xl" />
-    </div>
-    <div class="lg:self-end">
+    <ProfilePageHeaderProfilePicture :userId="userId"/>
+    <div class="flex flex-col space-between lg:self-end">
       <h5 class="text-[orangered] text-3xl font-bold">
         {{ user?.username }}
       </h5>

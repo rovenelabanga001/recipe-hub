@@ -1,6 +1,5 @@
 <script setup>
 const props = defineProps(["user"]);
-
 const viewUserProfile = inject("viewUserProfile");
 </script>
 <template>
@@ -9,7 +8,7 @@ const viewUserProfile = inject("viewUserProfile");
       @click="viewUserProfile(props.user.username)"
       class="flex items-center gap-2 cursor-pointer"
     >
-      <IconsUser />
+      <UserNameCard :user-id="user.id" />
       <h6 class="font-bold text-gray-500">
         <span>{{ user.username }}</span>
       </h6>

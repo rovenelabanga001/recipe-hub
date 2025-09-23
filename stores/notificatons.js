@@ -6,24 +6,17 @@ export const useNotificationsStore = defineStore("notifications", {
   }),
 
   actions: {
-    async fetchUnread(config, userId) {
-      const notifications = await $fetch(
-        `${config.public.baseUrl}/notifications`,
-        {
-          query: { read: false },
-        }
-      );
+    async fetchUnread() {
+      try {
+        const { $authApi } = useNuxtApp();
+        const res = await $authApi("/my-notifications");
+        const allNotifications = res.data || [];
 
-      const recipes = await Promise.all(
-        notifications.map((n) => {
-          if (!n.recipeId) return null; // skip invalid
-          return $fetch(`${config.public.baseUrl}/recipes/${n.recipeId}`);
-        })
-      );
-
-      this.unread = notifications.filter(
-        (n, i) => recipes[i] && recipes[i].userID === userId
-      );
+        this.unread = allNotifications.filter((n) => n.read === false);
+      } catch (err) {
+        console.error("Failed to fetch unread notifications", err);
+        this.unread = [];
+      }
     },
 
     markAsRead(id) {

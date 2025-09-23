@@ -11,3 +11,20 @@ body {
 button {
   cursor: pointer;
 }
+
+
+@media (max-width: 300px), (min-width: 1921px) {
+  body::before {
+    content: "This app is not supported on your device.";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    inset: 0;
+    background: white;
+    color: black;
+    font-size: 1.2rem;
+    z-index: 999999;
+  }
+}
+

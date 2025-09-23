@@ -5,12 +5,12 @@ const props = defineProps({
   time: String,
 });
 
-const config = useRuntimeConfig();
+const { $authApi } = useNuxtApp();
 const notificationsStore = useNotificationsStore();
 
 const handleClick = async () => {
   if (props.comment) {
-    await $fetch(`${config.public.baseUrl}/notifications/${props.comment.id}`, {
+    await $authApi(`/my-notifications/${props.comment.id}`, {
       method: "PATCH",
       body: { read: true },
     });
@@ -19,13 +19,10 @@ const handleClick = async () => {
       `/recipes/${props.comment.recipeId}?commentId=${props.comment.commentId}`
     );
   } else {
-    await $fetch(
-      `${config.public.baseUrl}/notifications/${props.favorite.id}`,
-      {
-        method: "PATCH",
-        body: { read: true },
-      }
-    );
+    await $authApi(`/my-notifications/${props.favorite.id}`, {
+      method: "PATCH",
+      body: { read: true },
+    });
 
     notificationsStore.markAsRead(props.favorite.id);
     navigateTo(`/recipes/${props.favorite.recipeId}`);

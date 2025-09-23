@@ -14,18 +14,14 @@ const { data: recipe, pending } = await useAsyncData(
   `recipe-${recipeId}`,
   async () => {
     const res = await $authApi(`recipes/${recipeId}`);
-    return res
+    return res;
   }
 );
 
-
-const { data: user} = await useAsyncData(
-  `user-${recipeId}`,
-  async () => {
-    const res = await $authApi(`recipes/${recipeId}/user`);
-    return res
-  }
-);
+const { data: user } = await useAsyncData(`user-${recipeId}`, async () => {
+  const res = await $authApi(`recipes/${recipeId}/user`);
+  return res;
+});
 
 const goBack = () => {
   router.back();
@@ -47,12 +43,13 @@ const viewUserProfile = inject("viewUserProfile");
       :src="recipe?.image"
       class="h-[400px] rounded-xl object-cover w-[100%] md:min-h-[500px]"
     />
-    <div class="flex items-center gap-4">
-      <IconsUser />
+    <div
+      class="flex items-center gap-4 cursor-pointer"
+      @click="viewUserProfile(user.username)"
+    >
+      <UserNameCard :user-id="user?.id" />
       <p class="font-bold text-gray-400">
-        <span @click="viewUserProfile(user.username)" class="cursor-pointer">{{
-          user.username
-        }}</span>
+        <span>{{ user.username }}</span>
       </p>
     </div>
     <SingleRecipeBody :recipe="recipe" />

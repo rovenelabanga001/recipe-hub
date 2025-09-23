@@ -28,12 +28,12 @@ const onAddClick = () => {
             >Recipes</NuxtLink
           >
         </li>
-        <!-- <li class="flex items-center">
+        <li class="flex items-center">
           <NuxtLink to="/notifications" exact-active-class="exact-active"
             >Notifications</NuxtLink
           >
           <NotificationsCounter class="self-start" />
-        </li> -->
+        </li>
       </ul>
       <div class="hidden lg:flex items-center gap-4">
         <button
@@ -57,7 +57,7 @@ const onAddClick = () => {
         <IconsMenu v-else />
       </button>
     </nav>
-    <!-- <Transition name="fade">
+    <Transition name="fade">
       <div
         v-if="isOpen"
         class="lg:hidden flex flex-col items-start fixed top-0 right-0 bg-white shadow-lg px-4 py-20 h-[100%] w-[70%] z-1000 bg-[#FDFAF5]"
@@ -97,7 +97,7 @@ const onAddClick = () => {
           </button>
         </div>
       </div>
-    </Transition> -->
+    </Transition>
   </header>
 </template>
 <style scoped>

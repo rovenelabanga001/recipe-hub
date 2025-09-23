@@ -32,10 +32,10 @@ let userId = ref(null);
 // Determine userId
 if (props.mode === "other") {
   const { data: fetchedUser } = await useAsyncData(
-    `user-${props.username}`,
+    `user-by-username-${props.username}`,
     async () => {
       const res = await $authApi(`/users/username/${props.username}`);
-      return res.data; 
+      return res.data;
     }
   );
 
@@ -52,10 +52,10 @@ if (props.mode === "other") {
   userId.value = auth.user?.id;
 }
 
-
 // Fetch posts
-const { data: posts } = await useAsyncData(`posts-${userId.value}`, () =>
-  $authApi(`/users/${userId.value}/recipes`)
+const { data: posts } = await useAsyncData(
+  `user-posts-${userId.value}`,
+  async () => await $authApi(`users/${userId.value}/recipes`)
 );
 
 // Fetch comments only in self mode
@@ -63,7 +63,7 @@ const { data: comments } =
   props.mode === "self"
     ? await useAsyncData(`comments-${auth.user.username}`, async () => {
         const res = await $authApi("/my-comments");
-        return res.data; 
+        return res.data;
       })
     : { value: [] };
 
@@ -99,7 +99,7 @@ const overviewItems = computed(() => {
       :key="tab"
       @click="activeTab.setAcitveTab(tab)"
       :class="[
-        'px-3 py-1 rounded-2xl border cursor-pointer',
+        'py-1 rounded-2xl border cursor-pointer w-auto',
         activeTab.activeTab === tab
           ? 'bg-[orangered] text-white border-[orangered]'
           : 'text-[orangered] border-[orangered]',
@@ -132,7 +132,10 @@ const overviewItems = computed(() => {
 
     <!-- Posts (always visible) -->
     <template v-else-if="activeTab.activeTab === 'Posts'">
-      <profile-page-body-posts v-if="posts.length >= 1" :posts="posts.reverse()" />
+      <profile-page-body-posts
+        v-if="posts.length >= 1"
+        :posts="posts.reverse()"
+      />
       <empty-placeholder
         v-else
         :message="
