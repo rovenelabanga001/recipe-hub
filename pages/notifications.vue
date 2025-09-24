@@ -6,12 +6,14 @@ definePageMeta({
 
 const { $authApi } = useNuxtApp();
 const config = useRuntimeConfig();
+const loading = ref(false);
 
 const notifications = ref([]);
 const activeFilter = ref("Unread");
 
 // fetch notifications once on mount
 onMounted(async () => {
+  loading.value = true;
   const saved = localStorage.getItem("activeFilter");
   if (saved) {
     activeFilter.value = saved;
@@ -23,6 +25,8 @@ onMounted(async () => {
     );
   } catch (err) {
     console.error("Failed to fetch notifications", err);
+  } finally {
+    loading.value = false;
   }
 });
 
@@ -42,7 +46,7 @@ const filteredNotifications = computed(() => {
   }
 });
 
-// optional: split by type
+//split by type
 const commentNotifications = computed(() =>
   filteredNotifications.value.filter((n) => n.type === "comment")
 );
@@ -85,7 +89,7 @@ const timeAgo = (timestamp) => {
   <div
     class="space-y-4 bg-gray-100 py-6 px-4 rounded-lg min-h-screen overflow-y-auto w-full lg:px-8"
   >
-    <div v-if="notifications.length">
+    <div v-if="notifications.length && !loading">
       <div class="px-2 space-y-3">
         <NotificationsHeader
           :active-filter="activeFilter"
@@ -110,7 +114,9 @@ const timeAgo = (timestamp) => {
         </div>
       </div>
     </div>
-
+    <!-- <div v-else-if="loading" class="min-h-full min-w-full flex flex-col items-center justify-center bg-[#FDFAF5]" >
+      <LoadingComponent />
+    </div> -->
     <EmptyPlaceholder
       v-else
       message="Oops! You don't have any notifications yet"

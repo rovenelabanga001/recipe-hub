@@ -1,5 +1,8 @@
 <script setup>
-const props = defineProps(["userId"]);
+const props = defineProps({
+  userId: String,
+  mode: { type: String, default: "other" } 
+});
 const { $authApi } = useNuxtApp();
 const { data: user, refresh } = await useAsyncData(`user-${props.userId}`, () =>
   $authApi(`/users/id/${props.userId}`)
@@ -61,6 +64,7 @@ const onFileSelected = async (event) => {
       />
       <IconsUser v-else class="text-6xl md:text-7xl lg:text-8xl" />
       <div
+        v-if="props.mode === 'self'"
         class="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 bg-white rounded-full p-1 shadow-md w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 flex items-center justify-center"
       >
         <label>

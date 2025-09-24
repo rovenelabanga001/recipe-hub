@@ -33,23 +33,20 @@ provide("slugifyCategory", slugifyCategory);
 </script>
 
 <template>
-  <NuxtLayout>
-    <!-- Always include NuxtPage at top level -->
-    <NuxtPage v-slot="{ Component }">
-      <div class="relative w-full min-h-screen">
-        <!-- Loader -->
-        <div v-if="!hydrated || pending" class="fixed inset-0 flex items-center justify-center z-[9999]">
-          <LoadingComponent />
-        </div>
+  <div class="bg-[#FDFAF5] relative w-full min-h-screen">
+    <div
+      v-if="!hydrated || pending"
+      class="fixed inset-0 bg-[#FDFAF5] flex items-center justify-center z-[9999] overflow-y-hidden"
+    >
+      <LoadingComponent />
+    </div>
 
-        <!-- Server error -->
-        <ErrorPage v-else-if="serverError" :error="serverError" />
+    <ErrorPage v-else-if="serverError" :error="serverError" />
 
-        <!-- Actual page content -->
-        <component :is="Component" v-else />
-      </div>
-    </NuxtPage>
-  </NuxtLayout>
+    <template v-else>
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
+    </template>
+  </div>
 </template>
-
-

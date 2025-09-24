@@ -55,7 +55,10 @@ if (props.mode === "other") {
 // Fetch posts
 const { data: posts } = await useAsyncData(
   `user-posts-${userId.value}`,
-  async () => await $authApi(`users/${userId.value}/recipes`)
+  async () => {
+    const res = await $authApi(`users/${userId.value}/recipes`);
+    return Array.isArray(res) ? res : [];
+  }
 );
 
 // Fetch comments only in self mode
@@ -70,9 +73,9 @@ const { data: comments } =
 // Overview items (only for self)
 const overviewItems = computed(() => {
   if (props.mode !== "self") return [];
-
   if (!posts.value || !comments.value) return [];
 
+  // Add type and a common date field
   const postsWithType = posts.value.map((p) => ({
     ...p,
     type: "post",
@@ -87,10 +90,11 @@ const overviewItems = computed(() => {
 
   return [...postsWithType, ...commentsWithType]
     .filter((item) => item.sortDate)
-    .sort((a, b) => b.sortDate.localeCompare(a.sortDate))
-    .slice(0, 4);
+    .sort((a, b) => new Date(b.sortDate) - new Date(a.sortDate)) // sort descending by date
+    .slice(0, 4); // get latest 4
 });
 </script>
+
 <template>
   <!-- Tabs -->
   <div class="grid grid-cols-3 gap-3 md:grid-cols-4 w-full lg:w-[50%]">

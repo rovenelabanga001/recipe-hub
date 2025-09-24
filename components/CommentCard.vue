@@ -5,7 +5,6 @@ const props = defineProps({
 
 const { $authApi } = useNuxtApp();
 
-
 const auth = useAuthStore();
 const config = useRuntimeConfig();
 
@@ -13,11 +12,11 @@ const emit = defineEmits(["delete"]);
 
 const timeAgo = (timestamp) => {
   // Remove extra microseconds so JS can parse correctly
-  const cleaned = timestamp.replace(/\.(\d{3})\d+/, '.$1'); // keep milliseconds only
-  const date = new Date(cleaned + 'Z'); // explicitly UTC
+  const cleaned = timestamp.replace(/\.(\d{3})\d+/, ".$1"); // keep milliseconds only
+  const date = new Date(cleaned + "Z"); // explicitly UTC
 
   const now = new Date(); // local time
-  const diffMs = now - date; 
+  const diffMs = now - date;
   if (diffMs < 0) return "now";
 
   const diffSeconds = Math.floor(diffMs / 1000);
@@ -39,8 +38,6 @@ const timeAgo = (timestamp) => {
   return rtf.format(-diffYears, "year");
 };
 
-
-
 const onDeleteClick = async (commentId) => {
   try {
     const res = await $authApi(
@@ -56,7 +53,6 @@ const onDeleteClick = async (commentId) => {
 };
 
 const viewUserProfile = inject("viewUserProfile");
-
 </script>
 <template>
   <div
@@ -65,11 +61,10 @@ const viewUserProfile = inject("viewUserProfile");
     :id="`comment-${comment.id}`"
   >
     <div class="flex items-start space-x-3">
-      <!-- Avatar -->
-      <div class="flex-shrink-0">
-        <IconsUser class="w-6 h-6" />
-      </div>
-
+      <UserNameCard
+        :username="comment.username"
+        @click="viewUserProfile(comment.username)"
+      />
       <!-- Content -->
       <div class="flex-1 min-w-0">
         <!-- Header -->

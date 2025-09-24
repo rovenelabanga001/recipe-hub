@@ -48,7 +48,7 @@ const totalPosts = computed(() => recipes.value?.length || 0);
 </script>
 <template>
   <div class="flex flex-col w-full min-h-[200px] gap-4 lg:w-[40%] lg:flex-row">
-    <ProfilePageHeaderProfilePicture :userId="userId"/>
+    <ProfilePageHeaderProfilePicture :userId="userId" :mode="props.mode"/>
     <div class="flex flex-col space-between lg:self-end">
       <h5 class="text-[orangered] text-3xl font-bold">
         {{ user?.username }}
