@@ -11,6 +11,8 @@ const credentials = reactive({
   password: "",
 });
 
+const loading = ref(false);
+
 const rules = {
   email: {
     required: helpers.withMessage("Email is required", required),
@@ -28,6 +30,7 @@ const submitForm = async () => {
   if (!isValid) return;
 
   try {
+    loading.value = true;
     const data = await login(credentials.email, credentials.password);
 
     if (data.error || !data.success) {
@@ -45,6 +48,8 @@ const submitForm = async () => {
   } catch (err) {
     useToastify("Failed, try again later", { type: "error" });
     console.log(err);
+  } finally {
+    loading.value = false;
   }
 };
 </script>
@@ -107,9 +112,31 @@ const submitForm = async () => {
 
     <button
       type="submit"
-      class="bg-[orangered] w-full text-white rounded h-10 cursor-pointer"
+      class="bg-[orangered] w-full text-white rounded h-10 cursor-pointer flex items-center justify-center gap-2 disabled:opacity-70"
+      :disabled="loading"
     >
-      Sign In
+      <svg
+        v-if="loading"
+        class="animate-spin h-5 w-5 text-white"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle
+          class="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          stroke-width="4"
+        ></circle>
+        <path
+          class="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+        ></path>
+      </svg>
+      <span>{{ loading ? "Signing In..." : "Sign In" }}</span>
     </button>
 
     <p class="text-center">

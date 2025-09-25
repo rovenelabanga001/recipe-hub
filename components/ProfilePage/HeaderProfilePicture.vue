@@ -1,31 +1,41 @@
 <script setup>
 const props = defineProps({
   userId: String,
-  mode: { type: String, default: "other" } 
+  mode: { type: String, default: "other" },
 });
 const { $authApi } = useNuxtApp();
+
+const showModal = ref(false);
+
+const openModal = () => {
+  showModal.value = true;
+};
+
+const closeModal = () => {
+  showModal.value = false;
+};
 const { data: user, refresh } = await useAsyncData(`user-${props.userId}`, () =>
   $authApi(`/users/id/${props.userId}`)
 );
 
 const isUploading = ref(false);
-const isDeleting = ref(false)
+const isDeleting = ref(false);
 
-const onDeleteProfilePicture = async() =>{
-    try{
-        isDeleting.value = true 
+const onDeleteProfilePicture = async () => {
+  try {
+    isDeleting.value = true;
 
-        await $authApi("/users/profile_picture/reset", {
-            method:"POST"
-        })
+    await $authApi("/users/profile_picture/reset", {
+      method: "POST",
+    });
 
-        await refresh()
-    }catch(err){
-        console.error("console.error", err)
-    }finally{
-        isDeleting.value = false
-    }
-}
+    await refresh();
+  } catch (err) {
+    console.error("console.error", err);
+  } finally {
+    isDeleting.value = false;
+  }
+};
 
 const onFileSelected = async (event) => {
   const file = event.target.files[0];
@@ -52,11 +62,23 @@ const onFileSelected = async (event) => {
 <template>
   <LoadingComponent v-if="isUploading || isDeleting" />
   <div
-    class="flex flex-col items-center justify-center w-[40%] min-h-[100px] rounded-xl md:w-[50%] lg:w-full"
+    class="flex flex-col items-start justify-center w-[40%] min-h-[100px] rounded-xl md:w-[50%] lg:w-full"
     v-else
   >
+    <div
+      v-if="showModal"
+      class="fixed inset-0 bg-black bg-white flex items-center justify-center z-[999999]"
+      @click.self="closeModal"
+    >
+      <img
+        :src="user.profile_pic"
+        alt="Profile Picture"
+        class="max-w-[70%] max-h-[70%] rounded-lg object-contain shadow-lg"
+      />
+    </div>
     <div class="relative inline-block h-full w-[150px] md:w-[200px]">
       <img
+        @click="openModal"
         v-if="user?.profile_pic"
         :src="user?.profile_pic"
         alt="Profile Picture"

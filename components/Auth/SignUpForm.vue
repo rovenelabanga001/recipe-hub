@@ -16,6 +16,7 @@ const form = reactive({
   confirmPassword: "",
 });
 
+const loading = ref(false);
 // ----------------------
 // Custom validators
 // ----------------------
@@ -56,6 +57,7 @@ const onSignUpSubmit = async () => {
 
   if (!v$.value.$error) {
     try {
+      loading.value = true;
       const data = await $fetch("/api/user", {
         method: "POST",
         body: {
@@ -64,8 +66,8 @@ const onSignUpSubmit = async () => {
           password: form.password,
         },
       });
-      if(!data.success){
-        useToastify(data.message || "Signup Failed", {type: "error"})
+      if (!data.success) {
+        useToastify(data.message || "Signup Failed", { type: "error" });
       }
       authStore.setSignUpData({
         email: form.email,
@@ -77,6 +79,8 @@ const onSignUpSubmit = async () => {
     } catch (err) {
       useToastify("Server error, please try again", { type: "error" });
       console.log("Server error:", err);
+    } finally {
+      loading.value = false;
     }
   }
 };
@@ -237,9 +241,31 @@ const onSignUpSubmit = async () => {
     </div>
     <button
       type="submit"
-      class="bg-[orangered] w-full text-white rounded h-10 cursor-pointer"
+      class="bg-[orangered] w-full text-white rounded h-10 cursor-pointer flex items-center justify-center gap-2"
+      :disabled="loading"
     >
-      Create Account
+      <svg
+        v-if="loading"
+        class="animate-spin h-5 w-5 text-white"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle
+          class="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          stroke-width="4"
+        ></circle>
+        <path
+          class="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+        ></path>
+      </svg>
+      <span>{{ loading ? "Creating..." : "Create Account" }}</span>
     </button>
 
     <p class="text-center">

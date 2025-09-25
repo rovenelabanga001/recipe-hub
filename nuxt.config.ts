@@ -1,6 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
+  app: {
+    head: {
+      link: [{ rel: "icon", type: "image/png", href: "/favicon.ico" }],
+    },
+  },
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   runtimeConfig: {
@@ -40,7 +45,7 @@ export default defineNuxtConfig({
         cors: true, // enable CORS headers
         headers: {
           "Access-Control-Allow-Origin": "http://127.0.0.1:5500",
-          "Access-Control-Allow-Credentials": "true", 
+          "Access-Control-Allow-Credentials": "true",
         },
       },
     },
