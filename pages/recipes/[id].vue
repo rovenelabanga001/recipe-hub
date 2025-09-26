@@ -33,9 +33,8 @@ const viewUserProfile = inject("viewUserProfile");
 </script>
 <template>
   <BackBtn />
-  <LoadingComponent v-if="pending || !recipe" />
   <div
-    v-else
+    v-if="recipe"
     class="flex flex-col items-start gap-4 w-[100%] md:w-[80%] lg:w-[50%] overflow-y-auto"
   >
     <SingleRecipeHeader :recipe="recipe" />

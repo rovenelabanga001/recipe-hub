@@ -89,7 +89,13 @@ const timeAgo = (timestamp) => {
   <div
     class="space-y-4 bg-gray-100 py-6 px-4 rounded-lg min-h-screen overflow-y-auto w-full lg:px-8"
   >
-    <div v-if="notifications.length && !loading">
+    <div
+      v-if="loading"
+      class="absolute inset-0 bg-gray-100/80 flex items-center justify-center z-50"
+    >
+      <LoadingComponent class="w-10 h-10"/>
+    </div>
+    <div v-else-if="notifications.length">
       <div class="px-2 space-y-3">
         <NotificationsHeader
           :active-filter="activeFilter"

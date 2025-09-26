@@ -4,7 +4,7 @@ const auth = useAuthStore();
 
 const hideText = ref(false);
 
-const { data: favoriteRecipes } = await useAsyncData(
+const { data: favoriteRecipes, pending } = await useAsyncData(
   `${auth.user?.username}-recipes`,
   async () => {
     const res = await $authApi("users/favorites");
@@ -13,7 +13,10 @@ const { data: favoriteRecipes } = await useAsyncData(
 );
 </script>
 <template>
-  <div v-if="favoriteRecipes.length >= 1" class="space-y-4">
+  <div v-if="pending" class="w-full h-full flex items-center justify-center">
+    <loading-component class="w-10 h-10" />
+  </div>
+  <div v-else-if="favoriteRecipes.length >= 1" class="space-y-4">
     <h5>Showing favorite recipes</h5>
     <div
       v-for="recipe in favoriteRecipes.reverse()"

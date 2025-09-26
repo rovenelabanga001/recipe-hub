@@ -53,7 +53,7 @@ if (props.mode === "other") {
 }
 
 // Fetch posts
-const { data: posts } = await useAsyncData(
+const { data: posts, pending: postsLoading } = await useAsyncData(
   `user-posts-${userId.value}`,
   async () => {
     const res = await $authApi(`users/${userId.value}/recipes`);
@@ -62,14 +62,16 @@ const { data: posts } = await useAsyncData(
 );
 
 // Fetch comments only in self mode
-const { data: comments } =
+const { data: comments, pending: commentsLoading } =
   props.mode === "self"
     ? await useAsyncData(`comments-${auth.user.username}`, async () => {
         const res = await $authApi("/my-comments");
         return res.data;
       })
-    : { value: [] };
+    : { data: ref([]), pending: ref(false) };
 
+// combined loading state
+const loading = computed(() => postsLoading.value || commentsLoading.value);
 // Overview items (only for self)
 const overviewItems = computed(() => {
   if (props.mode !== "self") return [];
@@ -121,8 +123,14 @@ const overviewItems = computed(() => {
     <template
       v-if="activeTab.activeTab === 'Overview' && props.mode === 'self'"
     >
+      <div
+        v-if="loading"
+        class="w-full h-full flex items-center justify-center"
+      >
+        <loading-component class="w-10 h-10" />
+      </div>
       <profile-page-body-overview
-        v-if="overviewItems.length >= 1"
+        v-else-if="overviewItems.length >= 1"
         :overview-items="overviewItems"
       />
       <empty-placeholder
@@ -136,8 +144,14 @@ const overviewItems = computed(() => {
 
     <!-- Posts (always visible) -->
     <template v-else-if="activeTab.activeTab === 'Posts'">
+      <div
+        v-if="postsLoading"
+        class="w-full h-full flex items-center justify-center"
+      >
+        <loading-component class="w-10 h-10" />
+      </div>
       <profile-page-body-posts
-        v-if="posts.length >= 1"
+        v-else-if="posts.length >= 1"
         :posts="posts.reverse()"
       />
       <empty-placeholder
@@ -160,8 +174,14 @@ const overviewItems = computed(() => {
     <template
       v-else-if="activeTab.activeTab === 'Comments' && props.mode === 'self'"
     >
+      <div
+        v-if="commentsLoading"
+        class="w-full h-full flex items-center justify-center"
+      >
+        <loading-component class="w-10 h-10" />
+      </div>
       <profile-page-body-comments
-        v-if="comments.length >= 1"
+        v-else-if="comments.length >= 1"
         :comments="comments"
       />
       <empty-placeholder

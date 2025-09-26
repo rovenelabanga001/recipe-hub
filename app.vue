@@ -1,52 +1,34 @@
 <script setup>
-import ErrorPage from "~/components/ErrorPage.vue";
-
 const hydrated = ref(false);
-const serverError = ref(null);
-const pending = ref(true);
+const { serverError, pending } = useServerHealth();
 
-const config = useRuntimeConfig();
-
-onMounted(async () => {
+onMounted(() => {
   hydrated.value = true;
-  pending.value = true;
-
-  try {
-    await $fetch(`${config.public.baseUrl}`);
-  } catch (err) {
-    serverError.value = {
-      statusCode: err?.response?.status || 500,
-      statusMessage: "Server is unreachable. Please try again later.",
-    };
-  } finally {
-    pending.value = false;
-  }
 });
-const viewUserProfile = (username) => {
-  navigateTo(`/profile/${username}`);
-};
-const slugifyCategory = (name) => {
-  return name.toLowerCase().replace(/\s+/g, "-");
-};
+
+const viewUserProfile = (username) => navigateTo(`/profile/${username}`);
+const slugifyCategory = (name) => name.toLowerCase().replace(/\s+/g, "-");
+
 provide("viewUserProfile", viewUserProfile);
 provide("slugifyCategory", slugifyCategory);
 </script>
 
 <template>
   <div class="bg-[#FDFAF5] relative w-full min-h-screen">
-    <div
+    <!-- Global fullscreen loading -->
+    <!-- <div
       v-if="!hydrated || pending"
-      class="fixed inset-0 bg-[#FDFAF5] flex items-center justify-center z-[9999] overflow-y-hidden"
+      class="fixed inset-0 bg-[#FDFAF5] flex items-center justify-center z-[9999]"
     >
-      <LoadingComponent />
-    </div>
+      <LoadingComponent class="w-10 h-10" />
+    </div> -->
 
-    <ErrorPage v-else-if="serverError" :error="serverError" />
+    <!-- Server error -->
+    <ErrorPage v-if="serverError" :error="serverError" />
 
-    <template v-else>
-      <NuxtLayout>
-        <NuxtPage />
-      </NuxtLayout>
-    </template>
+    <!-- Main app -->
+    <NuxtLayout v-else>
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>

@@ -38,16 +38,17 @@ export default defineNuxtConfig({
     download: true, // downloads and serves fonts locally (faster load)
     inject: true, // automatically injects into your <head>
   },
-  nitro: {
-    routeRules: {
-      "/api/**": {
-        // applies to all API routes
-        cors: true, // enable CORS headers
-        headers: {
-          "Access-Control-Allow-Origin": "http://127.0.0.1:5500",
-          "Access-Control-Allow-Credentials": "true",
-        },
-      },
-    },
-  },
+  ssr:false,
+  // nitro: {
+  //   routeRules: {
+  //     "/api/**": {
+  //       // applies to all API routes
+  //       cors: true, // enable CORS headers
+  //       headers: {
+  //         "Access-Control-Allow-Origin": "http://127.0.0.1:5500",
+  //         "Access-Control-Allow-Credentials": "true",
+  //       },
+  //     },
+  //   },
+  // },
 });

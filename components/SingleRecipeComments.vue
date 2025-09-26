@@ -4,13 +4,14 @@ const commentId = inject("commentId");
 const config = useRuntimeConfig();
 const auth = useAuthStore();
 
-const {$authApi} = useNuxtApp()
+const { $authApi } = useNuxtApp();
 
 const { data: comments } = await useAsyncData(
   `recipe-comments:${recipeId}`,
   () => $authApi(`/recipes/${recipeId}/comments`)
-)
+);
 
+const loading = ref(false);
 
 onMounted(() => {
   if (commentId) {
@@ -54,6 +55,7 @@ const newComment = reactive({
 
 const onPostCommentClick = async () => {
   try {
+    loading.value = true;
     const savedComment = await $authApi("/comments", {
       baseURL: config.public.baseUrl,
       method: "POST",
@@ -70,12 +72,14 @@ const onPostCommentClick = async () => {
     await refreshNuxtData(`comment-recipe:${recipeId}`);
   } catch (error) {
     console.error(error);
+  } finally {
+    loading.value = false;
   }
 };
 
 const handleDelete = (commentId) => {
   comments.value = comments.value.filter((c) => c.id !== commentId);
-  refreshNuxtData(`recipe-comments:${recipeId}`)
+  refreshNuxtData(`recipe-comments:${recipeId}`);
 };
 </script>
 <template>
@@ -97,10 +101,32 @@ const handleDelete = (commentId) => {
       ></textarea>
 
       <button
-        class="bg-[orangered] text-white px-3 py-1 rounded-2xl self-end cursor-pointer"
+        class="bg-[orangered] text-white px-3 py-1 rounded-2xl self-end cursor-pointer flex items-center justify-center gap-2 disabled:opacity-70"
+        :disabled="loading"
         @click="onPostCommentClick"
       >
-        Post
+        <svg
+          v-if="loading"
+          class="animate-spin h-5 w-5 text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            class="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            stroke-width="4"
+          ></circle>
+          <path
+            class="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+          ></path>
+        </svg>
+        <span>{{ loading ? "Posting..." : "Post" }}</span>
       </button>
     </div>
   </div>

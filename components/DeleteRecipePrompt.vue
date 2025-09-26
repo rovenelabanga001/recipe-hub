@@ -3,12 +3,13 @@ const props = defineProps({
   recipe: Object,
 });
 
-const {$authApi} = useNuxtApp()
+const { $authApi } = useNuxtApp();
 const emit = defineEmits(["close", "deleted"]);
 const config = useRuntimeConfig();
-
-const deleteRecipeWithComments = async (recipeId) => {
+const loading = ref(false);
+const deleteRecipe = async (recipeId) => {
   try {
+    loading.value = true;
     await $authApi(`/recipes/${recipeId}`, {
       baseURL: config.public.baseUrl,
       method: "DELETE",
@@ -30,6 +31,8 @@ const deleteRecipeWithComments = async (recipeId) => {
       }
     );
     return { success: false, err };
+  } finally {
+    loading.value = false;
   }
 };
 </script>
@@ -49,15 +52,37 @@ const deleteRecipeWithComments = async (recipeId) => {
       <div class="flex justify-center gap-4">
         <button
           @click="emit('close')"
-          class="px-4 py-2 rounded bg-gray-300 text-gray-800 hover:bg-gray-400"
+          :disabled="loading"
+          class="px-4 py-2 rounded bg-gray-300 text-gray-800 flex items-center justify-center gap-2 disabled:opacity-70 hover:bg-gray-400"
         >
           No
         </button>
         <button
-          @click="deleteRecipeWithComments(recipe.id)"
+          @click="deleteRecipe(recipe.id)"
           class="px-4 py-2 rounded bg-[orangered] text-white hover:bg-red-600"
         >
-          Yes
+          <svg
+            v-if="loading"
+            class="animate-spin h-5 w-5 text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              class="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="4"
+            ></circle>
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+            ></path>
+          </svg>
+          <span v-else>Yes</span>
         </button>
       </div>
     </div>

@@ -43,8 +43,8 @@ const submitForm = async () => {
     authStore.token = data.token;
     authStore.clearSignUpData();
 
+    navigateTo("/", { replace: true });
     useToastify("Login Successful", { type: "success" });
-    await navigateTo("/", { replace: true });
   } catch (err) {
     useToastify("Failed, try again later", { type: "error" });
     console.log(err);

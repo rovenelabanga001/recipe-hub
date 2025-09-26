@@ -8,6 +8,7 @@ const props = defineProps({
   recipeId: { type: String, default: null },
 });
 
+const loading = ref(false);
 const config = useRuntimeConfig();
 const auth = useAuthStore();
 const recipeDraft = useRecipeDraftStore();
@@ -56,15 +57,14 @@ const rules = {
   imageFile: {
     required: helpers.withMessage(
       "Image is required",
-      (val, vm) => !!val || !!vm.imageUrl 
+      (val, vm) => !!val || !!vm.imageUrl
     ),
     isImage: helpers.withMessage(
       "File must be an image",
       (val) => (val ? val.type?.startsWith("image/") : true) // allow no file if imageUrl exists
     ),
-    maxSize: helpers.withMessage(
-      "Image must be < 2MB",
-      (val) => (val ? val.size <= 2 * 1024 * 1024 : true)
+    maxSize: helpers.withMessage("Image must be < 2MB", (val) =>
+      val ? val.size <= 2 * 1024 * 1024 : true
     ),
   },
   prepTime: { required, minValue: minValue(1) },
@@ -77,10 +77,7 @@ const rules = {
     ),
   },
   selectedSteps: {
-    required: helpers.withMessage(
-      "At least 1 step",
-      (val) => val.length > 0
-    ),
+    required: helpers.withMessage("At least 1 step", (val) => val.length > 0),
   },
   selectedCategories: {
     required: helpers.withMessage(
@@ -89,7 +86,6 @@ const rules = {
     ),
   },
 };
-
 
 const state = reactive(recipeDraft); // validate store state
 const v$ = useVuelidate(rules, state);
@@ -113,6 +109,7 @@ const onSubmitRecipe = async () => {
   if (v$.value.$invalid) return;
 
   try {
+    loading.value = true;
     const formData = new FormData();
     formData.append("name", recipeDraft.title);
 
@@ -155,6 +152,7 @@ const onSubmitRecipe = async () => {
     console.error("Error submitting recipe:", err);
     useToastify("Failed to submit recipe", { type: "error" });
   } finally {
+    loading.value = false;
     recipeDraft.clearDraft();
     v$.value.$reset();
   }
@@ -388,12 +386,41 @@ const onSubmitRecipe = async () => {
     </div>
 
     <!-- Submit -->
-    <div class="text-center">
+    <div class="flex justify-center">
       <button
         type="submit"
-        class="bg-[orangered] text-white px-6 py-2 rounded-full shadow hover:bg-orange-600 cursor-pointer"
+        :disabled="loading"
+        class="bg-[orangered] text-white px-6 py-2 rounded-full shadow hover:bg-orange-600 cursor-pointer flex items-center justify-center gap-2 disabled:opacity-70"
       >
-        {{ props.mode === "create" ? "Submit" : "Update Recipe" }}
+        <svg
+          v-if="loading"
+          class="animate-spin h-5 w-5 text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            class="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            stroke-width="4"
+          ></circle>
+          <path
+            class="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+          ></path>
+        </svg>
+        <span>
+          <template v-if="loading">
+            {{ props.mode === "create" ? "Submitting..." : "Updating..." }}
+          </template>
+          <template v-else>
+            {{ props.mode === "create" ? "Submit" : "Update Recipe" }}
+          </template>
+        </span>
       </button>
     </div>
   </form>
