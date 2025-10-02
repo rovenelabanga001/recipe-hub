@@ -4,19 +4,15 @@ Recipe Hub is a modern web application designed to bring food lovers together by
 
 ## Features
 
-- 🔑 User Authentication & Registration – Secure account creation and login system.
+- 🔑 **User Authentication & Registration** – Secure account creation and login system.  
+- 🍲 **Recipe Filtering** – Browse recipes by categories, ingredients, or dietary needs.  
+- 💬 **Commenting** – Share feedback, tips, or variations on recipes.  
+- 🔔 **Notifications** – Stay updated on recipe activity, comments, and favorites.  
+- ✍️ **Recipe Management** – Add new recipes, edit details, or delete existing ones.  
+- 👤 **User Profiles** – Personalized profiles showcasing contributions and activity.  
+- ⭐ **Favorites** – Save and organize recipes you love for quick access.  
+- 👍 **Liking** – Users can like their own and other users’ posts.  
 
-- 🍲 Recipe Filtering – Browse recipes by categories, ingredients, or dietary needs.
-
-- 💬 Commenting – Share feedback, tips, or variations on recipes.
-
-- 🔔 Notifications – Stay updated on recipe activity, comments, and favorites.
-
-- ✍️ Recipe Management – Add new recipes, edit details, or delete existing ones.
-
-- 👤 User Profiles – Personalized profiles showcasing contributions and activity.
-
-- ⭐ Favorites – Save and organize recipes you love for quick access.
 
 ## Installation
 
@@ -40,11 +36,6 @@ cd recipe-hub
 npm Install
 ```
 
-### Run the server
-
-```bash
-npm run server
-```
 
 ### Run the project
 
